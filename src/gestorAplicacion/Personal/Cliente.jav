@@ -7,25 +7,26 @@ public class Cliente {
     private int edadCliente;
     private long id;
     private float saldo;
+    private int fichas;
     private int numeroVisitas;
     private int partidasJugadas;
 	private boolean fidelidadBar;
+    private boolean fidelidadArtista;
+    private int propinasBar;
+    private int propinasArtista;
 
     // Constructor vacío
     public Cliente() {
     }
 
     // Constructor con parámetros
-    public Cliente(String nombreCliente, int edadCliente, long id, float saldo, int numeroVisitas, int partidasJugadas, boolean fidelidadBar) {
+    public Cliente(String nombreCliente, int edadCliente, long id, float saldo) {
         this.nombreCliente = nombreCliente;
         this.edadCliente = edadCliente;
         this.id = id;
         this.saldo = saldo;
-        this.numeroVisitas = numeroVisitas;
-        this.partidasJugadas = partidasJugadas;
-		this.fidelidadBar = fidelidadBar;
     }
-
+    // Getters y Setters
     public String getNombreCliente() {
         return nombreCliente;
     }
@@ -73,4 +74,38 @@ public class Cliente {
     public void setPartidasJugadas(int partidasJugadas) {
         this.partidasJugadas = partidasJugadas;
     }
+
+    public boolean getfidelidadArtista(){
+        return fidelidadArtista;
+    }
+
+    public void setfidelidadArista (boolean fidelidadArtista){
+        this.fidelidadArtista = fidelidadArtista;
+    }
+
+    public boolean getfidelidadBar(){
+        return fidelidadBar;
+    }
+
+    public void setfidelidadBar(boolean fidelidadBar){
+        this.fidelidadBar = fidelidadBar;
+    }
+
+    public int getFichas (){
+        return fichas;
+    }
+
+    public void setFichas (int fichas){
+        this.fichas = fichas;
+    }
+
+    //Metodo de dar propina al bar
+    public void darPropinaBar(int propina) {
+        this.saldo -= propina;
+        this.propinasBar += 1;
+        if this.propinasBar >= 3{
+            this.fidelidadBar = true;
+        }
+    }
+
 }
