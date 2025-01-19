@@ -1,5 +1,5 @@
 package gestorAplicacion.Servicios;
-import java.util.Arraylist;
+import java.util.ArrayList;
 
 public class Casino{
     private ArrayList<Auto> estacionamiento;

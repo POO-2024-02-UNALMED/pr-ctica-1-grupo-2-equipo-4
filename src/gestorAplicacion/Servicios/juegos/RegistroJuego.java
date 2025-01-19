@@ -1,1 +1,1 @@
-package gestorAplicacion.Servicios;
+package gestorAplicacion.Servicios.juegos;

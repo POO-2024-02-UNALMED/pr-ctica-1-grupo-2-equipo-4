@@ -1,5 +1,4 @@
 package gestorAplicacion.Servicios;
-import java.util.Objects;
 
 public class Habitacion {
     // Atributos
@@ -64,30 +63,4 @@ public class Habitacion {
     public void setHabitacionLimpia(boolean habitacionLimpia) {
         this.habitacionLimpia = habitacionLimpia;
     }
-
-    public Habitacion ocuapada(boolean ocuapada) {
-        setOcuapada(ocuapada);
-        return this;
-    }
-
-    public Habitacion NumeroCamas(int NumeroCamas) {
-        setNumeroCamas(NumeroCamas);
-        return this;
-    }
-
-    public Habitacion NumeroNoches(int NumeroNoches) {
-        setNumeroNoches(NumeroNoches);
-        return this;
-    }
-
-    public Habitacion tipoHabitacion(String tipoHabitacion) {
-        setTipoHabitacion(tipoHabitacion);
-        return this;
-    }
-
-    public Habitacion habitacionLimpia(boolean habitacionLimpia) {
-        setHabitacionLimpia(habitacionLimpia);
-        return this;
-    }
-    
 }

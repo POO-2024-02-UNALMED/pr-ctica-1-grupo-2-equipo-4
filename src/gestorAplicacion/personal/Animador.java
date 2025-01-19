@@ -16,6 +16,7 @@ public class Animador extends Empleado{
         return "No hay resultado";
     }
 
+    @Override
     public String generarSaludo (String nombre, String rol){
         return "Hola, "+ nombre+ "soy un " + rol;
     }

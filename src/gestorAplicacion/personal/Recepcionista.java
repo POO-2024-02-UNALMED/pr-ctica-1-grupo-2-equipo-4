@@ -1,36 +1,34 @@
 package gestorAplicacion.personal;
-import java.util.Arraylist;
+
+import gestorAplicacion.Servicios.Habitacion;
+import java.util.ArrayList;
 
 public class Recepcionista extends Empleado{
-    Private Arraylist<Habitacion> habitaciones;
+    private ArrayList<Habitacion> habitaciones;
 
-    public Recepcionista(String rol, String puesto, Arraylist<Habitacion> habitaciones) {
+    public Recepcionista(String rol, String puesto, ArrayList<Habitacion> habitaciones) {
         super(rol, puesto);
-        this. habitaciones = habitaciones
+        this.habitaciones = habitaciones;
     }
 
-    public Boolean verificarEdad(){
-
+    @Override
+    public String generarSaludo (String nombre, String rol){
+        return "Hola, "+ nombre+ "soy un " + rol;
     }
+    //public Boolean verificarEdad(){}
 
-    public Bebida pedirBebidaBienvenida(){
+    //public Bebida pedirBebidaBienvenida(){}
 
-    }
+    //public int cambiarFichas(){}
 
-    public int cambiarFichas(){
-
-    }
-
-    public String crearListaHabitaciones(){
-
-    }
+    //public String crearListaHabitaciones(){}
 
 
-    public Arraylist<Habitacion> getHabitaciones() {
+    public ArrayList<Habitacion> getHabitaciones() {
         return this.habitaciones;
     }
 
-    public void setHabitaciones(Arraylist<Habitacion> habitaciones) {
+    public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
         this.habitaciones = habitaciones;
     }
 

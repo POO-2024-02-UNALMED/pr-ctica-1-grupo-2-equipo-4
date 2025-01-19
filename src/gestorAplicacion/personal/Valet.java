@@ -6,11 +6,12 @@ public class Valet extends Empleado{
         super(rol, puesto);
     }
 
-    public Auto estacionarRegistrarAuto(){
-
+    @Override
+    public String generarSaludo (String nombre, String rol){
+        return "Hola, "+ nombre+ "soy un " + rol;
     }
 
-    public Auto devolverAuto(){
-        
-    }
+    //public Auto estacionarRegistrarAuto(){}
+
+    //public Auto devolverAuto(){}
 }

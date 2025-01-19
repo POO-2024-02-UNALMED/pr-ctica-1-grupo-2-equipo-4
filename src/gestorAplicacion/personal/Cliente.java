@@ -1,5 +1,8 @@
 
 package gestorAplicacion.personal;
+import gestorAplicacion.Servicios.Bebida;
+import gestorAplicacion.Servicios.Cuenta;
+import gestorAplicacion.Servicios.Suscripcion;
 import java.util.ArrayList;
 
 public class Cliente { 
@@ -16,8 +19,7 @@ public class Cliente {
     private int propinasBar;
     private Bebida bebidaFavorita;
     private boolean fidelidadArtista;
-    private int propinasArtista;
-    private ArrayList<Cuenta> cuentas = new ArrayList<Cuenta>();
+    private ArrayList<Cuenta> cuentas = new ArrayList<>();
 
     // Constructor vacío
     public Cliente() {

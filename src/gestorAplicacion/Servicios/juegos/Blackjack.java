@@ -1,9 +1,10 @@
 package gestorAplicacion.Servicios.juegos;
+import gestorAplicacion.personal.Cliente;
 
-
-public class Blacjack extends Juego{
+public class Blackjack extends Juego{
     private int acumulado;
-    public Blacjack (int apuesta, float riesgo){
+
+    public Blackjack (int apuesta, float riesgo){
         super(apuesta, riesgo);
         this.acumulado = 0;
     }

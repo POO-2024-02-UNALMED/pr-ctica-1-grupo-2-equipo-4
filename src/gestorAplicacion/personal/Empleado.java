@@ -1,5 +1,8 @@
 package gestorAplicacion.personal;
 
+import java.util.ArrayList;
+import gestorAplicacion.Servicios.Suscripcion;
+
 public abstract class Empleado {
     private String rol;
     private String puesto;
@@ -11,12 +14,9 @@ public abstract class Empleado {
         empleados.add(this);
     }
 
-    public int compensarFichas(Suscripcion suscripcion, Cliente cliente){
-        cliente.fichas = cliente.fichas+suscripcion.fichasCompensacion;
-        return "Recibe"+suscripcion.fichasCompensacion+ "fichas como compensacion"
-    }
+    //public int compensarFichas(Suscripcion suscripcion, Cliente cliente){}
 
-    public abstract String generarSaludo(String nombre, String rol){}
+    public abstract String generarSaludo(String nombre, String rol);
 
     public String getRol() {
         return this.rol;

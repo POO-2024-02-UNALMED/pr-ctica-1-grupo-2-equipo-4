@@ -1,6 +1,6 @@
 package uiMain;
 
-import gestorAplicacion.entidades.*;
+import gestorAplicacion.personal.Empleado;
 import java.util.ArrayList;
 import java.util.Scanner;
 

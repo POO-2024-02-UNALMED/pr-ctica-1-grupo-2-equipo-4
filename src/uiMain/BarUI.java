@@ -1,7 +1,7 @@
 package uiMain;
 
 import java.util.ArrayList;
-import gestorAplicacion.Servicios.juegos.*;;
+import gestorAplicacion.Servicios.Bebida;
 
 public interface BarUI {
 

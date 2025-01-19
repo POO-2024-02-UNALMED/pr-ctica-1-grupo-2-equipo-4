@@ -64,15 +64,6 @@ public class Bebida {
         this.precio = precio;
     }
 
-    public String getAccessoSuscripcion() {
-        return this.accessoSuscripcion;
-    }
-
-    public void setAccessoSuscripcion(String accessoSuscripcion) {
-        this.accessoSuscripcion = accessoSuscripcion;
-    }
-
-
     public boolean isDulce() {
         return this.dulce;
     }
@@ -127,6 +118,15 @@ public class Bebida {
 
     public void setFavorito(int favorito) {
         this.favorito = favorito;
+    }
+
+
+    public ArrayList<Ingrediente> getIngredientes() {
+        return this.ingredientes;
+    }
+
+    public void setIngredientes(ArrayList<Ingrediente> ingredientes) {
+        this.ingredientes = ingredientes;
     }
 
 }

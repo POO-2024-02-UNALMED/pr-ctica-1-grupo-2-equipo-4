@@ -6,9 +6,7 @@ public class Auto {
     private String placa;
     private int[] espacioEstacionamiento = new int[2];
 
-public Void Estacionar(int columna, int fila){
-    
-}
+//public Void Estacionar(int columna, int fila){}
 
 
     public boolean isEstacionado() {
