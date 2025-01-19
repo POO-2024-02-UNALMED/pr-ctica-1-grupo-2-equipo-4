@@ -1,6 +1,15 @@
 package gestorAplicacion.Servicios;
 
 public class Bebida {
+        // Atributos
+        private String nombre;
+        private int precio;
+        private  String accessoSuscripcion;
+        private boolean dulce;
+        private boolean amargo;
+        private boolean acido;
+        private int favorito;
+    
     // Constructor vacio  
     public Bebida() {
     }
@@ -14,14 +23,6 @@ public class Bebida {
         this.acido = acido;
         this.favorito = favorito;
     }
-    // Atributos
-    private String nombre;
-    private int precio;
-    private  String accessoSuscripcion;
-    private boolean dulce;
-    private boolean amargo;
-    private boolean acido;
-    private int favorito;
 
 
     public String getNombre() {
@@ -47,6 +48,7 @@ public class Bebida {
     public void setAccessoSuscripcion(String accessoSuscripcion) {
         this.accessoSuscripcion = accessoSuscripcion;
     }
+
 
     public boolean isDulce() {
         return this.dulce;
@@ -92,38 +94,4 @@ public class Bebida {
         this.favorito = favorito;
     }
 
-    public Bebida nombre(String nombre) {
-        setNombre(nombre);
-        return this;
-    }
-
-    public Bebida precio(int precio) {
-        setPrecio(precio);
-        return this;
-    }
-
-    public Bebida accessoSuscripcion(String accessoSuscripcion) {
-        setAccessoSuscripcion(accessoSuscripcion);
-        return this;
-    }
-
-    public Bebida dulce(boolean dulce) {
-        setDulce(dulce);
-        return this;
-    }
-
-    public Bebida amargo(boolean amargo) {
-        setAmargo(amargo);
-        return this;
-    }
-
-    public Bebida acido(boolean acido) {
-        setAcido(acido);
-        return this;
-    }
-
-    public Bebida favorito(int favorito) {
-        setFavorito(favorito);
-        return this;
-    }
 }
