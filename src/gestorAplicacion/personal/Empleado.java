@@ -3,10 +3,12 @@ package gestorAplicacion.personal;
 public abstract class Empleado {
     private String rol;
     private String puesto;
+    private static ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 
     protected Empleado(String rol, String puesto) {
         this.rol = rol;
         this.puesto = puesto;
+        empleados.add(this);
     }
 
     public int compensarFichas(Suscripcion suscripcion, Cliente cliente){
