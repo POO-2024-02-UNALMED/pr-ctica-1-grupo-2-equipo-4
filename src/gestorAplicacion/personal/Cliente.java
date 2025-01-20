@@ -1,23 +1,23 @@
 
 package gestorAplicacion.personal;
 import java.util.ArrayList;
-
+import gestorAplicacion.Servicios.juegos.RegistroJuego;
 public class Cliente { 
 
     private String nombreCliente;
     private int edadCliente;
     private long id;
     private float saldo;
-    private int fichas;
+    private  int fichas;
     private int numeroVisitas;
     private Suscripcion suscripcion;
-    private int partidasJugadas;
 	private boolean fidelidadBar;
     private int propinasBar;
     private Bebida bebidaFavorita;
     private boolean fidelidadArtista;
     private int propinasArtista;
     private ArrayList<Cuenta> cuentas = new ArrayList<Cuenta>();
+    private RegistroJuego registroJuego;
 
     // Constructor vacío
     public Cliente() {
@@ -125,13 +125,6 @@ public class Cliente {
         this.suscripcion = suscripcion;
     }
 
-    public int getPartidasJugadas() {
-        return partidasJugadas;
-    }
-
-    public void setPartidasJugadas(int partidasJugadas) {
-        this.partidasJugadas = partidasJugadas;
-    }
 
     public boolean getfidelidadArtista(){
         return fidelidadArtista;
@@ -173,5 +166,13 @@ public class Cliente {
 
     public void setCuentas(ArrayList<Cuenta> cuentas) {
         this.cuentas = cuentas;
+    }
+
+    public RegistroJuego getRegistroJuego (){
+        return this.registroJuego;
+    }
+
+    public void setregistroJuego (RegistroJuego registroJuego){
+        this.registroJuego = registroJuego;
     }
 }

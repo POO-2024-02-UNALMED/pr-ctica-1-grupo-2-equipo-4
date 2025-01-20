@@ -13,10 +13,12 @@ public abstract class Empleado {
 
     public int compensarFichas(Suscripcion suscripcion, Cliente cliente){
         cliente.fichas = cliente.fichas+suscripcion.fichasCompensacion;
-        return "Recibe"+suscripcion.fichasCompensacion+ "fichas como compensacion"
+        return "Recibe"+suscripcion.fichasCompensacion+ "fichas como compensacion";
     }
 
-    public abstract String generarSaludo(String nombre, String rol){}
+    public abstract String generarSaludo(String nombre, String rol){
+
+    }
 
     public String getRol() {
         return this.rol;

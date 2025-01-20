@@ -2,7 +2,7 @@ package gestorAplicacion.Servicios.juegos;
 import java.math.floor;
 public abstract class Juego{
     //Atributos
-    private int apuesta;
+    int apuesta;
     private float riesgo;
     //Constructor
     protected Juego (Int apuesta, float riesgo){
@@ -24,11 +24,9 @@ public abstract class Juego{
     }
     // Metodo que devuelve la ganancia de las apuestas
     public void devolverApuesta (Cliente cliente){
-        cliente.fichas += math.floor(this.apuesta * this.riesgo)
+        cliente.fichas += Math.floor(this.apuesta * this.riesgo);
     }
     // Metodo abstracto que desarrolla el juego
     public abstract void jugar(Cliente cliente){
-        // Implementación del juego
-        cliente.fichas -= this.apuesta;
     }
 }
