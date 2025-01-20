@@ -1,15 +1,16 @@
 package gestorAplicacion.Servicios.juegos;
 
 public class Carta {
-    private int valor; // Valor de la carta (1-10)
+    // Atributo
+    private String valor; 
     private String palo; // Palo de la carta (♥️, ♠️, ♦️, ♣️)
-
-    public Carta(int valor, String palo) {
+    //Constructor
+    public Carta(String valor, String palo) {
         this.valor = valor;
         this.palo = palo;
     }
 
-    public int getValor() {
+    public String getValor() {
         return valor;
     }
 
@@ -19,6 +20,7 @@ public class Carta {
 
     @Override
     public String toString() {
-        return valor + " de " + palo; // Representación de la carta
+        // Representación de la carta
+        return valor + " de " + palo; 
     }
 }

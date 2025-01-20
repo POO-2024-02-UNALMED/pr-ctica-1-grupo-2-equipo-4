@@ -1,9 +1,14 @@
 
 package gestorAplicacion.personal;
+
 import java.util.ArrayList;
 import gestorAplicacion.Servicios.RegistroJuego;
-public class Cliente { 
+import gestorAplicacion.Servicios.Cuenta;
+import gestorAplicacion.Servicios.Suscripcion;
+import gestorAplicacion.Servicios.Bebida;
 
+public class Cliente { 
+    //Atributos
     private String nombreCliente;
     private int edadCliente;
     private long id;
