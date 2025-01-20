@@ -1,7 +1,7 @@
 
 package gestorAplicacion.personal;
 import java.util.ArrayList;
-import gestorAplicacion.Servicios.juegos.RegistroJuego;
+import gestorAplicacion.Servicios.RegistroJuego;
 public class Cliente { 
 
     private String nombreCliente;

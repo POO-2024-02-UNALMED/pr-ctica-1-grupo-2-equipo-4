@@ -1,6 +1,9 @@
 package gestorAplicacion.personal;
 
-import gestorAplicacion.Servicios.*;
+import gestorAplicacion.Servicios.Bebida;
+import gestorAplicacion.Servicios.Cuenta;
+import gestorAplicacion.Servicios.Ingrediente;
+import gestorAplicacion.Servicios.Suscripcion;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +16,12 @@ public class Bartender extends Empleado {
         super(rol, puesto);
         this.barraDeBebidas = barraDeBebidas;
         this.barraDeIngredientes = barraDeIngredientes;
-        this.menuActual = new ArrayList<Bebida>();
+        this.menuActual = new ArrayList<>();
+    }
+
+    @Override
+    public String generarSaludo (String nombre, String rol){
+        return "Hola, "+ nombre+ "soy un " + rol;
     }
 
     public Bebida prepararBebida(String nombreBebida, Suscripcion suscripcion) {
@@ -29,7 +37,7 @@ public class Bartender extends Empleado {
             throw new IllegalArgumentException("La bebida solicitada no está disponible en la barra.");
         }
 
-        List<Ingrediente> ingredientesPreparados = new ArrayList<>();
+        ArrayList<Ingrediente> ingredientesPreparados = new ArrayList<>();
         for (Ingrediente ingredienteBase : bebidaBase.getIngredientes()) {
             boolean encontrado = false;
             for (Ingrediente barraIngrediente : this.barraDeIngredientes) {
@@ -47,7 +55,6 @@ public class Bartender extends Empleado {
         return new Bebida(
             bebidaBase.getNombre(),
             bebidaBase.getPrecio(),
-            bebidaBase.getAccessoSuscripcion(),
             bebidaBase.isDulce(),
             bebidaBase.isAmargo(),
             bebidaBase.isAcido(),
@@ -85,7 +92,7 @@ public class Bartender extends Empleado {
                 int precioConDescuento = (int) (bebida.getPrecio() * (1 - suscripcion.getDescuento()));
                 menu.append(String.format("%d. %s: Precio original: $%d | Precio con descuento: $%d (%s)\n", 
                                           index, bebida.getNombre(), bebida.getPrecio(), precioConDescuento, recomendacion));
-                menuActual.append(bebida);
+                menuActual.add(bebida);
                 
                 index++;
             }
@@ -112,7 +119,7 @@ public class Bartender extends Empleado {
 
     // Método para evaluar la bebida favorita del cliente basada en las cuentas
     public Bebida evaluarBebidaFavorita(ArrayList<Cuenta> cuentas) {
-        List<String> descripciones = new ArrayList<>();
+        ArrayList<String> descripciones = new ArrayList<>();
         
         // Recopilar todas las descripciones de bebidas de las cuentas
         for (Cuenta cuenta : cuentas) {
@@ -178,11 +185,11 @@ public class Bartender extends Empleado {
         this.barraDeIngredientes = barraDeIngredientes;
     }
 
-    public ArrayListList<Bebida> getMenuActual() {
+    public ArrayList<Bebida> getMenuActual() {
         return this.menuActual;
     }
 
-    public void setMenuActual(ArrayListList<Bebida> menuActual) {
+    public void setMenuActual(ArrayList<Bebida> menuActual) {
         this.menuActual = menuActual;
     }
     

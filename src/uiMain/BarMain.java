@@ -10,7 +10,7 @@ import gestorAplicacion.personal.Bartender;
 
 public class BarMain{
     public static void main(String[] args) {
-        Cliente cliente = new Cliente("juan", 19, "123456", 500000);
+        Cliente cliente = new Cliente("juan", 19, 123456, 500000);
         cliente.setSuscripcion(new Suscripcion(8));
         cliente.setfidelidadBar(true);
 
@@ -34,12 +34,12 @@ public class BarMain{
         boolean dulce = consola.pedirDulce();
 
         // Generar menú según preferencias
-        String menu = bartender.generarMenu(alcohol, dulce, amargo, acido, cliente.getSuscripcion());
+        String menu = bartender.generarMenu(alcohol, dulce, amargo, acido,cliente.getBebidaFavorita(), cliente.getSuscripcion());
         System.out.println(menu);
         Bebida bebidaSeleccionada = consola.escogerMenu(bartender.getMenuActual());
 
         // Preparar bebida
-        Bebida bebidaPreparada = bartender.prepararBebida(bebidaSeleccionada.getNombre(), cliente);
+        Bebida bebidaPreparada = bartender.prepararBebida(bebidaSeleccionada.getNombre(), cliente.getSuscripcion());
         System.out.println(bebidaPreparada.toString());
 
         // Pedir propina

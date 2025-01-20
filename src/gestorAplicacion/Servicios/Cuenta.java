@@ -1,13 +1,13 @@
 package gestorAplicacion.Servicios;
 
-import gestorAplicacion.Servicios.Bebida;
-import gestorAplicacion.personal.Cliente;
 import gestorAplicacion.personal.Bartender;
+import gestorAplicacion.personal.Cliente;
+import java.util.ArrayList;
 
 public class Cuenta {
     private boolean pagada;
-    private List<String> descripciones; // Lista de descripciones de los gastos
-    private List<Double> precios;       // Lista de precios de los gastos
+    private ArrayList<String> descripciones; // Lista de descripciones de los gastos
+    private ArrayList<Double> precios;       // Lista de precios de los gastos
 
     // Constructor
     public Cuenta() {
@@ -62,7 +62,7 @@ public class Cuenta {
         factura.append("-----------------------------");
 
         registrarGasto(bebida.getNombre(), totalConDescuento);
-        cliente.getCuentas.add(this); 
+        cliente.getCuentas().add(this); 
         
         cliente.setBebidaFavorita(bartender.evaluarBebidaFavorita(cliente.getCuentas()));
         return factura.toString();
@@ -86,19 +86,19 @@ public class Cuenta {
         this.pagada = pagada;
     }
 
-    public List<String> getDescripciones() {
+    public ArrayList<String> getDescripciones() {
         return this.descripciones;
     }
 
-    public void setDescripciones(List<String> descripciones) {
+    public void setDescripciones(ArrayList<String> descripciones) {
         this.descripciones = descripciones;
     }
 
-    public List<Double> getPrecios() {
+    public ArrayList<Double> getPrecios() {
         return this.precios;
     }
 
-    public void setPrecios(List<Double> precios) {
+    public void setPrecios(ArrayList<Double> precios) {
         this.precios = precios;
     }
 

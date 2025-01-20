@@ -6,6 +6,11 @@ public class Conserje extends Empleado{
         super(rol, puesto);
     }
 
+    @Override
+    public String generarSaludo (String nombre, String rol){
+        return "Hola, "+ nombre+ "soy un " + rol;
+    }
+
     public void limpiarHabitacion(){
 
     }

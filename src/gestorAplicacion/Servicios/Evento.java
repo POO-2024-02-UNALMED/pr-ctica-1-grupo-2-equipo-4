@@ -1,4 +1,5 @@
 package gestorAplicacion.Servicios;
+import gestorAplicacion.personal.Artista;
 
 public class Evento {
     private Artista artista;
