@@ -1,12 +1,12 @@
 package uiMain;
 
-import java.util.ArrayList;
 import gestorAplicacion.Servicios.Bebida;
-import gestorAplicacion.Servicios.Suscripcion;
 import gestorAplicacion.Servicios.Cuenta;
 import gestorAplicacion.Servicios.Ingrediente;
-import gestorAplicacion.personal.Cliente;
+import gestorAplicacion.Servicios.Suscripcion;
 import gestorAplicacion.personal.Bartender;
+import gestorAplicacion.personal.Cliente;
+import java.util.ArrayList;
 
 public class BarMain{
     public static void main(String[] args) {
@@ -46,7 +46,7 @@ public class BarMain{
         double propina = consola.pedirPropina();
 
         // Generar factura
-        String factura = new Cuenta().generarFacturaBar(cliente, bebidaSeleccionada, propina, bartender);
+        String factura = new Cuenta().generarFacturaBar(bebidaSeleccionada, cliente, propina, bartender);
         System.out.println(factura);
 
     }

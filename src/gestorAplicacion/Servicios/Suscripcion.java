@@ -29,6 +29,10 @@ public class Suscripcion{
             this.calidadIngredientes = "excelente";
         }
     }
+    public Suscripcion(String vetado) {
+        this.tipoSuscripcion = "vetado";
+        // echarDelCasino() o algo por el estilo
+    }
     
 
     public String getTipoSuscripcion() {

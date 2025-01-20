@@ -16,7 +16,7 @@ public class Main {
         // Funcionalidad de Recepción
         System.out.println("===== Bienvenido al Casino =====");
         System.out.println("Primero debe registrarse en la recepción.");
-        realizarRecepcion(scanner, clientes, empleados);
+        realizarRecepcion(scanner, cliente, empleados);
 
         boolean salir = false;
 

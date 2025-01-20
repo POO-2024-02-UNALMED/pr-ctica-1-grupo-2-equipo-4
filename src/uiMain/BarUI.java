@@ -3,7 +3,7 @@ package uiMain;
 import java.util.ArrayList;
 import gestorAplicacion.Servicios.Bebida;
 
-public interface BarUI {
+public interface BarUI{
 
     // Pregunta al cliente si quiere una bebida alcohólica
     boolean pedirAlcohol();

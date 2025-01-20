@@ -1,7 +1,8 @@
 package gestorAplicacion.personal;
 
-import gestorAplicacion.juegos.Blackjack;
-import gestorAplicacion.Cliente;
+import gestorAplicacion.Servicios.Suscripcion;
+import gestorAplicacion.Servicios.juegos.Blackjack;
+import gestorAplicacion.personal.Cliente;
 
 
 public class Animador extends Empleado {
@@ -12,14 +13,14 @@ public class Animador extends Empleado {
 
     // Genera un saludo personalizado para el cliente
     @Override
-    public String generarSaludo(Cliente cliente) {
-        return "¡Bienvenido, " + cliente.getNombreCliente + "! Soy tu animador " + ". ¡Disfruta del juego y mucha suerte!";
+    public String generarSaludo(String nombreCliente, String rol) {
+        return "¡Bienvenido, " + nombreCliente + "! Soy tu "+ rol + ". ¡Disfruta del juego y mucha suerte!";
     }
 
     // Método para determinar fichas adicionales según la suscripción
     public int calcularBonificacion(Suscripcion suscripcion) {
-        switch (suscripcion) {
-            case BASICA:
+        switch (suscripcion) {// solo necesita devolver el atributo de suscripcion fichasCompensacion, puedes usar return Suscripcion.getFichasCompensacion() 
+            case BASICA:      // igual me parece muy bien lo del switch, lo podemos usar mas
                 return 10;
             case ESTANDAR:
                 return 20;
