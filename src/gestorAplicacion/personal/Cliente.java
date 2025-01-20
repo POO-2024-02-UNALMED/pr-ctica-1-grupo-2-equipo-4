@@ -8,7 +8,7 @@ public class Cliente {
     private int edadCliente;
     private long id;
     private float saldo;
-    private  int fichas;
+    private int fichas;
     private int numeroVisitas;
     private Suscripcion suscripcion;
 	private boolean fidelidadBar;
