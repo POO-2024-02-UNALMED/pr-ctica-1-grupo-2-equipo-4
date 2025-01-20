@@ -8,6 +8,11 @@ public class RegistroJuego{
     private float porcentajeVictorias;
     //Constructor vacio
     public RegistroJuego() {
+        this.partidasJugadas = 0;
+        this.partidasGanadas = 0;
+        this.fichasFinal = 0;
+        this.fichasInicio = 0;
+        this.porcentajeVictorias = 0;
     }
     //Constructor con parametro
     public RegistroJuego(int fichasInicio) {
