@@ -1,8 +1,8 @@
 package uiMain;
 
+import gestorAplicacion.Servicios.Bebida;
 import java.util.ArrayList;
 import java.util.Scanner;
-import gestorAplicacion.Servicios.Bebida;
 
 public class BarUIConsole implements BarUI {
 
@@ -10,9 +10,9 @@ public class BarUIConsole implements BarUI {
 
     @Override
     public boolean pedirAlcohol() {
-        System.out.println("¿Quieres una bebida alcohólica? (sí/no)");
+        System.out.println("¿Quieres una bebida alcohólica? (si/no)");
         String respuesta = scanner.nextLine().toLowerCase();
-        return respuesta.equals("sí");
+        return respuesta.equals("si");
     }
 
 
@@ -20,21 +20,21 @@ public class BarUIConsole implements BarUI {
     public boolean pedirAcido() {
         System.out.println("¿Quieres una bebida ácida? (sí/no)");
         String respuesta = scanner.nextLine().toLowerCase();
-        return respuesta.equals("sí");
+        return respuesta.equals("si");
     }
 
     @Override
     public boolean pedirAmargo() {
-        System.out.println("¿Quieres una bebida amarga? (sí/no)");
+        System.out.println("¿Quieres una bebida amarga? (si/no)");
         String respuesta = scanner.nextLine().toLowerCase();
-        return respuesta.equals("sí");
+        return respuesta.equals("si");
     }
 
     @Override
     public boolean pedirDulce() {
-        System.out.println("¿Quieres una bebida dulce? (sí/no)");
+        System.out.println("¿Quieres una bebida dulce? (si/no)");
         String respuesta = scanner.nextLine().toLowerCase();
-        return respuesta.equals("sí");
+        return respuesta.equals("si");
     }
 
     @Override

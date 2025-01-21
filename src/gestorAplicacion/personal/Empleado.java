@@ -1,12 +1,11 @@
 package gestorAplicacion.personal;
 
 import java.util.ArrayList;
-import gestorAplicacion.Servicios.Suscripcion;
 
 public abstract class Empleado {
     private String rol;
     private String puesto;
-    private static ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+    private static ArrayList<Empleado> empleados = new ArrayList<>();
 
     protected Empleado(String rol, String puesto) {
         this.rol = rol;
