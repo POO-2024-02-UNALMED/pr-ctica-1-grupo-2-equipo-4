@@ -2,9 +2,12 @@
 package gestorAplicacion.personal;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import gestorAplicacion.Servicios.RegistroJuego;
 import gestorAplicacion.Servicios.Cuenta;
 import gestorAplicacion.Servicios.Suscripcion;
+import gestorAplicacion.Servicios.Asiento;
 import gestorAplicacion.Servicios.Bebida;
 
 public class Cliente { 
@@ -34,6 +37,7 @@ public class Cliente {
         this.edadCliente = edadCliente;
         this.id = id;
         this.saldo = saldo;
+        this.suscripcion = new Suscripcion(numeroVisitas); //Se inicializa segun el numero de visitas
     }
 
     // Método para dar propina al bar
@@ -81,6 +85,31 @@ public class Cliente {
             pagarCuenta(cuenta);  // Llamamos al método pagarCuenta para cada cuenta
         }
     }
+
+
+    //EVENTOS
+    //Metodo para saber si el cliente aplica para el premio especial segun suscripcion si es Silver o Platinum
+    public boolean verificarPremioEspecial(){
+        return suscripcion.getTipoSuscripcion().equals("Platinum") || 
+        suscripcion.getTipoSuscripcion().equals("Silver");
+    }
+
+    //metodo para obtener asientos de evento
+        public List<Asiento> obtenerAsientosDisponibles(List<Asiento> asientos) {
+        return asientos.stream()
+                .filter(asiento -> {
+                    if (asiento.getZona().equalsIgnoreCase("primera fila") && !suscripcion.getTipoSuscripcion().equals("Platinum")) {
+                        return false; // Si el asiento está en "primera fila", el cliente solo puede acceder si tiene una suscripción Platinum
+                    }
+                    if (asiento.getZona().equalsIgnoreCase("balcón") && suscripcion.getTipoSuscripcion().equals("por defecto")) {
+                        return false; // Suscripcion "Por defecto" no puede acceder al balcón
+                    }
+                    return !asiento.isReservado(); // Filtrar solo asientos no reservados
+                })
+                .toList();
+    }
+
+
     // Getters y Setters
     public String getNombreCliente() {
         return nombreCliente;
