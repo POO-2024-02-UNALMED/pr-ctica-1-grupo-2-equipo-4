@@ -1,5 +1,6 @@
 package gestorAplicacion.Servicios.juegos;
 
+import gestorAplicacion.personal.Animador;
 import gestorAplicacion.personal.Cliente;
 
 public abstract class Juego {
@@ -41,5 +42,5 @@ public abstract class Juego {
     }
 
     // Metodo abstracto que desarrolla el juego
-    public abstract void jugar(Cliente cliente);
+    public abstract void jugar(Cliente cliente, Animador animador);
 }

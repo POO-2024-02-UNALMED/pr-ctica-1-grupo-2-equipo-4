@@ -177,7 +177,7 @@ public class Cliente {
         return this.registroJuego;
     }
 
-    public void setregistroJuego (RegistroJuego registroJuego){
+    public void setRegistroJuego (RegistroJuego registroJuego){
         this.registroJuego = registroJuego;
     }
 }
