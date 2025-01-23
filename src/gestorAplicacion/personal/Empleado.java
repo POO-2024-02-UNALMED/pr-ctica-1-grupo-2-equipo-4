@@ -1,5 +1,6 @@
 package gestorAplicacion.personal;
 
+import gestorAplicacion.Servicios.Suscripcion;
 import java.util.ArrayList;
 
 public abstract class Empleado {
@@ -13,7 +14,11 @@ public abstract class Empleado {
         empleados.add(this);
     }
 
-    // public int compensarFichas(Suscripcion suscripcion, Cliente cliente){}
+    public void compensarFichas(Suscripcion suscripcion, Cliente cliente) {
+        int fichasCompensacion = suscripcion.getFichaCompensacion(); // Obtiene la cantidad de fichas de compensación
+        cliente.setFichas(cliente.getFichas() + fichasCompensacion); // Actualiza las fichas del cliente
+    }
+    
 
     public abstract String generarSaludo(String nombre, String rol);
 

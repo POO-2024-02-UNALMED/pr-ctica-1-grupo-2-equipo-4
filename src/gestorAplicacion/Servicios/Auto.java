@@ -1,11 +1,24 @@
 package gestorAplicacion.Servicios;
+import gestorAplicacion.personal.Cliente;
 
 public class Auto {
     private boolean estacionado;
     private String modelo;
     private String placa;
+    private Cliente cliente;
     private int[] espacioEstacionamiento = new int[2];
 
+    public Auto(String modelo, String placa){
+        this.modelo = modelo;
+        this.placa = placa;
+        this.estacionado = false;
+    }
+
+    public Auto(Cliente cliente){
+        this.cliente = cliente;
+    }
+
+    public Auto(){}
 //public Void Estacionar(int columna, int fila){}
 
 
@@ -36,6 +49,16 @@ public class Auto {
     public void setPlaca(String placa) {
         this.placa = placa;
     }
+
+
+    public Cliente getCliente() {
+        return this.cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
 
     public int[] getEspacioEstacionamiento() {
         return this.espacioEstacionamiento;

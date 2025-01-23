@@ -9,10 +9,10 @@ import gestorAplicacion.personal.Cliente;
 import java.util.ArrayList;
 
 public class BarMain{
-    public static void main(String[] args) {
+    public static void funcionalidadBar() {
         Cliente cliente = new Cliente("juan", 19, 123456, 500000);
         cliente.setSuscripcion(new Suscripcion(8));
-        cliente.setfidelidadBar(true);
+        cliente.setFidelidadBar(true);
 
         ArrayList<Ingrediente> ingredientes = new ArrayList<>();
         Ingrediente ingrediente1 = new Ingrediente("agua", cliente.getSuscripcion());

@@ -6,6 +6,7 @@ import gestorAplicacion.Servicios.Ingrediente;
 import gestorAplicacion.Servicios.Suscripcion;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Bartender extends Empleado {
     private List<Bebida> barraDeBebidas; 
@@ -22,6 +23,62 @@ public class Bartender extends Empleado {
     @Override
     public String generarSaludo (String nombre, String rol){
         return "Hola, "+ nombre+ "soy un " + rol;
+    }
+
+    public Bebida prepararBebidaBienvenida(Cliente cliente){
+        Bebida bebidaBase = evaluarBebidaFavorita(cliente.getCuentas());
+        
+        if (bebidaBase == null) {
+            bebidaBase = this.barraDeBebidas.stream()
+                .max((b1, b2) -> Integer.compare(b1.getFavorito(), b2.getFavorito()))
+                .orElse(null); // Manejar caso en que la barra esté vacía
+        }
+
+        ArrayList<Ingrediente> ingredientesPreparados = new ArrayList<>();
+        for (Ingrediente ingredienteBase : bebidaBase.getIngredientes()) {
+            for (Ingrediente barraIngrediente : this.barraDeIngredientes) {
+                if (barraIngrediente.getNombre().equalsIgnoreCase(ingredienteBase.getNombre())) {
+                    ingredientesPreparados.add(new Ingrediente(barraIngrediente.getNombre(), cliente.getSuscripcion()));
+                }
+            }
+        }
+        Bebida bebidaBienvenida = new Bebida(
+            bebidaBase.getNombre(),
+            bebidaBase.getPrecio(),
+            bebidaBase.isDulce(),
+            bebidaBase.isAmargo(),
+            bebidaBase.isAcido(),
+            bebidaBase.isAlcoholico(),
+            bebidaBase.getFavorito(),
+            ingredientesPreparados
+        );
+        //System.out.println(bebidaBienvenida.toString()); pongamos esto en el main
+        encuestaBebidaBienvenida(bebidaBase);
+        return bebidaBienvenida;
+
+
+    }
+
+    public void encuestaBebidaBienvenida(Bebida bebida){
+        System.out.println("que le parecio la bebida?");
+        System.out.println("1. Buena");
+        System.out.println("2. Regular");
+        System.out.println("3. Mala");
+        Scanner scanner = new Scanner(System.in);
+        int respuesta = scanner.nextInt();
+        switch (respuesta) {
+            case 1:
+                bebida.setFavorito((bebida.getFavorito()+1));
+                break;
+            case 2:
+                break;
+            case 3:
+                bebida.setFavorito((bebida.getFavorito()-1)); 
+                break;
+            default:
+                System.out.println("Respuesta no válida.");
+        }
+        System.out.println("Gracias por su recomendacion");
     }
 
     public Bebida prepararBebida(String nombreBebida, Suscripcion suscripcion) {
@@ -107,10 +164,10 @@ public class Bartender extends Empleado {
 
     private String calcularRecomendacion(Bebida bebida, Bebida bebidaFavorita) {
         if (bebidaFavorita != null && bebida.getNombre().equals(bebidaFavorita.getNombre())) {
+            return "bebida favorita";
+        } else if (bebida.getFavorito() > 3) { // Puedes ajustar el umbral
             return "recomendada";
-        } else if (bebida.getFavorito() > 7) { // Puedes ajustar el umbral
-            return "recomendada";
-        } else if (bebida.getFavorito() >= 4) {
+        } else if (bebida.getFavorito() >= 0) {
             return "Neutral";
         } else {
             return "no recomendada";

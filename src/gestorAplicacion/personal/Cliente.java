@@ -6,6 +6,7 @@ import gestorAplicacion.Servicios.RegistroJuego;
 import gestorAplicacion.Servicios.Cuenta;
 import gestorAplicacion.Servicios.Suscripcion;
 import gestorAplicacion.Servicios.Bebida;
+import gestorAplicacion.Servicios.Auto;
 
 public class Cliente { 
     //Atributos
@@ -13,6 +14,7 @@ public class Cliente {
     private int edadCliente;
     private long id;
     private float saldo;
+    private Auto auto;
     private int fichas;
     private int numeroVisitas;
     private Suscripcion suscripcion;
@@ -28,12 +30,20 @@ public class Cliente {
     public Cliente() {
     }
 
-    // Constructor con parámetros
     public Cliente(String nombreCliente, int edadCliente, long id, float saldo) {
         this.nombreCliente = nombreCliente;
         this.edadCliente = edadCliente;
         this.id = id;
         this.saldo = saldo;
+    }
+    // Constructor con parámetros
+    public Cliente(String nombreCliente, int edadCliente, long id, float saldo, Auto auto, Suscripcion suscripcion) {
+        this.nombreCliente = nombreCliente;
+        this.edadCliente = edadCliente;
+        this.id = id;
+        this.saldo = saldo;
+        this.auto = auto;
+        this.suscripcion = suscripcion;
     }
 
     // Método para dar propina al bar
@@ -82,8 +92,9 @@ public class Cliente {
         }
     }
     // Getters y Setters
+
     public String getNombreCliente() {
-        return nombreCliente;
+        return this.nombreCliente;
     }
 
     public void setNombreCliente(String nombreCliente) {
@@ -91,7 +102,7 @@ public class Cliente {
     }
 
     public int getEdadCliente() {
-        return edadCliente;
+        return this.edadCliente;
     }
 
     public void setEdadCliente(int edadCliente) {
@@ -99,7 +110,7 @@ public class Cliente {
     }
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -107,44 +118,63 @@ public class Cliente {
     }
 
     public float getSaldo() {
-        return saldo;
+        return this.saldo;
     }
 
     public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
 
+    public Auto getAuto() {
+        return this.auto;
+    }
+
+    public void setAuto(Auto auto) {
+        this.auto = auto;
+    }
+
+    public int getFichas() {
+        return this.fichas;
+    }
+
+    public void setFichas(int fichas) {
+        this.fichas = fichas;
+    }
+
     public int getNumeroVisitas() {
-        return numeroVisitas;
+        return this.numeroVisitas;
     }
 
     public void setNumeroVisitas(int numeroVisitas) {
         this.numeroVisitas = numeroVisitas;
     }
 
-    public Suscripcion getSuscripcion() { 
-        return suscripcion; 
+    public Suscripcion getSuscripcion() {
+        return this.suscripcion;
     }
 
-    public void setSuscripcion(Suscripcion suscripcion){ 
+    public void setSuscripcion(Suscripcion suscripcion) {
         this.suscripcion = suscripcion;
     }
 
-
-    public boolean getfidelidadArtista(){
-        return fidelidadArtista;
+    public boolean isFidelidadBar() {
+        return this.fidelidadBar;
     }
 
-    public void setfidelidadArista (boolean fidelidadArtista){
-        this.fidelidadArtista = fidelidadArtista;
+    public boolean getFidelidadBar() {
+        return this.fidelidadBar;
     }
 
-    public boolean getfidelidadBar(){
-        return fidelidadBar;
-    }
-
-    public void setfidelidadBar(boolean fidelidadBar){
+    public void setFidelidadBar(boolean fidelidadBar) {
         this.fidelidadBar = fidelidadBar;
+    }
+
+    public int getPropinasBar() {
+        return this.propinasBar;
+    }
+
+    public void setPropinasBar(int propinasBar) {
+        this.propinasBar = propinasBar;
     }
 
     public Bebida getBebidaFavorita() {
@@ -155,15 +185,25 @@ public class Cliente {
         this.bebidaFavorita = bebidaFavorita;
     }
 
-
-    public int getFichas (){
-        return fichas;
+    public boolean isFidelidadArtista() {
+        return this.fidelidadArtista;
     }
 
-    public void setFichas (int fichas){
-        this.fichas = fichas;
+    public boolean getFidelidadArtista() {
+        return this.fidelidadArtista;
     }
 
+    public void setFidelidadArtista(boolean fidelidadArtista) {
+        this.fidelidadArtista = fidelidadArtista;
+    }
+
+    public int getPropinasArtista() {
+        return this.propinasArtista;
+    }
+
+    public void setPropinasArtista(int propinasArtista) {
+        this.propinasArtista = propinasArtista;
+    }
 
     public ArrayList<Cuenta> getCuentas() {
         return this.cuentas;
@@ -173,11 +213,12 @@ public class Cliente {
         this.cuentas = cuentas;
     }
 
-    public RegistroJuego getRegistroJuego (){
+    public RegistroJuego getRegistroJuego() {
         return this.registroJuego;
     }
 
-    public void setregistroJuego (RegistroJuego registroJuego){
+    public void setRegistroJuego(RegistroJuego registroJuego) {
         this.registroJuego = registroJuego;
     }
+
 }
