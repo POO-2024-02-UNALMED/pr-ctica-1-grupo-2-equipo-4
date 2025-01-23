@@ -5,6 +5,7 @@ public class Suscripcion{
     private float descuento;
     private int fichaCompensacion;
     private String calidadIngredientes;
+    private boolean premioEspecial;
 
     public Suscripcion(int visitas) {
         if (visitas == 1) {
@@ -23,7 +24,7 @@ public class Suscripcion{
             this.fichaCompensacion = 50;
             this.calidadIngredientes = "alta";
         } else if (visitas > 5) {
-            this.tipoSuscripcion = "platinum";
+            this.tipoSuscripcion = "Platinum";
             this.descuento = 0.25f;
             this.fichaCompensacion = 100;
             this.calidadIngredientes = "excelente";
@@ -33,8 +34,7 @@ public class Suscripcion{
         this.tipoSuscripcion = "vetado";
         // echarDelCasino() o algo por el estilo
     }
-    
-
+   
     public String getTipoSuscripcion() {
         return this.tipoSuscripcion;
     }
@@ -67,4 +67,12 @@ public class Suscripcion{
         this.calidadIngredientes = calidadIngredientes;
     }
 
+    //Metodos para ver si aplica premio especial
+    public boolean isPremioEspecial(){
+        return this.premioEspecial;
+    }
+
+    public void setPremioEspecial(boolean premioEspecial) {
+        this.premioEspecial = premioEspecial;
+    }
 }
