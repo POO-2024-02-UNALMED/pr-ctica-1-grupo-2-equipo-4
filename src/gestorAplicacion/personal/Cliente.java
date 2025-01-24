@@ -1,15 +1,12 @@
 
 package gestorAplicacion.personal;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import gestorAplicacion.Servicios.RegistroJuego;
-import gestorAplicacion.Servicios.Cuenta;
-import gestorAplicacion.Servicios.Suscripcion;
-import gestorAplicacion.Servicios.Asiento;
-import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.Servicios.Auto;
+import gestorAplicacion.Servicios.Bebida;
+import gestorAplicacion.Servicios.Cuenta;
+import gestorAplicacion.Servicios.RegistroJuego;
+import gestorAplicacion.Servicios.Suscripcion;
+import java.util.ArrayList;
 
 public class Cliente { 
     //Atributos
@@ -26,7 +23,7 @@ public class Cliente {
     private Bebida bebidaFavorita;
     private boolean fidelidadArtista;
     private int propinasArtista;
-    private ArrayList<Cuenta> cuentas = new ArrayList<Cuenta>();
+    private ArrayList<Cuenta> cuentas = new ArrayList<>();
     private RegistroJuego registroJuego;
 
     // Constructor vacío
@@ -105,19 +102,19 @@ public class Cliente {
     }
 
     //metodo para obtener asientos de evento
-        public List<Asiento> obtenerAsientosDisponibles(List<Asiento> asientos) {
-        return asientos.stream()
-                .filter(asiento -> {
-                    if (asiento.getZona().equalsIgnoreCase("primera fila") && !suscripcion.getTipoSuscripcion().equals("Platinum")) {
-                        return false; // Si el asiento está en "primera fila", el cliente solo puede acceder si tiene una suscripción Platinum
-                    }
-                    if (asiento.getZona().equalsIgnoreCase("balcón") && suscripcion.getTipoSuscripcion().equals("por defecto")) {
-                        return false; // Suscripcion "Por defecto" no puede acceder al balcón
-                    }
-                    return !asiento.isReservado(); // Filtrar solo asientos no reservados
-                })
-                .toList();
-    }
+        //public List<Asiento> obtenerAsientosDisponibles(List<Asiento> asientos) {
+        //return asientos.stream()
+                //.filter(asiento -> {
+                    //if (asiento.getZona().equalsIgnoreCase("primera fila") && !suscripcion.getTipoSuscripcion().equals("Platinum")) {
+                        //return false; // Si el asiento está en "primera fila", el cliente solo puede acceder si tiene una suscripción Platinum
+                    //}
+                    //if (asiento.getZona().equalsIgnoreCase("balcón") && suscripcion.getTipoSuscripcion().equals("por defecto")) {
+                        //return false; // Suscripcion "Por defecto" no puede acceder al balcón
+                    //}
+                    //return !asiento.isReservado(); // Filtrar solo asientos no reservados
+                //})
+                //.toList();
+    //}
     
     //Asignar asiento especial a cliente
 

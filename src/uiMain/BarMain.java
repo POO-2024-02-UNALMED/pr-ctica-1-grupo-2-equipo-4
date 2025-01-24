@@ -3,16 +3,15 @@ package uiMain;
 import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.Servicios.Cuenta;
 import gestorAplicacion.Servicios.Ingrediente;
-import gestorAplicacion.Servicios.Suscripcion;
 import gestorAplicacion.personal.Bartender;
 import gestorAplicacion.personal.Cliente;
 import java.util.ArrayList;
 
 public class BarMain{
-    public static void funcionalidadBar() {
-        Cliente cliente = new Cliente("juan", 19, 123456, 500000);
-        cliente.setSuscripcion(new Suscripcion(8));
-        cliente.setFidelidadBar(true);
+    public static void funcionalidadBar(Cliente cliente) {
+        //Cliente cliente = new Cliente("juan", 19, 123456, 500000);
+        //cliente.setSuscripcion(new Suscripcion(8));
+        //cliente.setFidelidadBar(true);
 
         ArrayList<Ingrediente> ingredientes = new ArrayList<>();
         Ingrediente ingrediente1 = new Ingrediente("agua", cliente.getSuscripcion());

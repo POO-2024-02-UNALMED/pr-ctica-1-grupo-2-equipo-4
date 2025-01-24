@@ -1,9 +1,10 @@
 package uiMain;
 
+import gestorAplicacion.personal.Cliente;
 import java.util.Scanner;
 
 public class RecepcionUIConsole implements RecepcionUI {
-    private Scanner scanner = new Scanner(System.in);
+    public Scanner scanner = new Scanner(System.in);
 
     @Override
     public String pedirModelo() {
@@ -24,7 +25,9 @@ public class RecepcionUIConsole implements RecepcionUI {
             System.out.print("Entrada inválida. Por favor, ingrese un número entero para la columna: ");
             scanner.next();
         }
-        return scanner.nextInt();
+        int columna = scanner.nextInt();
+        scanner.nextLine();
+        return columna;
     }
 
     @Override
@@ -34,7 +37,9 @@ public class RecepcionUIConsole implements RecepcionUI {
             System.out.print("Entrada inválida. Por favor, ingrese un número entero para la fila: ");
             scanner.next();
         }
-        return scanner.nextInt();
+        int fila = scanner.nextInt();
+        scanner.nextLine();
+        return fila;
     }
 
     @Override
@@ -64,13 +69,43 @@ public class RecepcionUIConsole implements RecepcionUI {
             System.out.print("Entrada inválida. Por favor, ingrese un número válido para su ID: ");
             scanner.next();
         }
-        return scanner.nextLong();
+        long id = scanner.nextLong();
+        scanner.nextLine();
+        return id;
     }
 
     @Override
-    public int pedirNombre() {
+    public String pedirNombre() {
         System.out.print("Por favor, ingrese su nombre: ");
-        return scanner.nextInt();
+        String nombre = scanner.nextLine();
+        
+        return nombre;
+    }
+
+    @Override
+    public float cambiarFichas(Cliente cliente) {
+        Scanner scanner = new Scanner(System.in); // Crear un único Scanner
+        boolean noValido = true;
+        float dinero = 0;
+    
+        while (noValido) {
+            System.out.println("¿Cuánto dinero quieres cambiar por fichas? (1 ficha por cada 1000 pesos)");
+            String entrada = scanner.nextLine(); // Leer la entrada del usuario
+            
+            // Validar que la entrada es un número positivo dentro del saldo del cliente
+            if (entrada.matches("\\d+(\\.\\d+)?")) {
+                dinero = Float.parseFloat(entrada);
+    
+                if (dinero > 0 && dinero <= cliente.getSaldo()) {
+                    noValido = false; // Entrada válida, salir del bucle
+                } else {
+                    System.out.println("El monto ingresado no es válido. Ingrese un valor entre 0 y " + cliente.getSaldo() + " pesos.");
+                }
+            } else {
+                System.out.println("Por favor, ingrese un número válido.");
+            }
+        }
+        return dinero;
     }
 }
 

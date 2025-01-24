@@ -9,6 +9,11 @@ public class Ingrediente {
         this.calidad = suscripcion.getCalidadIngredientes();
     }
 
+    public Ingrediente(String nombre) { 
+        this.nombre = nombre;
+        this.calidad = "alta";
+    }
+
     public String getNombre() {
         return this.nombre;
     }

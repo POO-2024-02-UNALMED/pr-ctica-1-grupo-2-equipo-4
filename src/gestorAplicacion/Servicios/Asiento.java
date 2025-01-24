@@ -3,6 +3,7 @@ package gestorAplicacion.Servicios;
 public class Asiento {
 
     public enum ZonaAsiento {
+        
         Primera_fila,
         Balcon,
         Centro,

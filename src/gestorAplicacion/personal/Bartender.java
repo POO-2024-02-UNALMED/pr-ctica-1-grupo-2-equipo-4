@@ -20,6 +20,10 @@ public class Bartender extends Empleado {
         this.menuActual = new ArrayList<>();
     }
 
+    public Bartender(String rol, String puesto){
+        super(rol, puesto);
+    }
+
     @Override
     public String generarSaludo (String nombre, String rol){
         return "Hola, "+ nombre+ "soy un " + rol;
@@ -42,6 +46,7 @@ public class Bartender extends Empleado {
                 }
             }
         }
+
         Bebida bebidaBienvenida = new Bebida(
             bebidaBase.getNombre(),
             bebidaBase.getPrecio(),
@@ -53,7 +58,7 @@ public class Bartender extends Empleado {
             ingredientesPreparados
         );
         //System.out.println(bebidaBienvenida.toString()); pongamos esto en el main
-        encuestaBebidaBienvenida(bebidaBase);
+        
         return bebidaBienvenida;
 
 

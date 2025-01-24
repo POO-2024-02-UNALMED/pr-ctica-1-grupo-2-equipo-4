@@ -1,7 +1,6 @@
 package uiMain;
 
-import gestorAplicacion.personal.Empleado;
-import java.util.ArrayList;
+import gestorAplicacion.personal.Cliente;
 import java.util.Scanner;
 
 public class Main {
@@ -10,13 +9,14 @@ public class Main {
 
         // Crear listas de entidades del casino
         
-        ArrayList<Empleado> empleados = crearEmpleados();
+        //ArrayList<Empleado> empleados = crearEmpleados();
        
 
         // Funcionalidad de Recepción
         System.out.println("===== Bienvenido al Casino =====");
         System.out.println("Primero debe registrarse en la recepción.");
-        realizarRecepcion(scanner, cliente, empleados);
+        
+        Cliente usuarioActual = RecepcionMain.funcionalidadRecepcion();
 
         boolean salir = false;
 
@@ -33,23 +33,23 @@ public class Main {
             int opcion = scanner.nextInt();
 
             switch (opcion) {
-                case 1:
-                    menuJuegos(scanner, clientes, ruletas, maquinasDeSlots);
+                case 1://jugar
+                    //Jugar(scanner, clientes, ruletas, maquinasDeSlots);
                     break;
 
-                case 2:
-                    visitarBar(scanner, clientes, empleados, bar);
+                case 2://bar
+                    BarMain.funcionalidadBar(usuarioActual);
                     break;
 
-                case 3:
-                    gestionarEventos(scanner, clientes, empleados);
+                case 3://eventos
+                    //Eventos(scanner, clientes, empleados);
                     break;
 
-                case 4:
-                    gestionarHotel(scanner, clientes, hotel);
+                case 4://habiitacion
+                    //Hotel(scanner, clientes, hotel);
                     break;
 
-                case 5:
+                case 5://salir
                     System.out.println("Saliendo del casino. ¡Gracias por visitarnos!");
                     salir = true;
                     break;
@@ -63,7 +63,7 @@ public class Main {
     }
 
     // Métodos para inicializar el casino
-    private static ArrayList<Cliente> crearClientes() {
+    /* private static ArrayList<Cliente> crearClientes() {
         ArrayList<Cliente> clientes = new ArrayList<>();
         clientes.add(new Cliente("Juan Pérez", 500));
         clientes.add(new Cliente("María Gómez", 1000));
@@ -137,4 +137,6 @@ public class Main {
         System.out.println("\n--- Gestión del Hotel ---");
         // Lógica para gestionar habitaciones, reservas, etc.
     }
+
+ */
 }

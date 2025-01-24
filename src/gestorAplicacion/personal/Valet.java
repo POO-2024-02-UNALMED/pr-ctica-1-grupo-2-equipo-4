@@ -13,19 +13,21 @@ public class Valet extends Empleado {
     public String generarSaludo(String nombre, String rol) {
         return "Hola, " + nombre + ", soy un " + rol;
     }
-
-    public static Cliente identificarCliente(long identificacion){
+    //parte de la interaccion 1, funcionalidad recepcion: se revisa la identidad dada por el cliente para ver si tiene un perfil existente    
+    public static Cliente identificarCliente(long identificacion){  
+                                                               
         for (Cliente cliente : Recepcionista.getClientes()) {
             if (cliente.getId() == identificacion) {
-                System.out.println("encontrado registro para " + cliente.getNombreCliente());
                 return cliente;
             }
         }
         return null;
     }
 
+    //interaccion 1, funcionalidad recepcion: usa los datos dados por el cliente para guardar su auto en el estacionamiento y
+    //registrarlo en el casino
     public Auto estacionarRegistrarAuto(String modelo, String placa, int columna, int fila, long identificacion) {
-        
+
         Auto auto = new Auto();
         Cliente cliente = identificarCliente(identificacion);
         auto.setCliente(cliente);
@@ -51,6 +53,7 @@ public class Valet extends Empleado {
         Casino.getEstacionamiento().get(fila).set(columna, auto);
         int[] espacio = {fila, columna};
         auto.setEspacioEstacionamiento(espacio);
+        System.out.println("auto estacionado en [" +fila+","+columna+"]");
         
         
         
@@ -62,6 +65,7 @@ public class Valet extends Empleado {
         }
 
         // Devuelve el objeto Auto registrado
+        
         return auto;
     }
 }

@@ -19,6 +19,7 @@ public abstract class Empleado {
         cliente.setFichas(cliente.getFichas() + fichasCompensacion); // Actualiza las fichas del cliente
     }
     
+    
 
     public abstract String generarSaludo(String nombre, String rol);
 

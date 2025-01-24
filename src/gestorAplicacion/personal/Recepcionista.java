@@ -3,25 +3,26 @@ package gestorAplicacion.personal;
 import gestorAplicacion.Servicios.Auto;
 import gestorAplicacion.Servicios.Suscripcion;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Recepcionista extends Empleado{
     private static ArrayList<Empleado> empleados = new ArrayList<>();
     private static ArrayList<Cliente> clientes = new ArrayList<>();
 
-    public Recepcionista(String rol, String puesto, ArrayList<Empleado> empleados) {
+    public Recepcionista(String rol, String puesto) {
         super(rol, puesto);
     }
 
-
-    public Cliente registrarCliente(int edad, float saldo, long identificacion, String nombre, Auto auto, int numeroVisitas, float dinero){
-        numeroVisitas++;
+//interaccion 2, funcionalidad Recepcion, verifica que el cliente sea mayor de edad y si tiene un perfil registrado en el casino, siendo asi
+//crea o actualiza sus datos  y lo guarda en el registro, que es el arrayList de objetos de cliente
+    public Cliente registrarCliente(int edad, float saldo, long identificacion, String nombre, Auto auto){
+        int numeroVisitas = 1;
 
         for (Cliente cliente : Recepcionista.clientes){
             if (cliente.getId() == identificacion){
+                cliente.setNumeroVisitas(cliente.getNumeroVisitas()+1);
                 cliente.setAuto(auto);
                 cliente.setSaldo(saldo);
-                cliente.setSuscripcion(new Suscripcion(numeroVisitas));
+                cliente.setSuscripcion(new Suscripcion(cliente.getNumeroVisitas()));
                 return cliente;
             }
         }
@@ -32,7 +33,6 @@ public class Recepcionista extends Empleado{
         
         Cliente clienteNuevo = new Cliente(nombre, edad, identificacion, saldo, auto, new Suscripcion(numeroVisitas));
         Recepcionista.clientes.add(clienteNuevo);
-        cambiarFichas(clienteNuevo);
 
         return clienteNuevo;
         
@@ -42,46 +42,16 @@ public class Recepcionista extends Empleado{
     public String generarSaludo (String nombre, String rol){
         return ("Hola, "+ nombre+ "soy un " + rol);
     }
-    //public Boolean verificarEdad(){}
 
-    //public Bebida pedirBebidaBienvenida(){}
-
-    public void cambiarFichas(Cliente cliente) {
-        Scanner scanner = new Scanner(System.in); // Crear un único Scanner
-        boolean noValido = true;
-        float dinero = 0;
-    
-        while (noValido) {
-            System.out.println("¿Cuánto dinero quieres cambiar por fichas? (1 ficha por cada 1000 pesos)");
-            String entrada = scanner.nextLine(); // Leer la entrada del usuario
-            
-            // Validar que la entrada es un número positivo dentro del saldo del cliente
-            if (entrada.matches("\\d+(\\.\\d+)?")) {
-                dinero = Float.parseFloat(entrada);
-    
-                if (dinero > 0 && dinero <= cliente.getSaldo()) {
-                    noValido = false; // Entrada válida, salir del bucle
-                } else {
-                    System.out.println("El monto ingresado no es válido. Ingrese un valor entre 0 y " + cliente.getSaldo() + " pesos.");
-                }
-            } else {
-                System.out.println("Por favor, ingrese un número válido.");
-            }
-        }
-    
+    //parte de la interaccion 2, funcionalidad recepcion, cambia el dinero indicado por fichas para el cliente
+    public void cambiarFichas(Cliente cliente, float dinero){
         // Calcular fichas y cambio restante
         int fichas = (int) dinero / 1000;
         float cambio = dinero % 1000;
     
-        // Actualizar saldo y fichas del cliente
+        // Actualizar saldo y fichas del cliente, se le devuelve el residuo de dinero que no se pueda cambiar
         cliente.setSaldo(cliente.getSaldo() - dinero + cambio);
         cliente.setFichas(cliente.getFichas() + fichas);
-    
-        // Mostrar confirmación
-        System.out.println("Has cambiado " + dinero + " pesos por " + fichas + " fichas.");
-        if (cambio > 0) {
-            System.out.println("Se han devuelto " + cambio + " pesos como cambio.");
-        }
     }
     
     
