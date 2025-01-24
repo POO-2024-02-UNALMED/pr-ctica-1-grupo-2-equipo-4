@@ -63,12 +63,17 @@ public class RegistroJuego{
     }
     //Metodo para cada partida que se juegue 
     public void incrementarPartidasJugadas(boolean ganada) {
-        partidasJugadas++;
-        if (ganada) {
-            partidasGanadas++;
+            partidasJugadas++;
+            if (ganada) {
+                partidasGanadas++;
+                rachaVictorias++;
+            } else {
+                rachaVictorias = 0; // Reiniciar la racha en caso de derrota
+            }
+            calcularPorcentajeVictorias();
         }
-        calcularPorcentajeVictorias();
-    }
+        
+
     // Método para incrementar la racha de victorias
     public void incrementarRacha() {
     rachaVictorias++;
