@@ -12,8 +12,8 @@ public class Animador extends Empleado {
 
     // Generar saludo personalizado
     @Override
-    public String generarSaludo(String nombreCliente, String rolAnimador) {
-        return "¡Hola " + nombreCliente + "! Soy tu " + rolAnimador + ". ¡Vamos a divertirnos!";
+    public String generarSaludo(String nombreCliente, String Rol) {
+        return "¡Hola " + nombreCliente + "! Soy tu " + Rol + ". ¡Vamos a divertirnos!";
     }
 
     // Manejar la suscripción del cliente
@@ -39,8 +39,13 @@ public class Animador extends Empleado {
         }
     }
     // Metodo para el final de cada partida.
-    public void otorgarRecompensa(Cliente cliente) {
+
+    public void otorgarRecompensa(Cliente cliente, boolean partidaGanada) {
+
     RegistroJuego registroJuego = cliente.getRegistroJuego();
+
+    registroJuego.incrementarPartidasJugadas(partidaGanada);
+    
     int racha = registroJuego.getRachaVictorias();  
     int partidasJugadas = registroJuego.getPartidasJugadas();
     float porcentajeVictorias = registroJuego.getPorcentajeVictorias(); 
@@ -53,7 +58,7 @@ public class Animador extends Empleado {
     // Si el cliente ha jugado más de 10 partidas y tiene un porcentaje de victorias del 100% se echa del casino
     if (partidasJugadas > 10 && porcentajeVictorias == 1.0) {
         System.out.println("¡Increíble " + cliente.getNombreCliente() + "! Has jugado más de 10 partidas y tienes un 100% de victorias.");
-        // Cambiar su suscripción a "Vetado" (esto es solo un ejemplo, puedes definir otro tipo de acción)
+        // Cambiar su suscripción a "Vetado" 
         cliente.getSuscripcion().setTipoSuscripcion("Vetado");
         System.out.println("Tu suscripción ahora es 'Vetado'.");
     }

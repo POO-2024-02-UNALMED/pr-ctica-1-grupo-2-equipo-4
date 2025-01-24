@@ -64,7 +64,7 @@ public void jugar(Cliente cliente, Animador animador) {
         System.out.println("¡Blackjack! Ganaste con las dos primeras cartas.");
         cliente.setFichas(cliente.getFichas() + (int) (getApuesta() * 2.5));
         // Llamada al método otorgarRecompensa
-        animador.otorgarRecompensa(cliente);
+        animador.otorgarRecompensa(cliente, true);
         return;
     }
 
@@ -82,7 +82,7 @@ public void jugar(Cliente cliente, Animador animador) {
                 System.out.println("Te pasaste de 21. ¡Perdiste!");
                 cliente.setFichas(cliente.getFichas() - getApuesta());
                 // Llamada al método otorgarRecompensa
-                animador.otorgarRecompensa(cliente);
+                animador.otorgarRecompensa(cliente, false);
                 return;
             }
         } else {
@@ -94,14 +94,13 @@ public void jugar(Cliente cliente, Animador animador) {
         manoCrupier.add(sacarCarta());
     }
 
-    mostrarResultados(cliente);
-    // Llamada al método otorgarRecompensa
-    animador.otorgarRecompensa(cliente);
+    mostrarResultados(cliente, animador);
 }
 
-private void mostrarResultados(Cliente cliente) {
+private void mostrarResultados(Cliente cliente, Animador animador) {
     int puntajeJugador = calcularPuntaje(manoJugador);
     int puntajeCrupier = calcularPuntaje(manoCrupier);
+    boolean ganoJugador = false;
 
     System.out.println("Tu puntaje: " + puntajeJugador);
     System.out.println("Puntaje del crupier: " + puntajeCrupier);
@@ -109,10 +108,13 @@ private void mostrarResultados(Cliente cliente) {
     if (puntajeJugador > puntajeCrupier || puntajeCrupier > 21) {
         System.out.println("¡Ganaste!");
         cliente.setFichas(cliente.getFichas() + (getApuesta() * 2));
+        ganoJugador = true;
+
     } else {
         System.out.println("Perdiste.");
         cliente.setFichas(cliente.getFichas() - getApuesta());
     }
+    animador.otorgarRecompensa(cliente, ganoJugador);
 }
 
 
