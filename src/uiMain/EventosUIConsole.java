@@ -21,5 +21,10 @@ public class EventosUIConsole implements EventosUI {
     public void MostrarEventosDisponibles(List<Evento> eventos){
         System.out.println("\nEventos disponibles:");
     }
+
+    @Override
+    public void MostrarPremioEspecial() {
+        System.out.println("¡Felicidades! Has ganado un premio especial: un asiento en palco y una bebida gratis.");
+    }
     
 }

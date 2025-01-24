@@ -21,4 +21,23 @@ public class EventoMain {
         Evento evento1 = new Evento("Magia en vivo", "Magia", null, null, 0);
         Evento evento2 = new Evento("Show de Comedia", "Comedia", null, null, 0);
         Evento evento3 = new Evento("Concierto", "Concierto", null, null, 0);
+
+        List<Evento> eventosDisponibles = List.of(evento1, evento2, evento3);
+
+        EventosUIConsole consola = new EventosUIConsole();
+        consola.MostrarBienvenida(cliente);
+        consola.MostrarEventosDisponibles(eventosDisponibles);
+
+        if (cliente.verificarPremioEspecial()){
+            consola.MostrarPremioEspecial();
+            cliente.asignarAsientoEspecial(evento1)
+        }
+    }
+
+
+
+
+
+
+
 }
