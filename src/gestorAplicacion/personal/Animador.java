@@ -1,65 +1,67 @@
 package gestorAplicacion.personal;
 
+import gestorAplicacion.Servicios.RegistroJuego;
 import gestorAplicacion.Servicios.Suscripcion;
-import gestorAplicacion.Servicios.juegos.Blackjack;
-import gestorAplicacion.personal.Cliente;
-
 
 public class Animador extends Empleado {
 
+    // Constructor
     public Animador(String puesto) {
-        super("Animador", puesto);
+        super("Animador", puesto); // Establece el rol fijo como "Animador"
     }
 
-    // Genera un saludo personalizado para el cliente
+    // Generar saludo personalizado
     @Override
-    public String generarSaludo(String nombreCliente, String rol) {
-        return "¡Bienvenido, " + nombreCliente + "! Soy tu "+ rol + ". ¡Disfruta del juego y mucha suerte!";
+    public String generarSaludo(String nombreCliente, String rolAnimador) {
+        return "¡Hola " + nombreCliente + "! Soy tu " + rolAnimador + ". ¡Vamos a divertirnos!";
     }
 
-    // Método para determinar fichas adicionales según la suscripción
-    public int calcularBonificacion(Suscripcion suscripcion) {
-        switch (suscripcion) {// solo necesita devolver el atributo de suscripcion fichasCompensacion, puedes usar return Suscripcion.getFichasCompensacion() 
-            case BASICA:      // igual me parece muy bien lo del switch, lo podemos usar mas
-                return 10;
-            case ESTANDAR:
-                return 20;
-            case PREMIUM:
-                return 50;
-            default:
-                return 0;
-        }
-    }
-
-    // Comentarios dinámicos durante el juego
-    public String comentarJuego(Cliente cliente, int rachaVictorias, boolean premioEspecial) {
-        if (premioEspecial) {
-            return "¡Increíble, " + cliente.getNombreCliente() + "! ¡Has ganado el premio especial!\n" +
-                    "¡Recibes 100 fichas adicionales como recompensa!";
-        } else if (rachaVictorias >= 3) {
-            return "¡" + cliente.getNombreCliente() + " está en racha con " + rachaVictorias + " victorias consecutivas!";
+    // Manejar la suscripción del cliente
+    public void manejarSuscripcion(Cliente cliente) {
+        Suscripcion suscripcion = cliente.getSuscripcion();
+        if (suscripcion == null) {
+            System.out.println("No tienes una suscripción activa. ¿Deseas adquirir una?");
         } else {
-            return "¡Sigue así, " + cliente.getNombreCliente() + ", puedes ganar esta partida!";
+            System.out.println("Tu suscripción actual es: " + suscripcion.getTipoSuscripcion());
         }
     }
 
-    // Recompensa o penalización al finalizar el juego
-    public void otorgarRecompensa(Cliente cliente, int partidasGanadas, boolean victoriaTotal) {
-        if (victoriaTotal) {
-            cliente.setSuscripcion(Suscripcion.VETADO);
-            System.out.println("¡Has sido vetado por una tasa de victorias del 100%! Ya no puedes jugar en este casino.");
-        } else if (partidasGanadas >= 15) {
-            cliente.setSuscripcion(Suscripcion.GANADOR_USUAL);
-            System.out.println("¡Felicitaciones, " + cliente.getNombre() + "! Tu suscripción ha sido actualizada a GANADOR USUAL.");
-        } else if (partidasGanadas >= 10) {
-            System.out.println("¡Felicidades por 10 victorias! Disfruta una bebida exclusiva del bar por cortesía del casino.");
+    // Método para entregar fichas al cliente según su suscripción
+    public void entregarFichas(Cliente cliente) {
+        Suscripcion suscripcion = cliente.getSuscripcion();
+        if (suscripcion != null) {
+            int fichasCompensacion = suscripcion.getFichaCompensacion();
+            cliente.setFichas(cliente.getFichas() + fichasCompensacion);
+            System.out.println("Se han entregado " + fichasCompensacion + " fichas a " + cliente.getNombreCliente() + 
+                               " como parte de su suscripción " + suscripcion.getTipoSuscripcion() + ".");
         } else {
-            cliente.incrementarFichas(5); // Consolación por perder
-            System.out.println("¡No te desanimes, " + cliente.getNombre() + "! Recibes 5 fichas como consolación.");
+            System.out.println("No se pueden entregar fichas porque el cliente no tiene una suscripción activa.");
         }
+    }
+    // Metodo para el final de cada partida.
+    public void otorgarRecompensa(Cliente cliente) {
+    RegistroJuego registroJuego = cliente.getRegistroJuego();
+    int racha = registroJuego.getRachaVictorias();  
+    int partidasJugadas = registroJuego.getPartidasJugadas();
+    float porcentajeVictorias = registroJuego.getPorcentajeVictorias(); 
+
+    // Verificar si tiene una racha de 3 victorias consecutivas
+    if (racha >= 3) {
+        System.out.println("¡Felicidades " + cliente.getNombreCliente() + ", tienes una racha de " + racha + " victorias!");
+    }
+
+    // Si el cliente ha jugado más de 10 partidas y tiene un porcentaje de victorias del 100% se echa del casino
+    if (partidasJugadas > 10 && porcentajeVictorias == 1.0) {
+        System.out.println("¡Increíble " + cliente.getNombreCliente() + "! Has jugado más de 10 partidas y tienes un 100% de victorias.");
+        // Cambiar su suscripción a "Vetado" (esto es solo un ejemplo, puedes definir otro tipo de acción)
+        cliente.getSuscripcion().setTipoSuscripcion("Vetado");
+        System.out.println("Tu suscripción ahora es 'Vetado'.");
     }
 }
+
+
 
     //public entregarPremio(Boolean partidaGanada, Boolean premioEspecial) {}
 
     //public pedirBebida(Bebida bebidaFavorita, Suscripcion suscripcion, Arraylist<Bebida> Bebidas) {}
+}

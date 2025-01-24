@@ -1,9 +1,8 @@
 package gestorAplicacion.Servicios.juegos;
 
-import gestorAplicacion.personal.Cliente;
 import gestorAplicacion.Servicios.RegistroJuego;
 import gestorAplicacion.personal.Animador;
-
+import gestorAplicacion.personal.Cliente;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,72 +41,80 @@ public class Blackjack extends Juego {
     }
 
     @Override
-    public void jugar(Cliente cliente, Animador animador) {
-        if (cliente.getRegistroJuego() == null) {
-            cliente.setRegistroJuego(new RegistroJuego());
-        }
+public void jugar(Cliente cliente, Animador animador) {
+    if (cliente.getRegistroJuego() == null) {
+        cliente.setRegistroJuego(new RegistroJuego());
+    }
 
-        animador.generarSaludo(cliente.getNombreCliente(), animador.getRol());
-        animador.manejarSuscripcion(cliente);
+    animador.generarSaludo(cliente.getNombreCliente(), animador.getRol());
+    animador.manejarSuscripcion(cliente);
+    animador.entregarFichas(cliente);
 
-        // Repartir cartas iniciales
-        manoJugador.add(sacarCarta());
-        manoJugador.add(sacarCarta());
-        manoCrupier.add(sacarCarta());
-        manoCrupier.add(sacarCarta());
+    // Repartir cartas iniciales
+    manoJugador.add(sacarCarta());
+    manoJugador.add(sacarCarta());
+    manoCrupier.add(sacarCarta());
+    manoCrupier.add(sacarCarta());
 
-        // Mostrar cartas iniciales
-        System.out.println("Tus cartas: " + manoJugador);
-        System.out.println("Carta del crupier: " + manoCrupier.get(0) + " (otra oculta)");
+    // Mostrar cartas iniciales
+    System.out.println("Tus cartas: " + manoJugador);
+    System.out.println("Carta del crupier: " + manoCrupier.get(0) + " (otra oculta)");
 
-        if (calcularPuntaje(manoJugador) == 21) {
-            System.out.println("¡Blackjack! Ganaste con las dos primeras cartas.");
-            cliente.setFichas(cliente.getFichas() + (int) (getApuesta() * 2.5));
-            return;
-        }
+    if (calcularPuntaje(manoJugador) == 21) {
+        System.out.println("¡Blackjack! Ganaste con las dos primeras cartas.");
+        cliente.setFichas(cliente.getFichas() + (int) (getApuesta() * 2.5));
+        // Llamada al método otorgarRecompensa
+        animador.otorgarRecompensa(cliente);
+        return;
+    }
 
-        boolean jugadorContinua = true;
-        while (jugadorContinua) {
-            System.out.println("¿Deseas pedir otra carta (s/n)?");
-            String decision = new Scanner(System.in).nextLine();
-            if (decision.equalsIgnoreCase("s")) {
-                String nuevaCarta = sacarCarta();
-                manoJugador.add(nuevaCarta);
-                System.out.println("Recibiste: " + nuevaCarta);
+    boolean jugadorContinua = true;
+    while (jugadorContinua) {
+        System.out.println("¿Deseas pedir otra carta (s/n)?");
+        String decision = new Scanner(System.in).nextLine();
+        if (decision.equalsIgnoreCase("s")) {
+            String nuevaCarta = sacarCarta();
+            manoJugador.add(nuevaCarta);
+            System.out.println("Recibiste: " + nuevaCarta);
 
-                int puntaje = calcularPuntaje(manoJugador);
-                if (puntaje > 21) {
-                    System.out.println("Te pasaste de 21. ¡Perdiste!");
-                    cliente.setFichas(cliente.getFichas() - getApuesta());
-                    return;
-                }
-            } else {
-                jugadorContinua = false;
+            int puntaje = calcularPuntaje(manoJugador);
+            if (puntaje > 21) {
+                System.out.println("Te pasaste de 21. ¡Perdiste!");
+                cliente.setFichas(cliente.getFichas() - getApuesta());
+                // Llamada al método otorgarRecompensa
+                animador.otorgarRecompensa(cliente);
+                return;
             }
-        }
-
-        while (calcularPuntaje(manoCrupier) < 17) {
-            manoCrupier.add(sacarCarta());
-        }
-
-        mostrarResultados(cliente);
-    }
-
-    private void mostrarResultados(Cliente cliente) {
-        int puntajeJugador = calcularPuntaje(manoJugador);
-        int puntajeCrupier = calcularPuntaje(manoCrupier);
-
-        System.out.println("Tu puntaje: " + puntajeJugador);
-        System.out.println("Puntaje del crupier: " + puntajeCrupier);
-
-        if (puntajeJugador > puntajeCrupier || puntajeCrupier > 21) {
-            System.out.println("¡Ganaste!");
-            cliente.setFichas(cliente.getFichas() + (getApuesta() * 2));
         } else {
-            System.out.println("Perdiste.");
-            cliente.setFichas(cliente.getFichas() - getApuesta());
+            jugadorContinua = false;
         }
     }
+
+    while (calcularPuntaje(manoCrupier) < 17) {
+        manoCrupier.add(sacarCarta());
+    }
+
+    mostrarResultados(cliente);
+    // Llamada al método otorgarRecompensa
+    animador.otorgarRecompensa(cliente);
+}
+
+private void mostrarResultados(Cliente cliente) {
+    int puntajeJugador = calcularPuntaje(manoJugador);
+    int puntajeCrupier = calcularPuntaje(manoCrupier);
+
+    System.out.println("Tu puntaje: " + puntajeJugador);
+    System.out.println("Puntaje del crupier: " + puntajeCrupier);
+
+    if (puntajeJugador > puntajeCrupier || puntajeCrupier > 21) {
+        System.out.println("¡Ganaste!");
+        cliente.setFichas(cliente.getFichas() + (getApuesta() * 2));
+    } else {
+        System.out.println("Perdiste.");
+        cliente.setFichas(cliente.getFichas() - getApuesta());
+    }
+}
+
 
     private int calcularPuntaje(List<String> mano) {
         int puntaje = 0;

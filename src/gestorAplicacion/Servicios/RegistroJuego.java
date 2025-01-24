@@ -5,6 +5,7 @@ public class RegistroJuego{
     private int fichasFinal;
     private int partidasGanadas;
     private int partidasJugadas;
+    private int rachaVictorias;
     private float porcentajeVictorias;
     //Constructor vacio
     public RegistroJuego() {
@@ -67,5 +68,18 @@ public class RegistroJuego{
             partidasGanadas++;
         }
         calcularPorcentajeVictorias();
+    }
+    // Método para incrementar la racha de victorias
+    public void incrementarRacha() {
+    rachaVictorias++;
+    }
+     // Método para reiniciar la racha de victorias
+    public void reiniciarRacha() {
+    rachaVictorias = 0;
+    }
+    
+    // Getter para la racha de victorias
+    public int getRachaVictorias() {
+    return rachaVictorias;
     }
 }
