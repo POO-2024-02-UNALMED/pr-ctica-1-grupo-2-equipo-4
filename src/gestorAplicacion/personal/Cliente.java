@@ -118,6 +118,8 @@ public class Cliente {
                 })
                 .toList();
     }
+    
+    //Asignar asiento especial a cliente
 
 
     // Getters y Setters

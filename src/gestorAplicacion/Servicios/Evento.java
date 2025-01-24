@@ -14,24 +14,53 @@ public class Evento {
     private double precioBase;
     private List<Asiento> asientos;  
 
-    public Evento(String nombreEvento, String tipoEvento, Artista artista, Boolean consumoMinimo, double precioBase, List<Asiento> asientos) {
+    public Evento(String nombreEvento, String tipoEvento, Artista artista, Boolean consumoMinimo, double precioBase) {
         this.nombreEvento = nombreEvento;
         this.tipoEvento = tipoEvento;
         this.artista = artista;
         this.consumoMinimo = consumoMinimo;
         this.precioBase = precioBase;
-        this.asientos = asientos; // Inicialización de asientos
+        this.asientos = inicializarAsientos(); // Inicialización de asientos
+    }
+
+    //Inicializar asientos por zona
+
+    private List<Asiento> inicializarAsientos(){
+        List<Asiento> asientos = new ArrayList<>();
+
+        int cantidadPrimeraFila = 10;
+        int cantidadBalcon = 15;
+        int cantidadCentro = 20;
+        int cantidadAtras = 25;
+
+        // Asientos de Primera Fila
+        for (int i = 0; i < cantidadPrimeraFila; i++) {
+            asientos.add(new Asiento(Asiento.ZonaAsiento.Primera_fila, 1, 200.0));
+        }
+
+        // Asientos de Balcon
+        for (int i = 0; i < cantidadBalcon; i++) {
+            asientos.add(new Asiento(Asiento.ZonaAsiento.Balcon, 1, 150.0));
+        }
+
+        // Asientos del Centro
+        for (int i = 0; i < cantidadCentro; i++) {
+            asientos.add(new Asiento(Asiento.ZonaAsiento.Centro, 1, 100.0));
+        }
+
+        // Asientos de Atras
+        for (int i = 0; i < cantidadAtras; i++) {
+            asientos.add(new Asiento(Asiento.ZonaAsiento.Atras, 1, 50.0));
+        }
+
+        return asientos;
     }
 
     //Metodo para obtener los asientos disponibles
     public List<Asiento> obtenerAsientosPorZona(String zona) {
-        List<Asiento> asientosDisponibles = new ArrayList<>();
-    for (Asiento asiento : asientos) {
-        if (asiento.getZona().equalsIgnoreCase(zona) && !asiento.isReservado()) {
-            asientosDisponibles.add(asiento);
-        }
-    }
-    return asientosDisponibles;
+        return asientos.stream()
+                .filter(asiento -> asiento.getZona().toString().equalsIgnoreCase(zona) && !asiento.isReservado())
+                .collect(Collectors.toList());
     }
 
     // Obtener todos los asientos disponibles (sin zona especifica)
@@ -60,10 +89,6 @@ public class Evento {
 
     public void setArtista(Artista artista) {
         this.artista = artista;
-    }
-
-    public Boolean isConsumoMinimo() {
-        return this.consumoMinimo;
     }
 
     public Boolean getConsumoMinimo() {

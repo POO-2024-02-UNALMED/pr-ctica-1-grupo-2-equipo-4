@@ -1,26 +1,34 @@
 package gestorAplicacion.Servicios;
 
 public class Asiento {
-    private String zona;
+
+    public enum ZonaAsiento {
+        Primera_fila,
+        Balcon,
+        Centro,
+        Atras;
+    }
+
+    private ZonaAsiento zona;
     private int cantidad;
     private boolean reservado;
     private Double precio;
 
 
 
-public Asiento(String zona, int cantidad, double precio) {
+public Asiento(ZonaAsiento zona, int cantidad, double precio) {
     this.zona = zona;
     this.cantidad = cantidad;
     this.precio = precio;
-    this.reservado = false;
+    this.reservado = false; //Inicialmente no esta reservado
 }
 
     // Getters y Setters
-    public String getZona() {
+    public ZonaAsiento getZona() {
         return zona;
     }
 
-    public void setZona(String zona) {
+    public void setZona(ZonaAsiento zona) {
         this.zona = zona;
     }
 
