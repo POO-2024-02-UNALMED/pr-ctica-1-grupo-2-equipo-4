@@ -15,7 +15,7 @@ public class Craps extends Juego {
     public void jugar(Cliente cliente, Animador animador) {
         // Verificar y crear el registro de juego si no existe
         if (cliente.getRegistroJuego() == null) {
-            cliente.setRegistroJuego(new RegistroJuego());
+            cliente.setRegistroJuego(new RegistroJuego(cliente.getFichas()));
         }
 
         // Inicio del juego

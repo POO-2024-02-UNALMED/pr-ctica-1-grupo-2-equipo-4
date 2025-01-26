@@ -1,12 +1,14 @@
 package gestorAplicacion.Servicios;
 public class RegistroJuego{
+
     //Atributos
-    private int fichasInicio;
+    private final int fichasInicio;
     private int fichasFinal;
     private int partidasGanadas;
     private int partidasJugadas;
     private int rachaVictorias;
     private float porcentajeVictorias;
+
     //Constructor vacios
     public RegistroJuego() {
         this.partidasJugadas = 0;
@@ -22,10 +24,6 @@ public class RegistroJuego{
     //Getters y setters
     public int getFichasInicio() {
         return this.fichasInicio;
-    }
-
-    public void setFichasInicio(int fichasInicio) {
-        this.fichasInicio = fichasInicio;
     }
 
     public int getFichasFinal() {

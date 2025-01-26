@@ -43,7 +43,7 @@ public class Blackjack extends Juego {
     @Override
 public void jugar(Cliente cliente, Animador animador) {
     if (cliente.getRegistroJuego() == null) {
-        cliente.setRegistroJuego(new RegistroJuego());
+        cliente.setRegistroJuego(new RegistroJuego(cliente.getFichas()));
     }
 
     animador.generarSaludo(cliente.getNombreCliente(), animador.getRol());

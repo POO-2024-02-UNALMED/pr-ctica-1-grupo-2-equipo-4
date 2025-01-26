@@ -38,6 +38,7 @@ public class Animador extends Empleado {
             System.out.println("No se pueden entregar fichas porque el cliente no tiene una suscripción activa.");
         }
     }
+
     // Metodo para el final de cada partida.
 
     public void otorgarRecompensa(Cliente cliente, boolean partidaGanada) {
@@ -57,7 +58,7 @@ public class Animador extends Empleado {
 
     // Si el cliente ha jugado más de 10 partidas y tiene un porcentaje de victorias del 100% se echa del casino
     if (partidasJugadas > 10 && porcentajeVictorias == 1.0) {
-        System.out.println("¡Increíble " + cliente.getNombreCliente() + "! Has jugado más de 10 partidas y tienes un 100% de victorias.");
+        System.out.println("Se sospecha trampa del cliente: " + cliente.getNombreCliente() + "! Has jugado más de 10 partidas y tienes un 100% de victorias.");
         // Cambiar su suscripción a "Vetado" 
         cliente.getSuscripcion().setTipoSuscripcion("Vetado");
         System.out.println("Tu suscripción ahora es 'Vetado'.");
