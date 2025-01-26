@@ -7,7 +7,7 @@ public class RegistroJuego{
     private int partidasJugadas;
     private int rachaVictorias;
     private float porcentajeVictorias;
-    //Constructor vacio
+    //Constructor vacios
     public RegistroJuego() {
         this.partidasJugadas = 0;
         this.partidasGanadas = 0;
