@@ -53,7 +53,7 @@ public class Valet extends Empleado {
         Casino.getEstacionamiento().get(fila).set(columna, auto);
         int[] espacio = {fila, columna};
         auto.setEspacioEstacionamiento(espacio);
-        System.out.println("auto estacionado en [" +fila+","+columna+"]");
+        
         
         
         

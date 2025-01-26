@@ -53,17 +53,24 @@ public class RecepcionMain {
             System.out.println(Casino.mostrarEspaciosEstacionamiento(null));
         }
         
-
+        int columna = 0;
+        int fila = 0;
         while(auto == null){
-            int columna = consola.pedirColumna();
-            int fila = consola.pedirFila();
+            columna = consola.pedirColumna();
+            fila = consola.pedirFila();
             auto = valet.estacionarRegistrarAuto(modelo, placa, columna, fila, id);//metodo principal interaccion 1
         }
+        System.out.println("auto estacionado en [" +columna+","+fila+"]");
         System.out.println("su "+ modelo + " con placa "+ placa + " fue estacionado correctamente");
         
         // interaccion 2
         Cliente clienteNow = null;
-        String nombre = consola.pedirNombre();
+        String nombre;
+        if (clienteOld == null){
+            nombre = consola.pedirNombre();
+        }else{
+            nombre = clienteOld.getNombreCliente();
+        }
         float saldo = consola.pedirSaldo();
 
         while(clienteNow == null){
@@ -79,7 +86,7 @@ public class RecepcionMain {
         Bebida bebidaBienvenida = bartender.prepararBebidaBienvenida(clienteNow);//metodo principal interaccion 3
         System.out.println("porfavor, reciba esta " + bebidaBienvenida.getNombre() + " que le preparamos especialmente para darle la bienvenida");
         System.out.println(bebidaBienvenida.toString());
-        bartender.encuestaBebidaBienvenida(bebidaBienvenida);
+        consola.encuestaBebidaBienvenida(bebidaBienvenida);
         System.out.println("ya puede acceder a las instalaciones del casino, disfrute su estadía");
 
         return clienteNow;

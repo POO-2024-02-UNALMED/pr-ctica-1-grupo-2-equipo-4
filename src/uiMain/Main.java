@@ -18,6 +18,7 @@ public class Main {
         
         Cliente usuarioActual = RecepcionMain.funcionalidadRecepcion();
 
+
         boolean salir = false;
 
         // Menú principal
@@ -43,6 +44,7 @@ public class Main {
 
                 case 3://eventos
                     //Eventos(scanner, clientes, empleados);
+
                     break;
 
                 case 4://habiitacion
