@@ -1,5 +1,6 @@
 package uiMain;
 
+import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.personal.Cliente;
 import java.util.Scanner;
 
@@ -106,6 +107,28 @@ public class RecepcionUIConsole implements RecepcionUI {
             }
         }
         return dinero;
+    }
+
+    @Override
+    public void encuestaBebidaBienvenida(Bebida bebida){
+        System.out.println("que le parecio la bebida?");
+        System.out.println("1. Buena");
+        System.out.println("2. Regular");
+        System.out.println("3. Mala");
+        int respuesta = scanner.nextInt();
+        switch (respuesta) {
+            case 1:
+                bebida.setFavorito((bebida.getFavorito()+1));
+                break;
+            case 2:
+                break;
+            case 3:
+                bebida.setFavorito((bebida.getFavorito()-1)); 
+                break;
+            default:
+                System.out.println("Respuesta no válida.");
+        }
+        System.out.println("Gracias por su recomendacion");
     }
 }
 

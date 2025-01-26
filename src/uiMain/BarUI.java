@@ -1,7 +1,7 @@
 package uiMain;
 
-import java.util.ArrayList;
 import gestorAplicacion.Servicios.Bebida;
+import java.util.ArrayList;
 
 public interface BarUI{
 
@@ -23,4 +23,5 @@ public interface BarUI{
     // Pregunta al cliente si desea dejar propina
     double pedirPropina();
 
+  
 }

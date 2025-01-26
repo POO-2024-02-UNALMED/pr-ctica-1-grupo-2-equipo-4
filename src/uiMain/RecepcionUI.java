@@ -1,5 +1,6 @@
 package uiMain;
 
+import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.personal.Cliente;
 
 public interface RecepcionUI {
@@ -30,4 +31,5 @@ public interface RecepcionUI {
     // Pregunta por el numero de fichas que desea cambiar
     float cambiarFichas(Cliente cliente);
 
+    void encuestaBebidaBienvenida(Bebida bebida);
 }

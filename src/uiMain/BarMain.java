@@ -26,6 +26,7 @@ public class BarMain{
 
         BarUI consola = new BarUIConsole();
 
+        // interaccion 1
         // Preguntar preferencias
         boolean alcohol = consola.pedirAlcohol();
         boolean acido = consola.pedirAcido();
@@ -37,10 +38,12 @@ public class BarMain{
         System.out.println(menu);
         Bebida bebidaSeleccionada = consola.escogerMenu(bartender.getMenuActual());
 
-        // Preparar bebida
+        // interaccion 2
+        // Preparar bebida y buscar ingredientes
         Bebida bebidaPreparada = bartender.prepararBebida(bebidaSeleccionada.getNombre(), cliente.getSuscripcion());
         System.out.println(bebidaPreparada.toString());
 
+        // interaccion 3
         // Pedir propina
         double propina = consola.pedirPropina();
 
