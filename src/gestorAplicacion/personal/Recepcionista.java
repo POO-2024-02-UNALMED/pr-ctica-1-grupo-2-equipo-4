@@ -1,8 +1,10 @@
 package gestorAplicacion.personal;
 
 import gestorAplicacion.Servicios.Auto;
+import gestorAplicacion.Servicios.Evento;
 import gestorAplicacion.Servicios.Suscripcion;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Recepcionista extends Empleado{
     private static ArrayList<Empleado> empleados = new ArrayList<>();
@@ -60,5 +62,39 @@ public class Recepcionista extends Empleado{
 
     public static ArrayList<Cliente> getClientes(){
         return Recepcionista.clientes;
+    }
+
+    //Eventos, dar bienvenida
+
+    public void darBienvenida(Cliente cliente){
+        String nombreCliente = cliente.getNombreCliente();
+
+        System.out.println("¡Bienvenido a los eventos del Casino, " + nombreCliente + "!");
+
+     //Mostrar detalles iniciales del cliente (opcional)
+     System.out.println("Suscripción actual: " + cliente.getSuscripcion().getTipoSuscripcion());
+     System.out.println("Saldo disponible: $" + cliente.getSaldo());
+ 
+     // Continuar al siguiente flujo: Mostrar eventos disponibles
+     System.out.println("Permítame mostrarle los eventos disponibles...");       
+    }
+
+    //Mostrar eventos
+    public void mostrarEventosDisponibles(List<Evento> eventos) {
+        System.out.println("Eventos disponibles: ");
+        for (int i = 0; i < eventos.size(); i++){
+            Evento evento = eventos.get(i);
+            System.out.println((i + 1) + ". " + evento.getNombreEvento() + " - Precio: $" + evento.getPrecioBase());
+        }
+    }
+
+    //Verificar premio especial en evento
+    public boolean verificarPremioEspecial(Cliente cliente){
+        return cliente.verificarPremioEspecial();
+    }
+
+    public void asignarAsientoEspecial(Cliente cliente, Evento evento) {
+        cliente.asignarAsientoEspecial(evento);
+        System.out.println("Se ha asignado un asiento especial en el evento: " + evento.getNombreEvento());
     }
 }

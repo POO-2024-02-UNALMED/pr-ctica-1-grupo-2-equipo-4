@@ -35,7 +35,7 @@ public class Evento {
 
         // Asientos de Primera Fila
         for (int i = 0; i < cantidadPrimeraFila; i++) {
-            asientos.add(new Asiento(Asiento.ZonaAsiento.Primera_fila, 1, 200.0));
+            asientos.add(new Asiento(Asiento.ZonaAsiento.Palco, 1, 200.0));
         }
 
         // Asientos de Balcon
@@ -56,11 +56,14 @@ public class Evento {
         return asientos;
     }
 
-    //Metodo para obtener los asientos disponibles
-    public List<Asiento> obtenerAsientosPorZona(String zona) {
-        return asientos.stream()
-                .filter(asiento -> asiento.getZona().toString().equalsIgnoreCase(zona) && !asiento.isReservado())
-                .collect(Collectors.toList());
+    //Metodo obtener asiento por zona
+    public Asiento obtenerAsientoPorZona(Asiento.ZonaAsiento zona) {
+        for (Asiento asiento : asientos) {
+            if (asiento.getZona() == zona && asiento.esDisponible()) {
+                return asiento; // Retorna el primer asiento disponible en la zona
+            }
+        }
+        return null; // Retorna null si no hay asientos disponibles en la zona
     }
 
     // Obtener todos los asientos disponibles (sin zona especifica)
@@ -120,6 +123,14 @@ public class Evento {
 
     public void setTipoEvento(String tipoEvento) {
         this.tipoEvento = tipoEvento;
+    }
+
+    public Double getPrecioBase() {
+        return precioBase;
+    }
+
+    public void setPrecioBase(double precioBase) {
+        this.precioBase = precioBase;
     }
 
 }

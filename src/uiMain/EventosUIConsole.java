@@ -3,28 +3,37 @@ package uiMain;
 import java.util.List;
 import java.util.Scanner;
 
+import gestorAplicacion.Servicios.Asiento;
 import gestorAplicacion.Servicios.Evento;
 import gestorAplicacion.personal.Cliente;
 
 public class EventosUIConsole implements EventosUI {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void MostrarBienvenida(Cliente cliente){
-
-        System.out.println("¡Bienvenido/a "+ cliente.getNombreCliente() + "!");
-
+    public void mostrarBienvenida(){
+        System.out.println("¡Bienvenido/a a los eventos de Diamond Casino!");
     }
     
     @Override
-    public void MostrarEventosDisponibles(List<Evento> eventos){
-        System.out.println("\nEventos disponibles:");
+    public void mostrarEventosDisponibles(List<Evento> eventos){
+        System.out.println("Estos son los eventos disponibles:");
+        for (int i = 0; i < eventos.size(); i++) {
+            Evento evento = eventos.get(i);
+            System.out.println((i + 1) + ". " + evento.getNombreEvento());
+        }
     }
 
     @Override
-    public void MostrarPremioEspecial() {
-        System.out.println("¡Felicidades! Has ganado un premio especial: un asiento en palco y una bebida gratis.");
+    public void saludoCliente(Cliente cliente, List<Evento> eventos) {
+        // Mostrar mensaje de bienvenida
+        mostrarBienvenida();
+
+        // Mostrar eventos disponibles
+        mostrarEventosDisponibles(eventos);
     }
-    
 }
+    
+
+

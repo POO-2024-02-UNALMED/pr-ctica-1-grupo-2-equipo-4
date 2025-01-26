@@ -4,7 +4,7 @@ public class Asiento {
 
     public enum ZonaAsiento {
         
-        Primera_fila,
+        Palco,
         Balcon,
         Centro,
         Atras;

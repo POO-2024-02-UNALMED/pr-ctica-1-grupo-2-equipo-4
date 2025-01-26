@@ -7,15 +7,18 @@ import java.util.List;
 
 
 public class EventoMain {
-    public static void funcionalidadEvento() {
+    public static void funcionalidadEvento(Cliente cliente) {
+
+        //Recepcionista
+       // Recepcionista recepcionista = new Recepcionista("Recepcionista", "Eventos");
 
         //Cliente de prueba
-        Cliente cliente = new Cliente("Jose", 20, 56789, 300000);
-        cliente.setSuscripcion(new Suscripcion(6));
-        cliente.setFidelidadBar(true);
+       // Cliente cliente = new Cliente("Jose", 20, 56789, 300000);
+       // cliente.setSuscripcion(new Suscripcion(6));
+       // cliente.setFidelidadBar(true);
         
 
-        Recepcionista recepcionista = new Recepcionista(null, null, null); 
+
 
         //Eventos
         Evento evento1 = new Evento("Magia en vivo", "Magia", null, null, 0);
@@ -24,14 +27,10 @@ public class EventoMain {
 
         List<Evento> eventosDisponibles = List.of(evento1, evento2, evento3);
 
-        EventosUIConsole consola = new EventosUIConsole();
-        consola.MostrarBienvenida(cliente);
-        consola.MostrarEventosDisponibles(eventosDisponibles);
 
-        if (cliente.verificarPremioEspecial()){
-            consola.MostrarPremioEspecial();
-            cliente.asignarAsientoEspecial(evento1)
-        }
+        EventosUIConsole consola = new EventosUIConsole();
+        consola.saludoCliente(cliente, eventosDisponibles);
+
     }
 
 
