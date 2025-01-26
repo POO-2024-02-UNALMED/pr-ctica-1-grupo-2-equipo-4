@@ -29,7 +29,7 @@ public class Cliente {
     private ArrayList<Cuenta> cuentas = new ArrayList<>();
     private RegistroJuego registroJuego;
     private Asiento asientoAsignado;
-        private Asiento asientoAsignado;
+
     
             // Constructor vacío
             public Cliente() {
@@ -123,6 +123,7 @@ public class Cliente {
             
             //Asignar asiento especial a cliente
         
+    
     public void asignarAsientoEspecial(Evento evento) {
         // Obtener un asiento disponible en la zona de Balcón
         Asiento asientoEspecial = evento.obtenerAsientoPorZona(ZonaAsiento.Palco);
@@ -135,22 +136,7 @@ public class Cliente {
             System.out.println("Se ha asignado el asiento especial: " +
                     asientoEspecial.getZona() + " (Precio: " + asientoEspecial.getPrecio() + ")");
         } else {
-            System.out.println("No hay asientos disponibles en la zona de Balcón.");
-        }
-    }
-    public void asignarAsientoEspecial(Evento evento) {
-        // Obtener un asiento disponible en la zona de Balcón
-        Asiento asientoEspecial = evento.obtenerAsientoPorZona(ZonaAsiento.Palco);
-
-        if (asientoEspecial != null && asientoEspecial.esDisponible()) {
-            // Asignar el asiento al cliente y marcarlo como reservado
-            this.asientoAsignado = asientoEspecial;
-            asientoEspecial.reservarAsiento();
-
-            System.out.println("Se ha asignado el asiento especial: " +
-                    asientoEspecial.getZona() + " (Precio: " + asientoEspecial.getPrecio() + ")");
-        } else {
-            System.out.println("No hay asientos disponibles en la zona de .");
+            System.out.println("No hay asientos disponibles en la zona de Palco.");
         }
     }
 
