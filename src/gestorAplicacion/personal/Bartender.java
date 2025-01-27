@@ -4,12 +4,14 @@ import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.Servicios.Cuenta;
 import gestorAplicacion.Servicios.Ingrediente;
 import gestorAplicacion.Servicios.Suscripcion;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bartender extends Empleado {
-    private List<Bebida> barraDeBebidas; 
-    private List<Ingrediente> barraDeIngredientes; 
+public class Bartender extends Empleado implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private static List<Bebida> barraDeBebidas; 
+    private static List<Ingrediente> barraDeIngredientes; 
     private ArrayList<Bebida> menuActual;
 
     public Bartender(String rol, String puesto, List<Bebida> barraDeBebidas, List<Ingrediente> barraDeIngredientes) {
@@ -209,20 +211,20 @@ public class Bartender extends Empleado {
     }
 
 
-    public List<Bebida> getBarraDeBebidas() {
-        return this.barraDeBebidas;
+    public static List<Bebida> getBarraDeBebidas() {
+        return barraDeBebidas;
     }
 
-    public void setBarraDeBebidas(List<Bebida> barraDeBebidas) {
-        this.barraDeBebidas = barraDeBebidas;
+    public static void setBarraDeBebidas(List<Bebida> barraDeBebidas) {
+        Bartender.barraDeBebidas = barraDeBebidas;
     }
 
-    public List<Ingrediente> getBarraDeIngredientes() {
-        return this.barraDeIngredientes;
+    public static List<Ingrediente> getBarraDeIngredientes() {
+        return barraDeIngredientes;
     }
 
-    public void setBarraDeIngredientes(List<Ingrediente> barraDeIngredientes) {
-        this.barraDeIngredientes = barraDeIngredientes;
+    public static void setBarraDeIngredientes(List<Ingrediente> barraDeIngredientes) {
+        Bartender.barraDeIngredientes = barraDeIngredientes;
     }
 
     public ArrayList<Bebida> getMenuActual() {

@@ -1,4 +1,4 @@
-package basedatos;
+package baseDatos;
 
 import java.io.*;
 

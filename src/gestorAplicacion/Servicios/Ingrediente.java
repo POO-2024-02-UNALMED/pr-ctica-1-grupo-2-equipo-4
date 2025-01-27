@@ -1,6 +1,7 @@
 package gestorAplicacion.Servicios;
+import java.io.Serializable;
 
-public class Ingrediente {
+public class Ingrediente implements Serializable {
     private String nombre;
     private String calidad;
 

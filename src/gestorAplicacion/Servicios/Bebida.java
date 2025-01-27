@@ -1,7 +1,8 @@
 package gestorAplicacion.Servicios;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Bebida {
+public class Bebida implements Serializable{
         // Atributos
         private String nombre;
         private int precio;

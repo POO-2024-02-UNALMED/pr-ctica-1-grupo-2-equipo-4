@@ -1,9 +1,9 @@
-package basedatos;
+package baseDatos;
 
 import java.io.*;
 
 public class Serializador {
-
+    public static final String BASE_PATH = "srs/baseDatos/temp/";
     /**
      * Método para serializar un objeto y guardarlo en un archivo.
      * 

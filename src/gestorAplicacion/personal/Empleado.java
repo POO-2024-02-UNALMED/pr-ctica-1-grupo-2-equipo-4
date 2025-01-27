@@ -39,4 +39,11 @@ public abstract class Empleado {
         this.puesto = puesto;
     }
 
+    public static ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public static void setEmpleados(ArrayList<Empleado> empleados) {
+        Empleado.empleados = empleados;
+    }
 }
