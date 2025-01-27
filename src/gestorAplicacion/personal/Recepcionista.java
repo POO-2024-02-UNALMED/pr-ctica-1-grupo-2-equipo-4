@@ -76,9 +76,9 @@ public class Recepcionista extends Empleado{
             return null;
         }
     
-    public static void procesarSeleccionEvento(Cliente cliente, Evento eventoSeleccionado, Asiento.ZonaAsiento ubicacion) {
+    public static void procesarSeleccionEvento(Cliente cliente, Evento eventoSeleccionado, Asiento.ZonaAsiento ubicacion) { //Metodo principal interaccion 1
         System.out.println(" ");
-        System.out.println("--Resumen de la reserva: ");
+        System.out.println("--Resumen de la reserva-- ");
         System.out.println(" ");
         System.out.println("Ha seleccionado el evento: " + eventoSeleccionado.getNombre());
         System.out.println("Artista invitado " + eventoSeleccionado.getArtista().getNombre());
