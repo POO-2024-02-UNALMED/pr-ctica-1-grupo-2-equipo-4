@@ -25,7 +25,7 @@ public class Blackjack extends Juego {
     private void inicializarBaraja() {
         baraja = new ArrayList<>();
         String[] valores = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
-        String[] palos = {"♥", "♦", "♣", "♠"};
+        String[] palos = {"corazones", "diamantes", "treboles", "picas"};
 
         for (String palo : palos) {
             for (String valor : valores) {
@@ -48,7 +48,6 @@ public void jugar(Cliente cliente, Animador animador) {
 
     animador.generarSaludo(cliente.getNombreCliente(), animador.getRol());
     animador.manejarSuscripcion(cliente);
-    animador.entregarFichas(cliente);
 
     // Repartir cartas iniciales
     manoJugador.add(sacarCarta());
@@ -62,7 +61,7 @@ public void jugar(Cliente cliente, Animador animador) {
 
     if (calcularPuntaje(manoJugador) == 21) {
         System.out.println("¡Blackjack! Ganaste con las dos primeras cartas.");
-        cliente.setFichas(cliente.getFichas() + (int) (getApuesta() * 2.5));
+        cliente.setFichas(cliente.getFichas() + (int) (this.apuesta * 2.5));
         // Llamada al método otorgarRecompensa
         animador.otorgarRecompensa(cliente, true);
         return;
@@ -80,7 +79,7 @@ public void jugar(Cliente cliente, Animador animador) {
             int puntaje = calcularPuntaje(manoJugador);
             if (puntaje > 21) {
                 System.out.println("Te pasaste de 21. ¡Perdiste!");
-                cliente.setFichas(cliente.getFichas() - getApuesta());
+                cliente.setFichas(cliente.getFichas() - this.apuesta);
                 // Llamada al método otorgarRecompensa
                 animador.otorgarRecompensa(cliente, false);
                 return;
@@ -107,14 +106,16 @@ private void mostrarResultados(Cliente cliente, Animador animador) {
 
     if (puntajeJugador > puntajeCrupier || puntajeCrupier > 21) {
         System.out.println("¡Ganaste!");
-        cliente.setFichas(cliente.getFichas() + (getApuesta() * 2));
+        cliente.setFichas(cliente.getFichas() + (this.apuesta * 2));
         ganoJugador = true;
 
     } else {
         System.out.println("Perdiste.");
-        cliente.setFichas(cliente.getFichas() - getApuesta());
+        cliente.setFichas(cliente.getFichas() - this.apuesta);
     }
     animador.otorgarRecompensa(cliente, ganoJugador);
+    System.out.println("¡Gracias por jugar a Blackjack!");
+        System.out.println("Tus fichas actuales: " + cliente.getFichas());
 }
 
 

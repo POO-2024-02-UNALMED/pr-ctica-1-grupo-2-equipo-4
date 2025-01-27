@@ -21,7 +21,6 @@ public class Craps extends Juego {
         // Inicio del juego
         System.out.println(animador.generarSaludo(cliente.getNombreCliente(), animador.getRol()));
         animador.manejarSuscripcion(cliente);
-        animador.entregarFichas(cliente);
 
         System.out.println("¡Comienza el juego de Craps!");
         Random random = new Random();
@@ -33,16 +32,17 @@ public class Craps extends Juego {
 
         if (primerTiro == 7) {
             System.out.println("¡Felicidades! Premio especial por sacar un 7 en el primer tiro.");
-            animador.otorgarRecompensa(cliente, true); // Gestionar el premio especial
+            cliente.setFichas(cliente.getFichas() + Math.round((this.apuesta + 10) * riesgoActual));
+            animador.otorgarRecompensa(cliente, true); 
             return;
         } else if (primerTiro == 11) {
             System.out.println("¡Felicidades! Ganaste en el primer tiro.");
-            cliente.setFichas(cliente.getFichas() + Math.round(getApuesta() * riesgoActual));
+            cliente.setFichas(cliente.getFichas() + Math.round(this.apuesta * riesgoActual));
             animador.otorgarRecompensa(cliente, true);
             return;
         } else if (primerTiro == 2 || primerTiro == 3 || primerTiro == 12) {
             System.out.println("Craps. Perdiste en el primer tiro.");
-            cliente.setFichas(cliente.getFichas() - getApuesta());
+            cliente.setFichas(cliente.getFichas() - this.apuesta);
             animador.otorgarRecompensa(cliente, false);
             return;
         }
@@ -57,12 +57,12 @@ public class Craps extends Juego {
 
             if (nuevoTiro == punto) {
                 System.out.println("¡Felicidades! Ganaste al volver a sacar tu punto.");
-                cliente.setFichas(cliente.getFichas() + Math.round(getApuesta() * riesgoActual));
+                cliente.setFichas(cliente.getFichas() + Math.round(this.apuesta * riesgoActual));
                 animador.otorgarRecompensa(cliente, true);
                 return;
             } else if (nuevoTiro == 7) {
                 System.out.println("Salió un 7. Perdiste.");
-                cliente.setFichas(cliente.getFichas() - getApuesta());
+                cliente.setFichas(cliente.getFichas() - this.apuesta);
                 animador.otorgarRecompensa(cliente, false);
                 return;
             }

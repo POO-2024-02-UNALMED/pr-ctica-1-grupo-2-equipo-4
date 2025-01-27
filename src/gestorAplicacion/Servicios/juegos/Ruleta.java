@@ -24,7 +24,6 @@ public class Ruleta extends Juego {
         // Inicio del juego
         System.out.println(animador.generarSaludo(cliente.getNombreCliente(), animador.getRol()));
         animador.manejarSuscripcion(cliente);
-        animador.entregarFichas(cliente);
 
         System.out.println("¡Bienvenido a la Ruleta!");
         System.out.println("Opciones de apuesta:");
@@ -52,11 +51,11 @@ public class Ruleta extends Juego {
 
             if ((colorElegido == 1 && esRojo) || (colorElegido == 2 && !esRojo)) {
                 System.out.println("¡Felicidades! Ganaste apostando al color.");
-                cliente.setFichas(cliente.getFichas() + (int) (getApuesta() * getRiesgo()));
+                cliente.setFichas(cliente.getFichas() + (int) (this.apuesta * getRiesgo()));
                 animador.otorgarRecompensa(cliente, true);
             } else {
                 System.out.println("Lo siento, perdiste.");
-                cliente.setFichas(cliente.getFichas() - getApuesta());
+                cliente.setFichas(cliente.getFichas() - this.apuesta);
                 animador.otorgarRecompensa(cliente, false);
             }
         } else if (eleccion == 2) {
@@ -70,11 +69,11 @@ public class Ruleta extends Juego {
 
             if (numeroElegido == numeroGanador) {
                 System.out.println("¡Increíble! Ganaste apostando al número.");
-                cliente.setFichas(cliente.getFichas() + (int) (getApuesta() * getRiesgo()));
+                cliente.setFichas(cliente.getFichas() + (int) (this.apuesta * getRiesgo()));
                 animador.otorgarRecompensa(cliente, true);
             } else {
                 System.out.println("Lo siento, perdiste.");
-                cliente.setFichas(cliente.getFichas() - getApuesta());
+                cliente.setFichas(cliente.getFichas() - this.apuesta);
                 animador.otorgarRecompensa(cliente, false);
             }
         }

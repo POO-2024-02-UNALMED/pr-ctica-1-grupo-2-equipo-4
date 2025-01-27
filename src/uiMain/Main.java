@@ -1,11 +1,13 @@
 package uiMain;
 
 import gestorAplicacion.personal.Cliente;
+import gestorAplicacion.personal.Animador;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Animador animador = new Animador();
 
         // Crear listas de entidades del casino
 
@@ -33,6 +35,7 @@ public class Main {
 
             switch (opcion) {
                 case 1:// jugar
+                    animador.entregarFichas(usuarioActual);
                     MainJuegos.funcionalidadJugar(usuarioActual);
                     break;
 

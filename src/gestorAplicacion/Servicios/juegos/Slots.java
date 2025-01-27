@@ -8,7 +8,7 @@ import java.util.Random;
 public class Slots extends Juego {
 
     // Atributos
-    private static final String[] SIMBOLOS = {"♠️", "♥", "♣", "♦️"};
+    private static final String[] SIMBOLOS = {"pica", "corazon", "trebol", "diamante"};
 
     // Constructor
     public Slots(int apuesta) {
@@ -24,10 +24,10 @@ public class Slots extends Juego {
     // Método para calcular el multiplicador basado en el símbolo
     private float obtenerMultiplicador(String simbolo) {
         switch (simbolo) {
-            case "♠️": return 1.5f;
-            case "♥": return 2.0f;
-            case "♣": return 3.0f;
-            case "♦️": return 8.0f;
+            case "pica": return 1.5f;
+            case "corazon": return 2.0f;
+            case "trebol": return 3.0f;
+            case "diamante": return 8.0f;
             default: return 1.0f;
         }
     }
@@ -40,7 +40,6 @@ public class Slots extends Juego {
 
         animador.generarSaludo(cliente.getNombreCliente(), animador.getRol());
         animador.manejarSuscripcion(cliente);
-        animador.entregarFichas(cliente);
 
         // Tirar las tres ruedas
         String rueda1 = tirarRueda();
@@ -55,21 +54,24 @@ public class Slots extends Juego {
         // Comprobar si el jugador ha ganado
         if (rueda1.equals(rueda2) && rueda2.equals(rueda3)) {
             float multiplicador = obtenerMultiplicador(rueda1);
-            float ganancia = getApuesta() * multiplicador;
+            float ganancia = this.apuesta * multiplicador;
             cliente.setFichas(cliente.getFichas() + (int) ganancia);
             System.out.println("¡Ganaste! Multiplicador: " + multiplicador + ". Ganancia: " + ganancia + " fichas.");
 
-            // Llamada al método otorgarRecompensa
+            // Llamada al método otorgarRecompensa1
             animador.otorgarRecompensa(cliente, true);
 
             // Premio especial solo si todas las ruedas son diamantes
-            if (rueda1.equals("♦️") && rueda2.equals("♦️") && rueda3.equals("♦️")) {
+            if (rueda1.equals("diamante") && rueda2.equals("diamante") && rueda3.equals("diamante")) {
                 System.out.println("¡Premio especial por Diamantes! ¡Felicidades!");
+                cliente.setFichas(cliente.getFichas() + (int) ganancia + 10);
             }
         } else {
             System.out.println("Lo siento, no ganaste. Mejor suerte la próxima vez.");
-            cliente.setFichas(cliente.getFichas() - getApuesta());
+            cliente.setFichas(cliente.getFichas() - this.apuesta);
             animador.otorgarRecompensa(cliente, false);
         }
+        System.out.println("¡Gracias por jugar Slots!");
+        System.out.println("Tus fichas actuales: " + cliente.getFichas());
     }
 }
