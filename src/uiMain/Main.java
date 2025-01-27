@@ -52,8 +52,9 @@ public class Main {
                     BarMain.funcionalidadBar(usuarioActual);
                     break;
 
-                case 3:// eventos
-                       // Eventos(scanner, clientes, empleados);
+                case 3://eventos
+                    //Eventos(scanner, clientes, empleados);
+                    EventoMain.funcionalidadEvento();
 
                     break;
 

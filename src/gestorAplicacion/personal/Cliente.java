@@ -28,7 +28,8 @@ public class Cliente {
     private int propinasArtista;
     private ArrayList<Cuenta> cuentas = new ArrayList<>();
     private RegistroJuego registroJuego;
-    private Asiento asientoAsignado;
+    private Asiento asiento;
+    private Evento evento;
 
     
             // Constructor vacío
@@ -99,87 +100,6 @@ public class Cliente {
             }
         
         
-            //EVENTOS
-            //Metodo para saber si el cliente aplica para el premio especial segun suscripcion si es Silver o Platinum
-            public boolean verificarPremioEspecial(){
-                return suscripcion.getTipoSuscripcion().equals("Platinum") || 
-                suscripcion.getTipoSuscripcion().equals("Silver");
-            }
-        
-            //metodo para obtener asientos de evento
-                //public List<Asiento> obtenerAsientosDisponibles(List<Asiento> asientos) {
-                //return asientos.stream()
-                        //.filter(asiento -> {
-                            //if (asiento.getZona().equalsIgnoreCase("primera fila") && !suscripcion.getTipoSuscripcion().equals("Platinum")) {
-                                //return false; // Si el asiento está en "primera fila", el cliente solo puede acceder si tiene una suscripción Platinum
-                            //}
-                            //if (asiento.getZona().equalsIgnoreCase("balcón") && suscripcion.getTipoSuscripcion().equals("por defecto")) {
-                                //return false; // Suscripcion "Por defecto" no puede acceder al balcón
-                            //}
-                            //return !asiento.isReservado(); // Filtrar solo asientos no reservados
-                        //})
-                        //.toList();
-            //}
-            
-            //Asignar asiento especial a cliente
-        
-    
-    public void asignarAsientoEspecial(Evento evento) {
-        // Obtener un asiento disponible en la zona de Balcón
-        Asiento asientoEspecial = evento.obtenerAsientoPorZona(ZonaAsiento.Palco);
-
-        if (asientoEspecial != null && asientoEspecial.esDisponible()) {
-            // Asignar el asiento al cliente y marcarlo como reservado
-            this.asientoAsignado = asientoEspecial;
-            asientoEspecial.reservarAsiento();
-
-            System.out.println("Se ha asignado el asiento especial: " +
-                    asientoEspecial.getZona() + " (Precio: " + asientoEspecial.getPrecio() + ")");
-        } else {
-            System.out.println("No hay asientos disponibles en la zona de Palco.");
-        }
-    }
-
-        public void otorgarFichasCompensacion(Asiento asientoSeleccionado){
-            int nivelMaximo = determinarNivelMaximoPorSuscripcion();
-
-            int nivelAsiento = determinarNivelPorZona(asientoSeleccionado.getZona());
-
-        }
-
-        private int determinarNivelMaximoPorSuscripcion() {
-            switch (this.suscripcion.getTipoSuscripcion()) {
-                case "Platinum":
-                    return 4; //Tiene acceso a Palco
-                case "Silver":
-                    return 3; //Tiene acceso a Balcón
-                case "por defecto":
-                    return 2; //Tiene acceso a Centro
-                case "primera vez":
-                    return 1; //Tiene acceso a Atrás
-                default:
-                    return 1; //Nivel más bajo por defecto
-            }
-        }
-
-            // Método para determinar el nivel de un asiento según su zona
-        private int determinarNivelPorZona(Asiento.ZonaAsiento zona) {
-            switch (zona) {
-                case Palco:
-                    return 4;
-                case Balcon:
-                    return 3;
-                case Centro:
-                    return 2;
-                case Atras:
-                    return 1;
-                default:
-                    return 1; // Nivel más bajo por defecto
-        }
-    }
-    
-
-    // Getters y Setters
 
     public String getNombreCliente() {
         return this.nombreCliente;
@@ -309,11 +229,19 @@ public class Cliente {
         this.registroJuego = registroJuego;
     }
 
-    public Asiento getAsientoAsignado(){
-        return asientoAsignado;
+    public Asiento getAsiento(){
+        return asiento;
     }
 
-    public void setAsientoAsignado(Asiento asientoAsignado){
-        this.asientoAsignado = asientoAsignado;
+    public void setAsiento(Asiento asiento){
+        this.asiento = asiento;
+    }
+    
+    public Evento getEvento(){
+        return evento;
+    }
+
+    public void setEvento(Evento evento){
+        this.evento = evento;
     }
 }
