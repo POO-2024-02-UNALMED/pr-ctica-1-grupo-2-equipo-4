@@ -68,7 +68,7 @@ public class Recepcionista extends Empleado{
         //Funcionalidad Eventos, Interaccion 1
 
         public static Cliente identificarCliente(long identificacion) {  
-            for (Cliente cliente : getClientes()) { // Asegúrate de que 'getClientes()' devuelva la lista de clientes registrados
+            for (Cliente cliente : getClientes()) { 
                 if (cliente.getId() == identificacion) {
                     return cliente;
                 }

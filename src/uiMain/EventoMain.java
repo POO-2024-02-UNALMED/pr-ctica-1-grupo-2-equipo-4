@@ -63,10 +63,8 @@ public class EventoMain {
 
         Asiento.ZonaAsiento zonaSeleccionada = consola.pedirZonaAsiento(); // Solicitar elección de zona de asiento
         
-       // int numeroAsiento = consola.pedirAsiento(ZonaAsiento);
 
-
-        // Confirmar la selección y aplicar lógica especial si corresponde
+        // Confirmar la selección y
         Recepcionista.procesarSeleccionEvento(cliente, eventoSeleccionado, zonaSeleccionada);
     } else {
         // Mensaje en caso de que no se encuentre registro
