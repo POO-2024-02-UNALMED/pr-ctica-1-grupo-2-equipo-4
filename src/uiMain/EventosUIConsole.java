@@ -1,37 +1,46 @@
 package uiMain;
 
-import java.util.List;
 import java.util.Scanner;
 
-import gestorAplicacion.Servicios.Asiento;
-import gestorAplicacion.Servicios.Evento;
-import gestorAplicacion.personal.Cliente;
+
 
 public class EventosUIConsole implements EventosUI {
 
-    private Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void mostrarBienvenida(){
-        System.out.println("¡Bienvenido/a a los eventos de Diamond Casino!");
+    public long pedirID() {
+        System.out.println("Ingrese su identificación:");
+        while (!scanner.hasNextLong()) {
+            System.out.println("Entrada inválida. Por favor, ingrese un número válido:");
+            scanner.next();
+        }
+        return scanner.nextLong();
     }
     
     @Override
-    public void mostrarEventosDisponibles(List<Evento> eventos){
-        System.out.println("Estos son los eventos disponibles:");
-        for (int i = 0; i < eventos.size(); i++) {
-            Evento evento = eventos.get(i);
-            System.out.println((i + 1) + ". " + evento.getNombreEvento());
+    public int pedirEvento() {
+        System.out.println("Ingrese el número del evento que desea asistir:");
+        while (!scanner.hasNextInt()) {
+            System.out.println("Entrada inválida. Por favor, ingrese un número entero válido:");
+            scanner.next();
         }
+        return scanner.nextInt();
     }
 
-    @Override
-    public void saludoCliente(Cliente cliente, List<Evento> eventos) {
-        // Mostrar mensaje de bienvenida
-        mostrarBienvenida();
-
-        // Mostrar eventos disponibles
-        mostrarEventosDisponibles(eventos);
+    public int pedirZonaAsiento() {
+        System.out.println("Seleccione la zona de asiento:");
+        System.out.println("1. Palco\n2. Balcón\n3. Centro\n4. Atrás");
+        while (!scanner.hasNextInt()) {
+            System.out.println("Entrada inválida. Por favor, seleccione una opción válida (1-4):");
+            scanner.next();
+        }
+        int opcion = scanner.nextInt();
+        while (opcion < 1 || opcion > 4) {
+            System.out.println("Opción fuera de rango. Seleccione una opción válida (1-4):");
+            opcion = scanner.nextInt();
+        }
+        return opcion;
     }
 }
     

@@ -44,6 +44,7 @@ public class Main {
 
                 case 3://eventos
                     //Eventos(scanner, clientes, empleados);
+                    EventoMain.funcionalidadEvento();
 
                     break;
 

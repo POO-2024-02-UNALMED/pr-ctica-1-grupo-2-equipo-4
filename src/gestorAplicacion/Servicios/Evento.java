@@ -5,25 +5,60 @@ import java.util.stream.Collectors;
 import gestorAplicacion.Servicios.Asiento;
 
 import gestorAplicacion.personal.Artista;
+import gestorAplicacion.personal.Cliente;
 
 public class Evento {
-    private String nombreEvento;
-    private String tipoEvento;
+    private String nombre;
+    private String descripcion;
     private Artista artista;
     private Boolean consumoMinimo;
-    private double precioBase;
+    private double precio;
     private List<Asiento> asientos;  
 
-    public Evento(String nombreEvento, String tipoEvento, Artista artista, Boolean consumoMinimo, double precioBase) {
-        this.nombreEvento = nombreEvento;
-        this.tipoEvento = tipoEvento;
-        this.artista = artista;
-        this.consumoMinimo = consumoMinimo;
-        this.precioBase = precioBase;
-        this.asientos = inicializarAsientos(); // Inicialización de asientos
+
+    // Lista estática de eventos disponibles
+    private static List<Evento> eventosDisponibles = new ArrayList<>();
+
+
+
+    public Evento(String nombre, String descripcion, double precio) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
     }
 
+    public static void inicializarEventos() {
+        // Agregar algunos eventos por defecto
+        eventosDisponibles.add(new Evento("Concierto de Jazz", "Un espectáculo relajante de Jazz.", 50.0));
+        eventosDisponibles.add(new Evento("Show de Magia", "Magia y misterio en vivo.", 40.0));
+        eventosDisponibles.add(new Evento("Comedia Stand-Up", "Una noche llena de risas.", 30.0));
+    }
+
+    public static void mostrarEventos() {
+        if(eventosDisponibles.isEmpty()){
+            System.out.println("No hay eventos disponibles en este momento");
+            return;
+        }
+        for (int i = 0; i < eventosDisponibles.size(); i++) {
+            Evento evento = eventosDisponibles.get(i);
+            System.out.println((i + 1) + ". " + evento.nombre + " - " + evento.descripcion + " ($" + evento.precio + ")");
+        }
+    }
+
+    public static Evento getEventoPorIndice(int indice) {
+        if (indice > 0 && indice <= eventosDisponibles.size()) {
+            return eventosDisponibles.get(indice - 1);
+        } else {
+            System.out.println("Opción inválida. Seleccionando el primer evento por defecto.");
+            return eventosDisponibles.get(0);
+        }
+    }
+
+
+
+
     //Inicializar asientos por zona
+
 
     private List<Asiento> inicializarAsientos(){
         List<Asiento> asientos = new ArrayList<>();
@@ -56,6 +91,68 @@ public class Evento {
         return asientos;
     }
 
+    public static void mostrarEventos(List<Evento> eventos) {
+        System.out.println("\nEventos disponibles:");
+        for (int i = 0; i < eventos.size(); i++) {
+            Evento evento = eventos.get(i);
+            System.out.println((i + 1) + ". " + evento.getNombre());
+        }
+    }
+
+    public Asiento asignarAsiento(Asiento.ZonaAsiento zona) {
+        for (Asiento asiento : asientos) {
+            if (asiento.getZona() == zona && asiento.esDisponible()) {
+                asiento.reservarAsiento();
+                return asiento;
+            }
+        }
+        return null; // Si no hay asientos disponibles en esa zona
+    }
+
+        // Calcular precio con descuento basado en la suscripción del cliente
+    public static double calcularPrecioConDescuento(Cliente cliente, Evento evento) {
+        float descuento = cliente.getSuscripcion().getDescuento();
+        double precioOriginal = evento.precio;
+        double precioConDescuento = precioOriginal - (precioOriginal * descuento);
+        System.out.printf("\nPrecio original: %.2f\nDescuento aplicado: %.2f%%\nPrecio final: %.2f\n",
+                precioOriginal, descuento * 100, precioConDescuento);
+        return precioConDescuento;
+    }
+
+    // Verificar si el cliente tiene consumo mínimo para eventos
+    public static void verificarConsumoObligatorio(Cliente cliente) {
+        if (cliente.getSuscripcion().getTipoSuscripcion().equalsIgnoreCase("Primera vez")) {
+            System.out.println("\nComo cliente 'Primera vez', deberá realizar un consumo mínimo en el bar antes del evento.");
+        }
+    }
+
+    public double calcularPrecioZona(Asiento.ZonaAsiento zona) {
+        double precio = 0.0;
+    
+        switch (zona) {
+            case Palco:
+                precio = 200.0; // Precio para la zona de Palco
+                break;
+            case Balcon:
+                precio = 150.0; // Precio para la zona de Balcón
+                break;
+            case Centro:
+                precio = 100.0; // Precio para la zona de Centro
+                break;
+            case Atras:
+                precio = 50.0; // Precio para la zona de Atrás
+                break;
+            default:
+                System.out.println("Zona desconocida.");
+                break;
+        }
+    
+        System.out.println("El precio para la zona " + zona + " es: " + precio);
+        return precio;
+    }
+
+
+
     //Metodo obtener asiento por zona
     public Asiento obtenerAsientoPorZona(Asiento.ZonaAsiento zona) {
         for (Asiento asiento : asientos) {
@@ -76,7 +173,7 @@ public class Evento {
     //Aplicar descuento segun la suscripcion de cliente
     public double calcularDescuento(Suscripcion suscripcion){
         double descuento = suscripcion.getDescuento();
-        return precioBase * (1- descuento);
+        return precio * (1- descuento);
     }
 
     //Metodo para poner monto minimo al evento
@@ -86,6 +183,29 @@ public class Evento {
     
 
 //Getters y Setters
+
+
+    // Getter de nombre del evento
+    public String getNombre() {
+        return nombre;
+    }
+
+    // Getter de precio base
+    public double getPrecio() {
+        return precio;
+    }
+
+    // Getter de tipo de evento
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    // Getter de asientos disponibles
+    public List<Asiento> getAsientos() {
+        return asientos;
+    }
+
+
     public Artista getArtista() {
         return this.artista;
     }
@@ -101,36 +221,13 @@ public class Evento {
     public void setConsumoMinimo(Boolean consumoMinimo) {
         this.consumoMinimo = consumoMinimo;
     }
-
-    public List<Asiento> getAsientos() {
-        return this.asientos;
-    }
     
     public void setAsientos(List<Asiento> asientos) {
         this.asientos = asientos;
     }
-    public String getNombreEvento() {
-        return nombreEvento;
+    
+    public void setNombreEvento(String nombre) {
+        this.nombre = nombre;
     }
     
-    public void setNombreEvento(String nombreEvento) {
-        this.nombreEvento = nombreEvento;
-    }
-    
-    public String getTipoEvento() {
-        return tipoEvento;
-    }
-
-    public void setTipoEvento(String tipoEvento) {
-        this.tipoEvento = tipoEvento;
-    }
-
-    public Double getPrecioBase() {
-        return precioBase;
-    }
-
-    public void setPrecioBase(double precioBase) {
-        this.precioBase = precioBase;
-    }
-
 }

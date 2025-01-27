@@ -28,7 +28,8 @@ public class Cliente {
     private int propinasArtista;
     private ArrayList<Cuenta> cuentas = new ArrayList<>();
     private RegistroJuego registroJuego;
-    private Asiento asientoAsignado;
+    private Asiento asiento;
+    private Evento evento;
 
     
             // Constructor vacío
@@ -130,7 +131,7 @@ public class Cliente {
 
         if (asientoEspecial != null && asientoEspecial.esDisponible()) {
             // Asignar el asiento al cliente y marcarlo como reservado
-            this.asientoAsignado = asientoEspecial;
+            this.asiento = asientoEspecial;
             asientoEspecial.reservarAsiento();
 
             System.out.println("Se ha asignado el asiento especial: " +
@@ -309,11 +310,19 @@ public class Cliente {
         this.registroJuego = registroJuego;
     }
 
-    public Asiento getAsientoAsignado(){
-        return asientoAsignado;
+    public Asiento getAsiento(){
+        return asiento;
     }
 
-    public void setAsientoAsignado(Asiento asientoAsignado){
-        this.asientoAsignado = asientoAsignado;
+    public void setAsiento(Asiento asiento){
+        this.asiento = asiento;
+    }
+    
+    public Evento getEvento(){
+        return evento;
+    }
+
+    public void setEvento(Evento evento){
+        this.evento = evento;
     }
 }

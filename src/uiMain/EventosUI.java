@@ -9,13 +9,10 @@ import java.util.List;
 public interface EventosUI {
 
     //Mostrar bienvenida
-    void mostrarBienvenida();
+    long pedirID();
 
-    //Mostrar eventos
-    void mostrarEventosDisponibles(List<Evento> eventos);
+    int pedirEvento();
 
-    //Saludocliente
-    void saludoCliente(Cliente cliente, List<Evento> eventos);
+    int pedirZonaAsiento();
 
-    
 }

@@ -3,11 +3,13 @@ package uiMain;
 import gestorAplicacion.Servicios.*;
 import gestorAplicacion.personal.Cliente;
 import gestorAplicacion.personal.Recepcionista;
+import gestorAplicacion.personal.Valet;
+
 import java.util.List;
 
 
 public class EventoMain {
-    public static void funcionalidadEvento(Cliente cliente) {
+    public static void funcionalidadEvento() {
 
         //Recepcionista
        // Recepcionista recepcionista = new Recepcionista("Recepcionista", "Eventos");
@@ -18,25 +20,38 @@ public class EventoMain {
        // cliente.setFidelidadBar(true);
         
 
-
-
-        //Eventos
-        Evento evento1 = new Evento("Magia en vivo", "Magia", null, null, 0);
-        Evento evento2 = new Evento("Show de Comedia", "Comedia", null, null, 0);
-        Evento evento3 = new Evento("Concierto", "Concierto", null, null, 0);
-
-        List<Evento> eventosDisponibles = List.of(evento1, evento2, evento3);
-
-
         EventosUIConsole consola = new EventosUIConsole();
-        consola.saludoCliente(cliente, eventosDisponibles);
 
+        //Interaccion1
+    System.out.println("¡Bienvenido al área de eventos del casino!");
+    System.out.println("Por favor, deme su identificación para confirmar su registro.");
+
+    long id = consola.pedirID(); // Método para solicitar la identificación
+    Cliente cliente = Recepcionista.identificarCliente(id); // Método para buscar al cliente
+
+    if (cliente != null) {
+        // Mostrar bienvenida personalizada
+        System.out.println("Hola " + cliente.getNombreCliente() + "!");
+
+        // Leer la suscripción del cliente y mostrarla
+        System.out.println("Su suscripción actual es: " + cliente.getSuscripcion().getTipoSuscripcion());
+
+        // Mostrar eventos disponibles
+        Evento.inicializarEventos();
+        System.out.println("Estos son los eventos disponibles:");
+        Evento.mostrarEventos(); // Método estático en Evento que lista los eventos actuales
+
+        // Solicitar al cliente que elija un evento
+        System.out.println("Por favor, elija un evento ingresando su número correspondiente (1, 2 o 3):");
+        int opcionEvento = consola.pedirEvento(); // Método que solicita al cliente elegir un evento
+        Evento eventoSeleccionado = Evento.getEventoPorIndice(opcionEvento); // Obtener el evento elegido
+
+        // Confirmar la selección y aplicar lógica especial si corresponde
+        Recepcionista.procesarSeleccionEvento(cliente, eventoSeleccionado);
+    } else {
+        // Mensaje en caso de que no se encuentre registro
+        System.out.println("No se encontró ningún registro para esta identificación. Por favor, regístrese primero o ingrese un ID valida.");
     }
 
-
-
-
-
-
-
+}
 }
