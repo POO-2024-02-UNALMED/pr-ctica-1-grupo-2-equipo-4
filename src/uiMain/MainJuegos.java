@@ -1,12 +1,12 @@
 package uiMain;
 
+import gestorAplicacion.Servicios.RegistroJuego;
 import gestorAplicacion.Servicios.juegos.Blackjack;
 import gestorAplicacion.Servicios.juegos.Craps;
 import gestorAplicacion.Servicios.juegos.Ruleta;
 import gestorAplicacion.Servicios.juegos.Slots;
 import gestorAplicacion.personal.Animador;
 import gestorAplicacion.personal.Cliente;
-
 import java.util.Scanner;
 
 public class MainJuegos {
