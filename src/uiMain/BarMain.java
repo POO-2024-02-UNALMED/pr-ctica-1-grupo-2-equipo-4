@@ -13,7 +13,7 @@ public class BarMain{
         //cliente.setSuscripcion(new Suscripcion(8));
         //cliente.setFidelidadBar(true);
 
-        ArrayList<Ingrediente> ingredientes = new ArrayList<>();
+        /* ArrayList<Ingrediente> ingredientes = new ArrayList<>();
         Ingrediente ingrediente1 = new Ingrediente("agua", cliente.getSuscripcion());
         ingredientes.add(ingrediente1);
 
@@ -21,8 +21,8 @@ public class BarMain{
         ArrayList<Ingrediente> barraIngredientesBar = new ArrayList<>();
         ArrayList<Bebida> barraBebidasBar = new ArrayList<>();
         barraIngredientesBar.add(ingrediente1);
-        barraBebidasBar.add(bebidaAgua);
-        Bartender bartender = new Bartender("bartender","barra",barraBebidasBar,barraIngredientesBar);
+        barraBebidasBar.add(bebidaAgua); */
+        Bartender bartender = new Bartender("bartender","barra");
 
         BarUI consola = new BarUIConsole();
 

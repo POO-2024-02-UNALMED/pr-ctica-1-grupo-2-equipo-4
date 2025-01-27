@@ -167,7 +167,7 @@ public class Main {
 
     public static void cargarDatos() {
         // Deserializar ingredientes
-        List<Ingrediente> ingredientes = (List<Ingrediente>) Deserializador.deserializar("srs/baseDatos/temp/ingredientes.dat");
+        List<Ingrediente> ingredientes = (List<Ingrediente>) Deserializador.deserializar(Serializador.BASE_PATH+"ingredientes.dat");
         if (ingredientes != null) {
             Bartender.setBarraDeIngredientes(ingredientes);
         } else {
@@ -175,7 +175,7 @@ public class Main {
         }
 
         // Deserializar bebidas
-        List<Bebida> bebidas = (List<Bebida>) Deserializador.deserializar("srs/baseDatos/temp/bebidas.dat");
+        List<Bebida> bebidas = (List<Bebida>) Deserializador.deserializar(Serializador.BASE_PATH+"bebidas.dat");
         if (bebidas != null) {
             Bartender.setBarraDeBebidas(bebidas);
         } else {
@@ -183,7 +183,7 @@ public class Main {
         }
 
         // Deserializar bartender
-        Bartender bartender = (Bartender) Deserializador.deserializar("srs/baseDatos/temp/bartender.dat");
+        Bartender bartender = (Bartender) Deserializador.deserializar(Serializador.BASE_PATH+"bartender.dat");
         if (bartender != null) {
             System.out.println("Bartender cargado: " + bartender);
         } else {
