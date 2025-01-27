@@ -21,27 +21,37 @@ public class Evento {
 
 
 
-    public Evento(String nombre, String descripcion, double precio) {
+    public Evento(String nombre, String descripcion, Artista artista, double precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.artista = artista;
         this.precio = precio;
     }
 
     public static void inicializarEventos() {
+
+        Artista artista1 = new Artista("Lisa S.");
+        Artista artista2 = new Artista("Merrit McKinney");
+        Artista artista3 = new Artista("Franco Escamilla");
+
+
         // Agregar algunos eventos por defecto
-        eventosDisponibles.add(new Evento("Concierto de Jazz", "Un espectáculo relajante de Jazz.", 50.0));
-        eventosDisponibles.add(new Evento("Show de Magia", "Magia y misterio en vivo.", 40.0));
-        eventosDisponibles.add(new Evento("Comedia Stand-Up", "Una noche llena de risas.", 30.0));
+        
+        eventosDisponibles.add(new Evento("Concierto de Jazz", "Jazz relajante.", artista1, 50.0));
+        eventosDisponibles.add(new Evento("Show de Magia", "Acto Ilusionismo.", artista2, 40.0));
+        eventosDisponibles.add(new Evento("Comedia Stand-Up", "Una noche llena de risas.", artista3, 30.0));
     }
 
     public static void mostrarEventos() {
-        if(eventosDisponibles.isEmpty()){
+        if (eventosDisponibles.isEmpty()) {
             System.out.println("No hay eventos disponibles en este momento");
             return;
         }
         for (int i = 0; i < eventosDisponibles.size(); i++) {
             Evento evento = eventosDisponibles.get(i);
-            System.out.println((i + 1) + ". " + evento.nombre + " - " + evento.descripcion + " ($" + evento.precio + ")");
+            String nombreArtista = evento.getArtista() != null ? evento.getArtista().getNombre() : "Artista no disponible";
+            System.out.println((i + 1) + ". " + evento.getNombre() + " - " + evento.getDescripcion() + 
+                               " | Artista: " + nombreArtista + " ($" + evento.getPrecio() + ")");
         }
     }
 

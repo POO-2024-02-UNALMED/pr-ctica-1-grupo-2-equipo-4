@@ -14,12 +14,13 @@ public class Asiento {
     private int cantidad;
     private boolean reservado;
     private Double precio;
+    private String numero;
 
 
 
-public Asiento(ZonaAsiento zona, int cantidad, double precio) {
+public Asiento(ZonaAsiento zona, int numero, double precio) {
     this.zona = zona;
-    this.cantidad = cantidad;
+    this.cantidad = numero;
     this.precio = precio;
     this.reservado = false; //Inicialmente no esta reservado
 }
@@ -89,6 +90,10 @@ public String toString() {
             ", reservado=" + reservado +
             ", precio=" + precio +
             '}';
+}
+
+public String getNumero() {
+    return numero;
 }
 
 }
