@@ -13,6 +13,8 @@ public interface EventosUI {
 
     int pedirEvento();
 
-    int pedirZonaAsiento();
+    int pedirAsiento();
+
+    Asiento.ZonaAsiento pedirZonaAsiento();
 
 }

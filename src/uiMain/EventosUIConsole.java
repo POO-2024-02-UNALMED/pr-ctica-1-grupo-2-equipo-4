@@ -2,6 +2,8 @@ package uiMain;
 
 import java.util.Scanner;
 
+import gestorAplicacion.Servicios.Asiento;
+
 
 
 public class EventosUIConsole implements EventosUI {
@@ -28,22 +30,39 @@ public class EventosUIConsole implements EventosUI {
         return scanner.nextInt();
     }
 
-    public int pedirZonaAsiento() {
-        System.out.println("Seleccione la zona de asiento:");
-        System.out.println("1. Palco\n2. Balcón\n3. Centro\n4. Atrás");
-        while (!scanner.hasNextInt()) {
-            System.out.println("Entrada inválida. Por favor, seleccione una opción válida (1-4):");
-            scanner.next();
-        }
+    @Override
+    public Asiento.ZonaAsiento pedirZonaAsiento() {
+        System.out.println("Por favor, elija la zona de asiento:");
+        System.out.println("1. Primera Fila");
+        System.out.println("2. Balcón");
+        System.out.println("3. Centro");
+        System.out.println("4. Atrás");
+
+        Scanner scanner = new Scanner(System.in);
         int opcion = scanner.nextInt();
-        while (opcion < 1 || opcion > 4) {
-            System.out.println("Opción fuera de rango. Seleccione una opción válida (1-4):");
-            opcion = scanner.nextInt();
+
+        // Devolver la zona de asiento según la opción
+        switch (opcion) {
+            case 1:
+                return Asiento.ZonaAsiento.Palco;
+            case 2:
+                return Asiento.ZonaAsiento.Balcon;
+            case 3:
+                return Asiento.ZonaAsiento.Centro;
+            case 4:
+                return Asiento.ZonaAsiento.Atras;
+            default:
+                System.out.println("Opción no válida. Se asignará la zona Centro.");
+                return Asiento.ZonaAsiento.Centro;
         }
-        return opcion;
+
+}
+
+    @Override
+    public int pedirAsiento() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'pedirAsiento'");
     }
-
-
 }
     
 

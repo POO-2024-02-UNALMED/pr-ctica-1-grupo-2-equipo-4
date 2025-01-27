@@ -1,9 +1,11 @@
 package gestorAplicacion.Servicios;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import gestorAplicacion.Servicios.Asiento;
-
+import gestorAplicacion.Servicios.Asiento.ZonaAsiento;
 import gestorAplicacion.personal.Artista;
 import gestorAplicacion.personal.Cliente;
 
@@ -13,11 +15,12 @@ public class Evento {
     private Artista artista;
     private Boolean consumoMinimo;
     private double precio;
-    private List<Asiento> asientos;  
+    private Map<Asiento.ZonaAsiento, Integer> asientosDisponibles; // Mapa para gestionar asientos por zona
 
 
     // Lista estática de eventos disponibles
     private static List<Evento> eventosDisponibles = new ArrayList<>();
+    private static List<Asiento> asientos = new ArrayList<>();
 
 
 
@@ -26,6 +29,15 @@ public class Evento {
         this.descripcion = descripcion;
         this.artista = artista;
         this.precio = precio;
+        this.asientosDisponibles = new HashMap<>();
+    }
+
+    public void inicializarAsientos() {
+        // inicialización de asientos en las zonas
+        asientos.add(new Asiento(ZonaAsiento.Palco, 25, 50)); // 10 asientos disponibles
+        asientos.add(new Asiento(ZonaAsiento.Balcon, 20, 40));
+        asientos.add(new Asiento(ZonaAsiento.Centro, 15, 25));
+        asientos.add(new Asiento(ZonaAsiento.Atras, 10, 20));
     }
 
     public static void inicializarEventos() {
@@ -55,6 +67,13 @@ public class Evento {
         }
     }
 
+    public void mostrarZonasAsientos() {
+        System.out.println("Zonas de asientos disponibles para el evento:");
+        for (Map.Entry<Asiento.ZonaAsiento, Integer> entry : asientosDisponibles.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + " asientos disponibles");
+        }
+    }
+
     public static Evento getEventoPorIndice(int indice) {
         if (indice > 0 && indice <= eventosDisponibles.size()) {
             return eventosDisponibles.get(indice - 1);
@@ -67,57 +86,7 @@ public class Evento {
 
 
 
-    //Inicializar asientos por zona
 
-
-    private List<Asiento> inicializarAsientos(){
-        List<Asiento> asientos = new ArrayList<>();
-
-        int cantidadPrimeraFila = 10;
-        int cantidadBalcon = 15;
-        int cantidadCentro = 20;
-        int cantidadAtras = 25;
-
-        // Asientos de Primera Fila
-        for (int i = 0; i < cantidadPrimeraFila; i++) {
-            asientos.add(new Asiento(Asiento.ZonaAsiento.Palco, 1, 200.0));
-        }
-
-        // Asientos de Balcon
-        for (int i = 0; i < cantidadBalcon; i++) {
-            asientos.add(new Asiento(Asiento.ZonaAsiento.Balcon, 1, 150.0));
-        }
-
-        // Asientos del Centro
-        for (int i = 0; i < cantidadCentro; i++) {
-            asientos.add(new Asiento(Asiento.ZonaAsiento.Centro, 1, 100.0));
-        }
-
-        // Asientos de Atras
-        for (int i = 0; i < cantidadAtras; i++) {
-            asientos.add(new Asiento(Asiento.ZonaAsiento.Atras, 1, 50.0));
-        }
-
-        return asientos;
-    }
-
-    public static void mostrarEventos(List<Evento> eventos) {
-        System.out.println("\nEventos disponibles:");
-        for (int i = 0; i < eventos.size(); i++) {
-            Evento evento = eventos.get(i);
-            System.out.println((i + 1) + ". " + evento.getNombre());
-        }
-    }
-
-    public Asiento asignarAsiento(Asiento.ZonaAsiento zona) {
-        for (Asiento asiento : asientos) {
-            if (asiento.getZona() == zona && asiento.esDisponible()) {
-                asiento.reservarAsiento();
-                return asiento;
-            }
-        }
-        return null; // Si no hay asientos disponibles en esa zona
-    }
 
         // Calcular precio con descuento basado en la suscripción del cliente
     public static double calcularPrecioConDescuento(Cliente cliente, Evento evento) {
@@ -163,22 +132,6 @@ public class Evento {
 
 
 
-    //Metodo obtener asiento por zona
-    public Asiento obtenerAsientoPorZona(Asiento.ZonaAsiento zona) {
-        for (Asiento asiento : asientos) {
-            if (asiento.getZona() == zona && asiento.esDisponible()) {
-                return asiento; // Retorna el primer asiento disponible en la zona
-            }
-        }
-        return null; // Retorna null si no hay asientos disponibles en la zona
-    }
-
-    // Obtener todos los asientos disponibles (sin zona especifica)
-    public List<Asiento> obtenerTodosAsientosDisponibles() {
-        return asientos.stream()
-                .filter(asiento -> !asiento.isReservado())
-                .collect(Collectors.toList());
-    }
 
     //Aplicar descuento segun la suscripcion de cliente
     public double calcularDescuento(Suscripcion suscripcion){

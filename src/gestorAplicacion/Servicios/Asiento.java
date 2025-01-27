@@ -18,9 +18,9 @@ public class Asiento {
 
 
 
-public Asiento(ZonaAsiento zona, int numero, double precio) {
+public Asiento(ZonaAsiento zona, int cantidad, double precio) {
     this.zona = zona;
-    this.cantidad = numero;
+    this.cantidad = cantidad;
     this.precio = precio;
     this.reservado = false; //Inicialmente no esta reservado
 }

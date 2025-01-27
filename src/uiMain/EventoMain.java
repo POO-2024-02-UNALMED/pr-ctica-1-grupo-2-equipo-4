@@ -1,6 +1,7 @@
 package uiMain;
 
 import gestorAplicacion.Servicios.*;
+import gestorAplicacion.Servicios.Asiento.ZonaAsiento;
 import gestorAplicacion.personal.Cliente;
 import gestorAplicacion.personal.Recepcionista;
 import gestorAplicacion.personal.Valet;
@@ -45,6 +46,16 @@ public class EventoMain {
         System.out.println("Por favor, elija un evento ingresando su número correspondiente (1, 2 o 3):");
         int opcionEvento = consola.pedirEvento(); // Método que solicita al cliente elegir un evento
         Evento eventoSeleccionado = Evento.getEventoPorIndice(opcionEvento); // Obtener el evento elegido
+
+        //Inicializacion de asientos
+        eventoSeleccionado.inicializarAsientos();
+        System.out.println("Aqui tienes los asientos disponibles");
+
+        eventoSeleccionado.mostrarZonasAsientos();
+
+        Asiento.ZonaAsiento zonaAsiento = consola.pedirZonaAsiento(); // Solicitar elección de zona de asiento
+        
+       // int numeroAsiento = consola.pedirAsiento(ZonaAsiento);
 
         // Confirmar la selección y aplicar lógica especial si corresponde
         Recepcionista.procesarSeleccionEvento(cliente, eventoSeleccionado);

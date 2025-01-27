@@ -77,7 +77,7 @@ public class Recepcionista extends Empleado{
         return null;
     }
 
-    public static void procesarSeleccionEvento(Cliente cliente, Evento eventoSeleccionado) {
+    public static void procesarSeleccionEvento(Cliente cliente, Evento eventoSeleccionado) { //Metodo principal
         System.out.println("Ha seleccionado el evento: " + eventoSeleccionado.getNombre());
 
 
@@ -97,6 +97,8 @@ public class Recepcionista extends Empleado{
         } else {
             System.out.println("Gracias por visitar el área de eventos. Puede seleccionar un asiento de las zonas disponibles.");
         }
+
+        
 
          // Asignar el evento al cliente
          cliente.setEvento(eventoSeleccionado);
