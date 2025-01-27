@@ -69,6 +69,8 @@ public class Evento {
 
     public void mostrarZonasAsientos() {
         System.out.println("--Zonas de asientos disponibles para el evento:--");
+        System.out.println(" ");
+        
         for (Asiento asiento : asientos) {
             System.out.println(asiento.getZona() + ": " + asiento.getCantidad() + " asientos disponibles");
         }
