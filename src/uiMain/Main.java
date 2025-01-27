@@ -35,7 +35,7 @@ public class Main {
 
             switch (opcion) {
                 case 1://jugar
-                    //Jugar(scanner, clientes, ruletas, maquinasDeSlots);
+                    MainJuegos.funcionalidadJugar(usuarioActual);
                     break;
 
                 case 2://bar

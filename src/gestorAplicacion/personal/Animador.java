@@ -6,8 +6,9 @@ import gestorAplicacion.Servicios.Suscripcion;
 public class Animador extends Empleado {
 
     // Constructor
-    public Animador(String puesto) {
-        super("Animador", puesto); // Establece el rol fijo como "Animador"
+    public Animador() {
+        super("Animador", "Juegos");
+         // Establece el rol fijo como "Animador" y el puesto fijo como Juegos
     }
 
     // Generar saludo personalizado
@@ -46,6 +47,7 @@ public class Animador extends Empleado {
     RegistroJuego registroJuego = cliente.getRegistroJuego();
 
     registroJuego.incrementarPartidasJugadas(partidaGanada);
+    registroJuego.setFichasFinal(cliente.getFichas());
     
     int racha = registroJuego.getRachaVictorias();  
     int partidasJugadas = registroJuego.getPartidasJugadas();

@@ -80,6 +80,19 @@ public class RegistroJuego{
     public void reiniciarRacha() {
     rachaVictorias = 0;
     }
+    // Imprimir
+    @Override
+    public String toString() {
+    return "Estadísticas del Jugador:\n" +
+           "--------------------------\n" +
+           "Fichas al inicio: " + fichasInicio + "\n" +
+           "Fichas al final: " + fichasFinal + "\n" +
+           "Partidas jugadas: " + partidasJugadas + "\n" +
+           "Partidas ganadas: " + partidasGanadas + "\n" +
+           "Porcentaje de victorias: " + String.format("%.2f%%", porcentajeVictorias * 100) + "\n" +
+           "Racha de victorias: " + rachaVictorias + "\n";
+}
+
     
     // Getter para la racha de victorias
     public int getRachaVictorias() {
