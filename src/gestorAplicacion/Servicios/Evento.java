@@ -15,12 +15,12 @@ public class Evento {
     private Artista artista;
     private Boolean consumoMinimo;
     private double precio;
-    private Map<Asiento.ZonaAsiento, Integer> asientosDisponibles; // Mapa para gestionar asientos por zona
+    private List<Asiento> asientos; // Lista de asientos disponibles
 
 
     // Lista estática de eventos disponibles
     private static List<Evento> eventosDisponibles = new ArrayList<>();
-    private static List<Asiento> asientos = new ArrayList<>();
+
 
 
 
@@ -29,7 +29,7 @@ public class Evento {
         this.descripcion = descripcion;
         this.artista = artista;
         this.precio = precio;
-        this.asientosDisponibles = new HashMap<>();
+        this.asientos = new ArrayList<>();
     }
 
     public void inicializarAsientos() {
@@ -68,9 +68,9 @@ public class Evento {
     }
 
     public void mostrarZonasAsientos() {
-        System.out.println("Zonas de asientos disponibles para el evento:");
-        for (Map.Entry<Asiento.ZonaAsiento, Integer> entry : asientosDisponibles.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue() + " asientos disponibles");
+        System.out.println("--Zonas de asientos disponibles para el evento:--");
+        for (Asiento asiento : asientos) {
+            System.out.println(asiento.getZona() + ": " + asiento.getCantidad() + " asientos disponibles");
         }
     }
 

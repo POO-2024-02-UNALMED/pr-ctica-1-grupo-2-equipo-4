@@ -1,6 +1,5 @@
 package gestorAplicacion.personal;
 
-import gestorAplicacion.Servicios.Asiento;
 import gestorAplicacion.Servicios.Auto;
 import gestorAplicacion.Servicios.Evento;
 import gestorAplicacion.Servicios.Suscripcion;
@@ -57,7 +56,6 @@ public class Recepcionista extends Empleado{
         cliente.setFichas(cliente.getFichas() + fichas);
     }
     
-
     
 
     //public String crearListaHabitaciones(){}
@@ -65,44 +63,38 @@ public class Recepcionista extends Empleado{
     public static ArrayList<Cliente> getClientes(){
         return Recepcionista.clientes;
     }
-    
-    //Funcionalidad Eventos, Interaccion 1
 
-    public static Cliente identificarCliente(long identificacion) {  
-        for (Cliente cliente : getClientes()) { // Asegúrate de que 'getClientes()' devuelva la lista de clientes registrados
-            if (cliente.getId() == identificacion) {
-                return cliente;
-            }
-        }
-        return null;
+    //Eventos, dar bienvenida
+
+    public void darBienvenida(Cliente cliente){
+        String nombreCliente = cliente.getNombreCliente();
+
+        System.out.println("¡Bienvenido a los eventos del Casino, " + nombreCliente + "!");
+
+     //Mostrar detalles iniciales del cliente (opcional)
+     System.out.println("Suscripción actual: " + cliente.getSuscripcion().getTipoSuscripcion());
+     System.out.println("Saldo disponible: $" + cliente.getSaldo());
+ 
+     // Continuar al siguiente flujo: Mostrar eventos disponibles
+     System.out.println("Permítame mostrarle los eventos disponibles...");       
     }
 
-    public static void procesarSeleccionEvento(Cliente cliente, Evento eventoSeleccionado) { //Metodo principal
-        System.out.println("Ha seleccionado el evento: " + eventoSeleccionado.getNombre());
-
-
-        // Verificar el tipo de suscripción del cliente
-        if (cliente.getSuscripcion().getTipoSuscripcion().equalsIgnoreCase("Platinum")) {
-            System.out.println("¡Felicidades! Como cliente Platinum, tiene derecho a:");
-            System.out.println("- Un asiento en la zona de Palco completamente gratis.");
-            System.out.println("- Una bebida especial gratis para disfrutar durante el evento.");
-
-            // Asignar asiento de Palco
-            Asiento asientoPalco = new Asiento(Asiento.ZonaAsiento.Palco, 1, 0.0); // Gratis
-            asientoPalco.reservarAsiento();
-            cliente.setAsiento(asientoPalco);
-
-            System.out.println("Se le ha asignado un asiento en Palco: " + asientoPalco);
-            System.out.println("¡Disfrute de su bebida especial durante el espectáculo!");
-        } else {
-            System.out.println("Gracias por visitar el área de eventos. Puede seleccionar un asiento de las zonas disponibles.");
+    //Mostrar eventos
+    public void mostrarEventosDisponibles(List<Evento> eventos) {
+        System.out.println("Eventos disponibles: ");
+        for (int i = 0; i < eventos.size(); i++){
+            Evento evento = eventos.get(i);
+            System.out.println((i + 1) + ". " + evento.getNombreEvento() + " - Precio: $" + evento.getPrecioBase());
         }
+    }
 
-        
+    //Verificar premio especial en evento
+    public boolean verificarPremioEspecial(Cliente cliente){
+        return cliente.verificarPremioEspecial();
+    }
 
-         // Asignar el evento al cliente
-         cliente.setEvento(eventoSeleccionado);
-         System.out.println("Su evento ha sido registrado exitosamente. ¡Disfrute del espectáculo!");
-
-}
+    public void asignarAsientoEspecial(Cliente cliente, Evento evento) {
+        cliente.asignarAsientoEspecial(evento);
+        System.out.println("Se ha asignado un asiento especial en el evento: " + evento.getNombreEvento());
+    }
 }
