@@ -1,5 +1,6 @@
 package gestorAplicacion.personal;
 
+import gestorAplicacion.Servicios.Asiento;
 import gestorAplicacion.Servicios.Auto;
 import gestorAplicacion.Servicios.Evento;
 import gestorAplicacion.Servicios.Suscripcion;
@@ -64,37 +65,26 @@ public class Recepcionista extends Empleado{
         return Recepcionista.clientes;
     }
 
-    //Eventos, dar bienvenida
+        //Funcionalidad Eventos, Interaccion 1
 
-    public void darBienvenida(Cliente cliente){
-        String nombreCliente = cliente.getNombreCliente();
-
-        System.out.println("¡Bienvenido a los eventos del Casino, " + nombreCliente + "!");
-
-     //Mostrar detalles iniciales del cliente (opcional)
-     System.out.println("Suscripción actual: " + cliente.getSuscripcion().getTipoSuscripcion());
-     System.out.println("Saldo disponible: $" + cliente.getSaldo());
- 
-     // Continuar al siguiente flujo: Mostrar eventos disponibles
-     System.out.println("Permítame mostrarle los eventos disponibles...");       
-    }
-
-    //Mostrar eventos
-    public void mostrarEventosDisponibles(List<Evento> eventos) {
-        System.out.println("Eventos disponibles: ");
-        for (int i = 0; i < eventos.size(); i++){
-            Evento evento = eventos.get(i);
-            System.out.println((i + 1) + ". " + evento.getNombreEvento() + " - Precio: $" + evento.getPrecioBase());
+        public static Cliente identificarCliente(long identificacion) {  
+            for (Cliente cliente : getClientes()) { 
+                if (cliente.getId() == identificacion) {
+                    return cliente;
+                }
+            }
+            return null;
         }
-    }
+    
+    public static void procesarSeleccionEvento(Cliente cliente, Evento eventoSeleccionado, Asiento.ZonaAsiento ubicacion) { //Metodo principal interaccion 1
+        System.out.println(" ");
+        System.out.println("--Resumen de la reserva-- ");
+        System.out.println(" ");
+        System.out.println("Ha seleccionado el evento: " + eventoSeleccionado.getNombre());
+        System.out.println("Artista invitado " + eventoSeleccionado.getArtista().getNombre());
+        System.out.println("En la ubicación: " + ubicacion); 
+        System.out.println("Gracias por visitar el área de eventos. ¡Disfrute del espectáculo!");
 
-    //Verificar premio especial en evento
-    public boolean verificarPremioEspecial(Cliente cliente){
-        return cliente.verificarPremioEspecial();
-    }
 
-    public void asignarAsientoEspecial(Cliente cliente, Evento evento) {
-        cliente.asignarAsientoEspecial(evento);
-        System.out.println("Se ha asignado un asiento especial en el evento: " + evento.getNombreEvento());
-    }
+}
 }

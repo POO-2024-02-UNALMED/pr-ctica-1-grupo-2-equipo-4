@@ -14,6 +14,7 @@ public class Asiento {
     private int cantidad;
     private boolean reservado;
     private Double precio;
+    private String numero;
 
 
 
@@ -89,6 +90,10 @@ public String toString() {
             ", reservado=" + reservado +
             ", precio=" + precio +
             '}';
+}
+
+public String getNumero() {
+    return numero;
 }
 
 }
