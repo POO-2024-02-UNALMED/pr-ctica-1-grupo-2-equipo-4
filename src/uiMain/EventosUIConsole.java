@@ -22,7 +22,7 @@ public class EventosUIConsole implements EventosUI {
     
     @Override
     public int pedirEvento() {
-        System.out.println("Ingrese el número del evento que desea asistir:");
+        System.out.println("Por favor, elija un evento ingresando su número correspondiente (1, 2 o 3):");
         while (!scanner.hasNextInt()) {
             System.out.println("Entrada inválida. Por favor, ingrese un número entero válido:");
             scanner.next();
@@ -37,6 +37,7 @@ public class EventosUIConsole implements EventosUI {
         System.out.println("2. Balcón");
         System.out.println("3. Centro");
         System.out.println("4. Atrás");
+        System.out.println(" ");
 
         Scanner scanner = new Scanner(System.in);
         int opcion = scanner.nextInt();
