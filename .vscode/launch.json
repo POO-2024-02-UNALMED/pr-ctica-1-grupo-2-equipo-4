@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Ejecutar Programa",
+        "request": "launch",
+        "mainClass": "uiMain.Main",
+        "projectName": "pr-ctica-1-grupo-2-equipo-4_242e7598"
+      }
+    ]
+  }
+  

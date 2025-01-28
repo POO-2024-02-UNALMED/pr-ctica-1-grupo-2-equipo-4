@@ -1,21 +1,18 @@
 package uiMain;
 
-import baseDatos.Deserializador;
 import baseDatos.Serializador;
 import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.Servicios.Ingrediente;
-import gestorAplicacion.Servicios.Suscripcion;
 import gestorAplicacion.personal.Animador;
 import gestorAplicacion.personal.Bartender;
 import gestorAplicacion.personal.Cliente;
 import gestorAplicacion.personal.Empleado;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        cargarDatos();
+        InicializarObjBar();
 
         Scanner scanner = new Scanner(System.in);
         Animador animador = new Animador();
@@ -166,8 +163,10 @@ public class Main {
         // Inicialización del bartender
         Bartender bartender = new Bartender("Bartender", "Barra");
         Empleado.getEmpleados().add(bartender);
+        Bartender.setBarraDeBebidas(barraBebidasBar);
+        Bartender.setBarraDeIngredientes(barraIngredientesBar);
 
-        Serializador.serializar(barraBebidasBar, Serializador.BASE_PATH+"bebidas.dat");
+        /* Serializador.serializar(barraBebidasBar, Serializador.BASE_PATH+"bebidas.dat");
         Serializador.serializar(barraIngredientesBar, Serializador.BASE_PATH+"ingredientes.dat");
         Serializador.serializar(bartender, Serializador.BASE_PATH+"bartender.dat");
     }
@@ -204,7 +203,7 @@ public class Main {
         } else {
             System.err.println("No se pudo cargar los empleados.");
         }
-    }
+    } */
 
     // Métodos para inicializar el casino
     /*
@@ -291,4 +290,4 @@ public class Main {
      * }
      * 
      */
-}
+}}
