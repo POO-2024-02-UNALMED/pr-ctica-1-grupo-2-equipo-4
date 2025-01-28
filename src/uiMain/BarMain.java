@@ -1,3 +1,5 @@
+//funcionalidad bar
+//Emanuel Palacio Perez
 package uiMain;
 
 import gestorAplicacion.Servicios.Bebida;

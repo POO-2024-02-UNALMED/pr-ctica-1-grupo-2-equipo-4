@@ -1,3 +1,6 @@
+//funcionalidad Juegos
+//Juan Diego Cardenas Acevedo
+
 package uiMain;
 
 import gestorAplicacion.Servicios.RegistroJuego;

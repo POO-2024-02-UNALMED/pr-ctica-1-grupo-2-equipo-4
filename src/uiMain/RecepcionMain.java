@@ -1,3 +1,5 @@
+//Funcionalidad Recepcion
+//Emanuel Palacio Perez
 package uiMain;
 
 import gestorAplicacion.Servicios.Auto;

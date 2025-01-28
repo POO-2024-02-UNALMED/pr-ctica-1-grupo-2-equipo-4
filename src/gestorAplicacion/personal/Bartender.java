@@ -31,6 +31,8 @@ public class Bartender extends Empleado implements Serializable {
         return "Hola, "+ nombre+ "soy un " + rol;
     }
 
+    //interaccion 3, funcionalidad Recepcion, calcula una bebida de bienvenida con atributos de bebida favorita y popularidad general
+    //de las bebidas en la barra 
     public Bebida prepararBebidaBienvenida(Cliente cliente){
         Bebida bebidaBase = evaluarBebidaFavorita(cliente.getCuentas());
         
@@ -67,6 +69,7 @@ public class Bartender extends Empleado implements Serializable {
     }
 
 
+    //interaccion 2 , funcionalidad bar, calcula las bebida escogida y sus ingredientes
     public Bebida prepararBebida(String nombreBebida, Suscripcion suscripcion) {
         Bebida bebidaBase = null;
         for (Bebida bebida : barraDeBebidas) {
@@ -107,6 +110,7 @@ public class Bartender extends Empleado implements Serializable {
         );
     }
 
+    // interaccion 1 funcionalidad bar, genera un menu segun las preferencias del cliente
     public String generarMenu(boolean alcoholico, boolean dulce, boolean amargo, boolean acido, Bebida bebidaFavorita, Suscripcion suscripcion) {
         StringBuilder menu = new StringBuilder();
         this.menuActual = new ArrayList<>();
@@ -150,6 +154,7 @@ public class Bartender extends Empleado implements Serializable {
         return menu.toString();
     }
 
+    // lee la popularidad de las bebidas y la traduce a texto
     private String calcularRecomendacion(Bebida bebida, Bebida bebidaFavorita) {
         if (bebidaFavorita != null && bebida.getNombre().equals(bebidaFavorita.getNombre())) {
             return "bebida favorita";

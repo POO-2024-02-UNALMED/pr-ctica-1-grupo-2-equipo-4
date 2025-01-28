@@ -21,15 +21,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Animador animador = new Animador();
 
-        // Crear listas de entidades del casino
-
-        // ArrayList<Empleado> empleados = crearEmpleados();
-
-        // Funcionalidad de Recepción, Emanuel Palacio Perez
+        
         System.out.println("===== Bienvenido al Casino =====");
         System.out.println("Primero debe registrarse en la recepción.");
 
-
+        // Funcionalidad de Recepción
         Cliente usuarioActual = RecepcionMain.funcionalidadRecepcion();
 
         boolean salir = false;
@@ -56,7 +52,7 @@ public class Main {
                     MainJuegos.funcionalidadJugar(usuarioActual);
                     break;
 
-                case 2:// Funcionalidad bar, Emanuel Palacio Perez
+                case 2:// Funcionalidad bar
                     BarMain.funcionalidadBar(usuarioActual);
                     break;
 
@@ -66,7 +62,7 @@ public class Main {
                     break;
 
                 case 4:// habitacion
-                       // Hotel(scanner, clientes, hotel);
+                       // Hotel(scanner, clientes, hotel); No se alcanzo a implementar
                     break;
 
                 case 5:// salir
@@ -212,5 +208,5 @@ public class Main {
             System.err.println("No se pudo cargar los empleados.");
         }
     } */
-    
+    //Parte de la serializacion que no se pudo implementar
 }

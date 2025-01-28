@@ -1,12 +1,10 @@
+//Funcionalidad eventos
+//Juan José Gomez
 package uiMain;
 
 import gestorAplicacion.Servicios.*;
-import gestorAplicacion.Servicios.Asiento.ZonaAsiento;
 import gestorAplicacion.personal.Cliente;
 import gestorAplicacion.personal.Recepcionista;
-import gestorAplicacion.personal.Valet;
-
-import java.util.List;
 
 
 public class EventoMain {
