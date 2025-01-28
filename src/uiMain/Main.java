@@ -44,6 +44,10 @@ public class Main {
 
             switch (opcion) {
                 case 1:// jugar
+                    String suscripcion = usuarioActual.getSuscripcion().getTipoSuscripcion();
+                    if (suscripcion.equalsIgnoreCase("vetado")){
+                        break;
+                    }
                     animador.entregarFichas(usuarioActual);
                     MainJuegos.funcionalidadJugar(usuarioActual);
                     break;
