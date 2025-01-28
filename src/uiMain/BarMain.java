@@ -2,21 +2,16 @@ package uiMain;
 
 import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.Servicios.Cuenta;
-import gestorAplicacion.Servicios.Ingrediente;
 import gestorAplicacion.personal.Bartender;
 import gestorAplicacion.personal.Cliente;
 import gestorAplicacion.personal.Empleado;
-import java.util.ArrayList;
 
 public class BarMain{
     public static void funcionalidadBar(Cliente cliente) {
-        //Cliente cliente = new Cliente("juan", 19, 123456, 500000);
-        //cliente.setSuscripcion(new Suscripcion(8));
-        //cliente.setFidelidadBar(true);
 
         Bartender bartender = new Bartender(null, null);
         for (Empleado empleado : Empleado.getEmpleados()){
-            if (empleado.getRol() == "bartender"){
+            if (empleado.getRol() == "Bartender"){
                 bartender = (Bartender) empleado;// ligadura dinamica!!!!
             }
         }

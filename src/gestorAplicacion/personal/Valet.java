@@ -17,6 +17,7 @@ public class Valet extends Empleado {
     public static Cliente identificarCliente(long identificacion){  
                                                                
         for (Cliente cliente : Recepcionista.getClientes()) {
+            System.out.println(cliente.getId());
             if (cliente.getId() == identificacion) {
                 return cliente;
             }

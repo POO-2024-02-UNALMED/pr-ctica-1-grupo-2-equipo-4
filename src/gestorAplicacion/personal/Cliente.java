@@ -2,7 +2,6 @@
 package gestorAplicacion.personal;
 
 import gestorAplicacion.Servicios.Asiento;
-import gestorAplicacion.Servicios.Asiento.ZonaAsiento;
 import gestorAplicacion.Servicios.Auto;
 import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.Servicios.Cuenta;
@@ -42,6 +41,7 @@ public class Cliente {
                 this.id = id;
                 this.saldo = saldo;
                 this.suscripcion = new Suscripcion(numeroVisitas); //Se inicializa segun el numero de visitas
+                Recepcionista.getClientes().add(this);
             }
             // Constructor con parámetros
             public Cliente(String nombreCliente, int edadCliente, long id, float saldo, Auto auto, Suscripcion suscripcion) {
@@ -51,6 +51,15 @@ public class Cliente {
                 this.saldo = saldo;
                 this.auto = auto;
                 this.suscripcion = suscripcion;
+                Recepcionista.getClientes().add(this);
+            }
+
+            public Cliente(String nombreCliente, long id, float saldo, Suscripcion suscripcion) {
+                this.nombreCliente = nombreCliente;
+                this.id = id;
+                this.saldo = saldo;
+                this.suscripcion = suscripcion;
+                Recepcionista.getClientes().add(this);
             }
         
             // Método para dar propina al bar

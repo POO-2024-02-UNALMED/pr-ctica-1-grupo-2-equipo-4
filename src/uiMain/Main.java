@@ -3,16 +3,20 @@ package uiMain;
 import baseDatos.Serializador;
 import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.Servicios.Ingrediente;
+import gestorAplicacion.Servicios.Suscripcion;
 import gestorAplicacion.personal.Animador;
 import gestorAplicacion.personal.Bartender;
 import gestorAplicacion.personal.Cliente;
 import gestorAplicacion.personal.Empleado;
+import gestorAplicacion.personal.Recepcionista;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         InicializarObjBar();
+        InicializarClientes();
+        System.out.println(Recepcionista.getClientes());
 
         Scanner scanner = new Scanner(System.in);
         Animador animador = new Animador();
@@ -21,9 +25,10 @@ public class Main {
 
         // ArrayList<Empleado> empleados = crearEmpleados();
 
-        // Funcionalidad de Recepción
+        // Funcionalidad de Recepción, Emanuel Palacio Perez
         System.out.println("===== Bienvenido al Casino =====");
         System.out.println("Primero debe registrarse en la recepción.");
+
 
         Cliente usuarioActual = RecepcionMain.funcionalidadRecepcion();
 
@@ -42,7 +47,7 @@ public class Main {
             int opcion = scanner.nextInt();
 
             switch (opcion) {
-                case 1:// jugar
+                case 1:// Funcionalidad jugar
                     String suscripcion = usuarioActual.getSuscripcion().getTipoSuscripcion();
                     if (suscripcion.equalsIgnoreCase("vetado")){
                         break;
@@ -51,17 +56,16 @@ public class Main {
                     MainJuegos.funcionalidadJugar(usuarioActual);
                     break;
 
-                case 2:// bar
+                case 2:// Funcionalidad bar, Emanuel Palacio Perez
                     BarMain.funcionalidadBar(usuarioActual);
                     break;
 
-                case 3://eventos
-                    //Eventos(scanner, clientes, empleados);
+                case 3://Funcionalidad eventos
                     EventoMain.funcionalidadEvento();
 
                     break;
 
-                case 4:// habiitacion
+                case 4:// habitacion
                        // Hotel(scanner, clientes, hotel);
                     break;
 
@@ -84,8 +88,12 @@ public class Main {
             Serializador.serializar(empleado, Serializador.BASE_PATH+"empleado.dat");
         }
     }
-    public static void InicializarPersonas() {
-
+    public static void InicializarClientes() {
+        // Inicialización de clientes
+        Cliente clientePlat = new Cliente("james", 45, 1000000, new Suscripcion(6));
+        Cliente clienteSilver = new Cliente("samanta", 37, 1000000, new Suscripcion(4));
+        Cliente clientePorDefecto = new Cliente("jose", 29, 1000000, new Suscripcion(2));
+        clienteSilver.setFidelidadBar(true);
     }
     public static void InicializarObjBar() {
         // Inicialización de ingredientes
@@ -162,10 +170,10 @@ public class Main {
 
         // Inicialización del bartender
         Bartender bartender = new Bartender("Bartender", "Barra");
-        Empleado.getEmpleados().add(bartender);
         Bartender.setBarraDeBebidas(barraBebidasBar);
         Bartender.setBarraDeIngredientes(barraIngredientesBar);
 
+    }
         /* Serializador.serializar(barraBebidasBar, Serializador.BASE_PATH+"bebidas.dat");
         Serializador.serializar(barraIngredientesBar, Serializador.BASE_PATH+"ingredientes.dat");
         Serializador.serializar(bartender, Serializador.BASE_PATH+"bartender.dat");
@@ -204,90 +212,5 @@ public class Main {
             System.err.println("No se pudo cargar los empleados.");
         }
     } */
-
-    // Métodos para inicializar el casino
-    /*
-     * private static ArrayList<Cliente> crearClientes() {
-     * ArrayList<Cliente> clientes = new ArrayList<>();
-     * clientes.add(new Cliente("Juan Pérez", 500));
-     * clientes.add(new Cliente("María Gómez", 1000));
-     * return clientes;
-     * }
-     * 
-     * private static ArrayList<Empleado> crearEmpleados() {
-     * ArrayList<Empleado> empleados = new ArrayList<>();
-     * empleados.add(new Empleado("Carlos López", "Recepcionista"));
-     * empleados.add(new Empleado("Ana Rodríguez", "Bartender"));
-     * return empleados;
-     * }
-     * 
-     * 
-     * // Métodos para funcionalidades
-     * private static void realizarRecepcion(Scanner scanner, ArrayList<Cliente>
-     * clientes, ArrayList<Empleado> empleados) {
-     * System.out.println("\n--- Recepción ---");
-     * System.out.print("Ingrese su nombre para registrarse: ");
-     * scanner.nextLine(); // Limpiar buffer
-     * String nombre = scanner.nextLine();
-     * System.out.print("Ingrese el dinero inicial que desea cambiar por fichas: ");
-     * int dinero = scanner.nextInt();
-     * 
-     * Cliente nuevoCliente = new Cliente(nombre, dinero);
-     * clientes.add(nuevoCliente);
-     * System.out.println("Cliente registrado exitosamente.");
-     * }
-     * 
-     * private static void menuJuegos(Scanner scanner, ArrayList<Cliente> clientes,
-     * ArrayList<Ruleta> ruletas, ArrayList<MaquinaDeSlots> maquinas) {
-     * System.out.println("\n--- Juegos ---");
-     * System.out.println("1. Jugar a la Ruleta");
-     * System.out.println("2. Jugar en las Máquinas de Slots");
-     * System.out.print("Seleccione una opción: ");
-     * int opcion = scanner.nextInt();
-     * 
-     * switch (opcion) {
-     * case 1:
-     * jugarRuleta(scanner, clientes, ruletas);
-     * break;
-     * 
-     * case 2:
-     * jugarSlots(scanner, clientes, maquinas);
-     * break;
-     * 
-     * default:
-     * System.out.println("Opción inválida.");
-     * }
-     * }
-     * 
-     * private static void jugarRuleta(Scanner scanner, ArrayList<Cliente> clientes,
-     * ArrayList<Ruleta> ruletas) {
-     * System.out.println("\n--- Jugar a la Ruleta ---");
-     * // Lógica para jugar a la ruleta
-     * }
-     * 
-     * private static void jugarSlots(Scanner scanner, ArrayList<Cliente> clientes,
-     * ArrayList<MaquinaDeSlots> maquinas) {
-     * System.out.println("\n--- Jugar en las Máquinas de Slots ---");
-     * // Lógica para jugar en máquinas de slots
-     * }
-     * 
-     * private static void visitarBar(Scanner scanner, ArrayList<Cliente> clientes,
-     * ArrayList<Empleado> empleados, Bar bar) {
-     * System.out.println("\n--- Visitar el Bar ---");
-     * // Lógica para el bar
-     * }
-     * 
-     * private static void gestionarEventos(Scanner scanner, ArrayList<Cliente>
-     * clientes, ArrayList<Empleado> empleados) {
-     * System.out.println("\n--- Gestión de Eventos ---");
-     * // Lógica para gestionar eventos
-     * }
-     * 
-     * private static void gestionarHotel(Scanner scanner, ArrayList<Cliente>
-     * clientes, Hotel hotel) {
-     * System.out.println("\n--- Gestión del Hotel ---");
-     * // Lógica para gestionar habitaciones, reservas, etc.
-     * }
-     * 
-     */
-}}
+    
+}

@@ -3,12 +3,10 @@ package uiMain;
 import gestorAplicacion.Servicios.Auto;
 import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.Servicios.Casino;
-import gestorAplicacion.Servicios.Ingrediente;
 import gestorAplicacion.personal.Bartender;
 import gestorAplicacion.personal.Cliente;
 import gestorAplicacion.personal.Recepcionista;
 import gestorAplicacion.personal.Valet;
-import java.util.ArrayList;
 
 public class RecepcionMain {
     public static Cliente funcionalidadRecepcion(){//funcionalidadRecepcion(){
@@ -17,17 +15,7 @@ public class RecepcionMain {
         Valet valet = new Valet("Valet", "Estacionamiento");
         Recepcionista recepcionista = new Recepcionista("Recepcionista", "Recepcion");
 
-        // inicializacion bartender
-        /* ArrayList<Ingrediente> ingredientes = new ArrayList<>();
-        Ingrediente ingrediente1 = new Ingrediente("agua");
-        ingredientes.add(ingrediente1);
-
-        Bebida bebidaAgua = new Bebida("agua", 2000, false, false, false, false, 2, ingredientes);
-        ArrayList<Ingrediente> barraIngredientesBar = new ArrayList<>();
-        ArrayList<Bebida> barraBebidasBar = new ArrayList<>();
-        barraIngredientesBar.add(ingrediente1);
-        barraBebidasBar.add(bebidaAgua);
-        Bartender bartender = new Bartender("bartender","barra",barraBebidasBar,barraIngredientesBar); */
+        
         Bartender bartender = new Bartender("bartender","barra");
 
         // interaccion 1

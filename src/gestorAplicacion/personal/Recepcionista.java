@@ -5,10 +5,8 @@ import gestorAplicacion.Servicios.Auto;
 import gestorAplicacion.Servicios.Evento;
 import gestorAplicacion.Servicios.Suscripcion;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Recepcionista extends Empleado{
-    private static ArrayList<Empleado> empleados = new ArrayList<>();
     private static ArrayList<Cliente> clientes = new ArrayList<>();
 
     public Recepcionista(String rol, String puesto) {
