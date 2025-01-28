@@ -10,31 +10,31 @@ public class BarUIConsole implements BarUI {
 
     @Override
     public boolean pedirAlcohol() {
-        System.out.println("¿Quieres una bebida alcohólica? (si/no)");
+        System.out.println("¿Quieres una bebida alcohólica? (s/n)");
         String respuesta = scanner.nextLine().toLowerCase();
-        return respuesta.equals("si");
+        return respuesta.equals("s");
     }
 
 
     @Override
     public boolean pedirAcido() {
-        System.out.println("¿Quieres una bebida ácida? (sí/no)");
+        System.out.println("¿Quieres una bebida ácida? (s/n)");
         String respuesta = scanner.nextLine().toLowerCase();
-        return respuesta.equals("si");
+        return respuesta.equals("s");
     }
 
     @Override
     public boolean pedirAmargo() {
-        System.out.println("¿Quieres una bebida amarga? (si/no)");
+        System.out.println("¿Quieres una bebida amarga? (s/n)");
         String respuesta = scanner.nextLine().toLowerCase();
-        return respuesta.equals("si");
+        return respuesta.equals("s");
     }
 
     @Override
     public boolean pedirDulce() {
-        System.out.println("¿Quieres una bebida dulce? (si/no)");
+        System.out.println("¿Quieres una bebida dulce? (s/n)");
         String respuesta = scanner.nextLine().toLowerCase();
-        return respuesta.equals("si");
+        return respuesta.equals("s");
     }
 
     @Override

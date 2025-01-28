@@ -4,6 +4,7 @@ import baseDatos.Deserializador;
 import baseDatos.Serializador;
 import gestorAplicacion.Servicios.Bebida;
 import gestorAplicacion.Servicios.Ingrediente;
+import gestorAplicacion.Servicios.Suscripcion;
 import gestorAplicacion.personal.Animador;
 import gestorAplicacion.personal.Bartender;
 import gestorAplicacion.personal.Cliente;
@@ -14,7 +15,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        InicializarObjBar();
+        cargarDatos();
+
         Scanner scanner = new Scanner(System.in);
         Animador animador = new Animador();
 
@@ -130,7 +132,7 @@ public class Main {
         ingredientesPinaColada.add(piña);
         ingredientesPinaColada.add(ron);
         ingredientesPinaColada.add(hielo);
-        Bebida pinaColada = new Bebida("Piña Colada", 9000, true, true, false, false, 3, ingredientesPinaColada);
+        Bebida pinaColada = new Bebida("Piña Colada", 9000, true, true, false, true, 3, ingredientesPinaColada);
         barraBebidasBar.add(pinaColada);
 
         // Whisky Sour
@@ -139,7 +141,7 @@ public class Main {
         ingredientesWhiskySour.add(limon);
         ingredientesWhiskySour.add(azucar);
         ingredientesWhiskySour.add(hielo);
-        Bebida whiskySour = new Bebida("Whisky Sour", 10000, true, false, true, false, 4, ingredientesWhiskySour);
+        Bebida whiskySour = new Bebida("Whisky Sour", 10000, true, false, true, true, 4, ingredientesWhiskySour);
         barraBebidasBar.add(whiskySour);
 
         // Cerveza Artesanal
@@ -153,11 +155,11 @@ public class Main {
         ingredientesMartini.add(ginebra);
         ingredientesMartini.add(vermut);
         ingredientesMartini.add(hielo);
-        Bebida martini = new Bebida("Martini", 12000, false, false, true, false, 5, ingredientesMartini);
+        Bebida martini = new Bebida("Martini", 12000, false, false, true, true, 5, ingredientesMartini);
         barraBebidasBar.add(martini);
 
         // Inicialización del bartender
-        Bartender bartender = new Bartender("Bartender", "Barra", barraBebidasBar, barraIngredientesBar);
+        Bartender bartender = new Bartender("Bartender", "Barra");
         Empleado.getEmpleados().add(bartender);
 
         Serializador.serializar(barraBebidasBar, Serializador.BASE_PATH+"bebidas.dat");
@@ -170,6 +172,7 @@ public class Main {
         List<Ingrediente> ingredientes = (List<Ingrediente>) Deserializador.deserializar(Serializador.BASE_PATH+"ingredientes.dat");
         if (ingredientes != null) {
             Bartender.setBarraDeIngredientes(ingredientes);
+            System.out.println(Bartender.getBarraDeIngredientes());
         } else {
             System.err.println("No se pudieron cargar los ingredientes.");
         }
@@ -185,7 +188,7 @@ public class Main {
         // Deserializar bartender
         Bartender bartender = (Bartender) Deserializador.deserializar(Serializador.BASE_PATH+"bartender.dat");
         if (bartender != null) {
-            System.out.println("Bartender cargado: " + bartender);
+            Empleado.getEmpleados().add(bartender);
         } else {
             System.err.println("No se pudo cargar el bartender.");
         }

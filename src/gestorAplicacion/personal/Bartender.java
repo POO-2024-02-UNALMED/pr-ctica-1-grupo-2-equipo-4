@@ -16,13 +16,14 @@ public class Bartender extends Empleado implements Serializable {
 
     public Bartender(String rol, String puesto, List<Bebida> barraDeBebidas, List<Ingrediente> barraDeIngredientes) {
         super(rol, puesto);
-        this.barraDeBebidas = barraDeBebidas;
-        this.barraDeIngredientes = barraDeIngredientes;
+        Bartender.barraDeBebidas = barraDeBebidas;
+        Bartender.barraDeIngredientes = barraDeIngredientes;
         this.menuActual = new ArrayList<>();
     }
 
     public Bartender(String rol, String puesto){
         super(rol, puesto);
+        this.menuActual = new ArrayList<>();
     }
 
     @Override
@@ -34,14 +35,14 @@ public class Bartender extends Empleado implements Serializable {
         Bebida bebidaBase = evaluarBebidaFavorita(cliente.getCuentas());
         
         if (bebidaBase == null) {
-            bebidaBase = this.barraDeBebidas.stream()
+            bebidaBase = barraDeBebidas.stream()
                 .max((b1, b2) -> Integer.compare(b1.getFavorito(), b2.getFavorito()))
                 .orElse(null); // Manejar caso en que la barra esté vacía
         }
 
         ArrayList<Ingrediente> ingredientesPreparados = new ArrayList<>();
         for (Ingrediente ingredienteBase : bebidaBase.getIngredientes()) {
-            for (Ingrediente barraIngrediente : this.barraDeIngredientes) {
+            for (Ingrediente barraIngrediente : barraDeIngredientes) {
                 if (barraIngrediente.getNombre().equalsIgnoreCase(ingredienteBase.getNombre())) {
                     ingredientesPreparados.add(new Ingrediente(barraIngrediente.getNombre(), cliente.getSuscripcion()));
                 }
@@ -82,7 +83,7 @@ public class Bartender extends Empleado implements Serializable {
         ArrayList<Ingrediente> ingredientesPreparados = new ArrayList<>();
         for (Ingrediente ingredienteBase : bebidaBase.getIngredientes()) {
             boolean encontrado = false;
-            for (Ingrediente barraIngrediente : this.barraDeIngredientes) {
+            for (Ingrediente barraIngrediente : barraDeIngredientes) {
                 if (barraIngrediente.getNombre().equalsIgnoreCase(ingredienteBase.getNombre())) {
                     ingredientesPreparados.add(new Ingrediente(barraIngrediente.getNombre(), suscripcion));
                     encontrado = true;
@@ -108,12 +109,14 @@ public class Bartender extends Empleado implements Serializable {
 
     public String generarMenu(boolean alcoholico, boolean dulce, boolean amargo, boolean acido, Bebida bebidaFavorita, Suscripcion suscripcion) {
         StringBuilder menu = new StringBuilder();
+        this.menuActual = new ArrayList<>();
         menu.append("Menú personalizado (Descuento por suscripción: ").append(suscripcion.getDescuento() * 100).append("%):\n");
     
         int index = 1;
         boolean hayOpciones = false;
     
-        for (Bebida bebida : this.barraDeBebidas) {
+        for (Bebida bebida : barraDeBebidas) {
+            System.out.println(bebida.getNombre());
             boolean incluir = true;
     
             // Filtrar por características
@@ -128,7 +131,7 @@ public class Bartender extends Empleado implements Serializable {
             }
     
             // Si la bebida cumple con los filtros, agregarla al menú
-            if (incluir) {
+            if (incluir && bebida != null) {
                 hayOpciones = true;
                 String recomendacion = calcularRecomendacion(bebida, bebidaFavorita);
                 int precioConDescuento = (int) (bebida.getPrecio() * (1 - suscripcion.getDescuento()));

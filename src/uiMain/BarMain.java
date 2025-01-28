@@ -5,6 +5,7 @@ import gestorAplicacion.Servicios.Cuenta;
 import gestorAplicacion.Servicios.Ingrediente;
 import gestorAplicacion.personal.Bartender;
 import gestorAplicacion.personal.Cliente;
+import gestorAplicacion.personal.Empleado;
 import java.util.ArrayList;
 
 public class BarMain{
@@ -13,16 +14,12 @@ public class BarMain{
         //cliente.setSuscripcion(new Suscripcion(8));
         //cliente.setFidelidadBar(true);
 
-        /* ArrayList<Ingrediente> ingredientes = new ArrayList<>();
-        Ingrediente ingrediente1 = new Ingrediente("agua", cliente.getSuscripcion());
-        ingredientes.add(ingrediente1);
-
-        Bebida bebidaAgua = new Bebida("agua", 2000, false, false, false, false, 2, ingredientes);
-        ArrayList<Ingrediente> barraIngredientesBar = new ArrayList<>();
-        ArrayList<Bebida> barraBebidasBar = new ArrayList<>();
-        barraIngredientesBar.add(ingrediente1);
-        barraBebidasBar.add(bebidaAgua); */
-        Bartender bartender = new Bartender("bartender","barra");
+        Bartender bartender = new Bartender(null, null);
+        for (Empleado empleado : Empleado.getEmpleados()){
+            if (empleado.getRol() == "bartender"){
+                bartender = (Bartender) empleado;// ligadura dinamica!!!!
+            }
+        }
 
         BarUI consola = new BarUIConsole();
 

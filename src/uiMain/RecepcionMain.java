@@ -18,7 +18,7 @@ public class RecepcionMain {
         Recepcionista recepcionista = new Recepcionista("Recepcionista", "Recepcion");
 
         // inicializacion bartender
-        ArrayList<Ingrediente> ingredientes = new ArrayList<>();
+        /* ArrayList<Ingrediente> ingredientes = new ArrayList<>();
         Ingrediente ingrediente1 = new Ingrediente("agua");
         ingredientes.add(ingrediente1);
 
@@ -27,7 +27,8 @@ public class RecepcionMain {
         ArrayList<Bebida> barraBebidasBar = new ArrayList<>();
         barraIngredientesBar.add(ingrediente1);
         barraBebidasBar.add(bebidaAgua);
-        Bartender bartender = new Bartender("bartender","barra",barraBebidasBar,barraIngredientesBar);
+        Bartender bartender = new Bartender("bartender","barra",barraBebidasBar,barraIngredientesBar); */
+        Bartender bartender = new Bartender("bartender","barra");
 
         // interaccion 1
         Auto auto = null;
