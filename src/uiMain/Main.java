@@ -82,6 +82,11 @@ public class Main {
     
     }
 
+    public static void guardarDatos(){
+        for (Empleado empleado: Empleado.getEmpleados()){
+            Serializador.serializar(empleado, Serializador.BASE_PATH+"empleado.dat");
+        }
+    }
     public static void InicializarPersonas() {
 
     }
@@ -173,7 +178,7 @@ public class Main {
         if (ingredientes != null) {
             Bartender.setBarraDeIngredientes(ingredientes);
             System.out.println(Bartender.getBarraDeIngredientes());
-        } else {
+        } else { 
             System.err.println("No se pudieron cargar los ingredientes.");
         }
 
@@ -191,6 +196,13 @@ public class Main {
             Empleado.getEmpleados().add(bartender);
         } else {
             System.err.println("No se pudo cargar el bartender.");
+        }
+
+        ArrayList<Empleado> empleados = (ArrayList<Empleado>) Deserializador.deserializar(Serializador.BASE_PATH+"empleados.dat");
+        if (bartender != null) {
+            Empleado.setEmpleados(empleados);;
+        } else {
+            System.err.println("No se pudo cargar los empleados.");
         }
     }
 
