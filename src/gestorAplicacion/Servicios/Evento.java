@@ -14,7 +14,7 @@ public class Evento {
     private String descripcion;
     private Artista artista;
     private Boolean consumoMinimo;
-    private double precio;
+    private int precio;
     private List<Asiento> asientos; // Lista de asientos disponibles
 
 
@@ -24,7 +24,7 @@ public class Evento {
 
 
 
-    public Evento(String nombre, String descripcion, Artista artista, double precio) {
+    public Evento(String nombre, String descripcion, Artista artista, int precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.artista = artista;
@@ -42,6 +42,8 @@ public class Evento {
 
     public static void inicializarEventos() {
 
+        eventosDisponibles.clear();
+
         Artista artista1 = new Artista("Lisa S.");
         Artista artista2 = new Artista("Merrit McKinney");
         Artista artista3 = new Artista("Franco Escamilla");
@@ -49,9 +51,9 @@ public class Evento {
 
         // Agregar algunos eventos por defecto
         
-        eventosDisponibles.add(new Evento("Concierto de Jazz", "Jazz relajante.", artista1, 50.0));
-        eventosDisponibles.add(new Evento("Show de Magia", "Acto Ilusionismo.", artista2, 40.0));
-        eventosDisponibles.add(new Evento("Comedia Stand-Up", "Una noche llena de risas.", artista3, 30.0));
+        eventosDisponibles.add(new Evento("Concierto de Jazz", "Jazz relajante.", artista1, 25));
+        eventosDisponibles.add(new Evento("Show de Magia", "Acto Ilusionismo.", artista2, 35));
+        eventosDisponibles.add(new Evento("Comedia Stand-Up", "Una noche llena de risas.", artista3, 30));
     }
 
     public static void mostrarEventos() {
@@ -156,7 +158,7 @@ public class Evento {
     }
 
     // Getter de precio base
-    public double getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 

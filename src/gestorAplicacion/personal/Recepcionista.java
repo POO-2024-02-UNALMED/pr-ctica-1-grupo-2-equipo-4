@@ -76,15 +76,19 @@ public class Recepcionista extends Empleado{
             return null;
         }
     
-    public static void procesarSeleccionEvento(Cliente cliente, Evento eventoSeleccionado, Asiento.ZonaAsiento ubicacion) { //Metodo principal interaccion 1
+    public static void procesarSeleccionEvento(Cliente cliente, Evento eventoSeleccionado, Asiento.ZonaAsiento ubicacion, int costoConDescuento) { //Metodo principal interaccion 1
         System.out.println(" ");
         System.out.println("--Resumen de la reserva-- ");
         System.out.println(" ");
         System.out.println("Ha seleccionado el evento: " + eventoSeleccionado.getNombre());
         System.out.println("Artista invitado " + eventoSeleccionado.getArtista().getNombre());
         System.out.println("En la ubicación: " + ubicacion); 
+        System.out.println("El precio del evento fue de " + costoConDescuento + " fichas."); 
         System.out.println("Gracias por visitar el área de eventos. ¡Disfrute del espectáculo!");
 
+        if (cliente.getSuscripcion().getTipoSuscripcion().equalsIgnoreCase("Platinum")) {
+            System.out.println("Como miembro Platinum, también recibirá una bebida especial durante el espectáculo.");
+        }
 
 }
 }
