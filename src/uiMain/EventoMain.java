@@ -40,6 +40,11 @@ public class EventoMain {
         // Leer la suscripción del cliente y mostrarla
         System.out.println("Su suscripción actual es: " + cliente.getSuscripcion().getTipoSuscripcion());
 
+        if (cliente.getSuscripcion().getTipoSuscripcion().equalsIgnoreCase("Platinum")){
+            System.out.println("Como miembro Platinum, se le ha asignado automáticamente un asiento en Primera Fila.");
+            System.out.println("Además, recibirá una bebida especial gratuita durante el espectáculo.");
+        }
+
         // Mostrar eventos disponibles
         Evento.inicializarEventos();
         System.out.println(" ");   
@@ -55,17 +60,21 @@ public class EventoMain {
 
         //Inicializacion de asientos
         eventoSeleccionado.inicializarAsientos();
-        System.out.println(" ");
-        System.out.println("Aqui tienes los asientos disponibles: ");
-        System.out.println(" ");
 
-        eventoSeleccionado.mostrarZonasAsientos();
+        Asiento.ZonaAsiento zonaSeleccionada;
+        if (cliente.getSuscripcion().getTipoSuscripcion().equalsIgnoreCase("Platinum")) {
+        zonaSeleccionada = Asiento.ZonaAsiento.Palco; 
+        } else {
 
-        Asiento.ZonaAsiento zonaSeleccionada = consola.pedirZonaAsiento(); // Solicitar elección de zona de asiento
-        
-       // int numeroAsiento = consola.pedirAsiento(ZonaAsiento);
-
-
+            System.out.println(" ");
+            System.out.println("Aqui tienes los asientos disponibles: ");
+            System.out.println(" ");
+    
+            eventoSeleccionado.mostrarZonasAsientos();
+            zonaSeleccionada = consola.pedirZonaAsiento(); // Solicitar elección de zona de asiento
+            
+        }
+    
         // Confirmar la selección y aplicar lógica especial si corresponde
         Recepcionista.procesarSeleccionEvento(cliente, eventoSeleccionado, zonaSeleccionada);
     } else {

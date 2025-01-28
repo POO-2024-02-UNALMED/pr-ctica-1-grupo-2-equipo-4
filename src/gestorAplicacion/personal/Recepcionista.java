@@ -68,7 +68,7 @@ public class Recepcionista extends Empleado{
         //Funcionalidad Eventos, Interaccion 1
 
         public static Cliente identificarCliente(long identificacion) {  
-            for (Cliente cliente : getClientes()) { // Asegúrate de que 'getClientes()' devuelva la lista de clientes registrados
+            for (Cliente cliente : getClientes()) { 
                 if (cliente.getId() == identificacion) {
                     return cliente;
                 }
@@ -85,6 +85,9 @@ public class Recepcionista extends Empleado{
         System.out.println("En la ubicación: " + ubicacion); 
         System.out.println("Gracias por visitar el área de eventos. ¡Disfrute del espectáculo!");
 
+        if (cliente.getSuscripcion().getTipoSuscripcion().equalsIgnoreCase("Platinum")) {
+            System.out.println("Como miembro Platinum, también recibirá una bebida especial durante el espectáculo.");
+        }
 
 }
 }
