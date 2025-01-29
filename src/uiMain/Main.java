@@ -86,7 +86,7 @@ public class Main {
     }
     public static void InicializarClientes() {
         // Inicialización de clientes
-        Cliente clientePlat = new Cliente("james", 45, 1000000, new Suscripcion(6));
+        Cliente clientePlatinum = new Cliente("james", 45, 1000000, new Suscripcion(6));
         Cliente clienteSilver = new Cliente("samanta", 37, 1000000, new Suscripcion(4));
         Cliente clientePorDefecto = new Cliente("jose", 29, 1000000, new Suscripcion(2));
         clienteSilver.setFidelidadBar(true);
@@ -170,6 +170,8 @@ public class Main {
         Bartender.setBarraDeIngredientes(barraIngredientesBar);
 
     }
+
+    
         /* Serializador.serializar(barraBebidasBar, Serializador.BASE_PATH+"bebidas.dat");
         Serializador.serializar(barraIngredientesBar, Serializador.BASE_PATH+"ingredientes.dat");
         Serializador.serializar(bartender, Serializador.BASE_PATH+"bartender.dat");
